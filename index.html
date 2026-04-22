@@ -241,6 +241,8 @@ nav.scrolled .nav-links{opacity:1}
 #s1-video{
   width:100%;height:100%;
   object-fit:cover;display:block;
+  will-change:transform;
+  transform:translateZ(0);
 }
 .video-grad{
   position:absolute;inset:0;
@@ -490,7 +492,7 @@ nav.scrolled .nav-links{opacity:1}
 
     <!-- 레이어 1: 영상 -->
     <div id="layer-video">
-      <video id="s1-video" muted playsinline preload="auto">
+      <video id="s1-video" muted playsinline preload="auto" disablePictureInPicture>
         <source src="scene_01_payment.mp4" type="video/mp4">
         <source src="%EC%88%98%EB%82%A9_%EC%83%81%ED%99%A9_1.mp4" type="video/mp4">
       </video>
@@ -601,22 +603,56 @@ const progFill=document.getElementById('pain-prog-fill');
 const counter=document.getElementById('pain-counter');
 const cards=document.querySelectorAll('.nc');
 
-/* 비디오 로드 */
+/* 비디오 로드 — scroll scrub 방식 */
 let vidReady=false;
+let videoDuration=0;
+let targetVideoTime=0;
+let currentVideoTime=0;
+let scrubRAF=null;
+
 video.addEventListener('loadedmetadata',()=>{
   vidReady=true;
+  videoDuration=video.duration||0;
+  targetVideoTime=0;
+  currentVideoTime=0;
+  video.pause();
   video.currentTime=0;
-  console.log('[VIDEO] loadedmetadata, duration:',video.duration);
 });
+
 video.addEventListener('canplay',()=>{
   vidReady=true;
-  console.log('[VIDEO] canplay');
+  if(!videoDuration) videoDuration=video.duration||0;
 });
-video.addEventListener('error',(e)=>{
-  console.error('[VIDEO] error:',e,video.error);
-});
-video.addEventListener('stalled',()=>console.warn('[VIDEO] stalled'));
+
 video.load();
+
+function startVideoScrubLoop(){
+  if(scrubRAF) return;
+
+  const tick=()=>{
+    if(vidReady && videoDuration>0){
+      const diff=targetVideoTime-currentVideoTime;
+
+      if(Math.abs(diff)<0.002){
+        currentVideoTime=targetVideoTime;
+      }else{
+        currentVideoTime+=diff*.18;
+      }
+
+      currentVideoTime=Math.max(0,Math.min(videoDuration,currentVideoTime));
+
+      if(Math.abs(video.currentTime-currentVideoTime)>0.0015){
+        video.currentTime=currentVideoTime;
+      }
+    }
+
+    scrubRAF=requestAnimationFrame(tick);
+  };
+
+  scrubRAF=requestAnimationFrame(tick);
+}
+
+startVideoScrubLoop();
 
 /* ── 섹션 위치 헬퍼 ── */
 function secInfo(id){
@@ -640,17 +676,15 @@ function onScroll(){
   /* ────────────────────────
      인트로 패널
   ──────────────────────── */
-  const iRel=sy-intro.top; // intro 내 상대 스크롤
-  const iLen=intro.h-wh;   // 실제 스크롤 가능 길이
-  const iP=Math.max(0,Math.min(1,iRel/iLen)); // 0~1
+  const iRel=sy-intro.top;
+  const iLen=intro.h-wh;
+  const iP=Math.max(0,Math.min(1,iRel/iLen));
 
-  /* 활성화 */
   if(iP>0.02 && !introActive){
     introActive=true;
     panelIntro.classList.add('active');
   }
 
-  /* 인트로 콘텐츠 페이드아웃 (80%~100%) */
   const iFade=Math.max(0,Math.min(1,(iP-.75)/.2));
   const piWrap=panelIntro.querySelector('.pi-wrap');
   piWrap.style.opacity=String(1-iFade);
@@ -675,9 +709,8 @@ function onScroll(){
   ──────────────────────── */
   const s1Rel=sy-s1.top;
   const s1Len=s1.h-wh;
-  const s1P=Math.max(0,Math.min(1,s1Rel/s1Len)); // 0~1
+  const s1P=Math.max(0,Math.min(1,s1Rel/s1Len));
 
-  /* 진행바 */
   progFill.style.width=(s1P*16.67)+'%';
 
   /* 구간 정의
@@ -690,21 +723,31 @@ function onScroll(){
   /* ── 구간 A: 흰빛 걷히며 영상 등장 (0~0.30) ── */
   if(s1P<0.30){
     const a=Math.max(0,Math.min(1,s1P/.25));
-    /* 흰빛 걷히기 */
     lightBurst.style.transform=`scale(${Math.max(0,5*(1-a))})`;
     lightBurst.style.opacity=String(Math.max(0,1-a*1.5));
-    /* 영상 레이어 등장 */
     layerVideo.style.opacity=String(Math.min(a*1.5,1));
     layerCode.classList.remove('visible');
     layerText.classList.remove('visible');
   }
 
-  /* ── 구간 B: 영상 스크롤 제어 (0.10~0.55) ── */
-  if(s1P>=0.10 && s1P<0.58){
-    layerVideo.classList.add('visible');
-    const vidP=Math.max(0,Math.min(1,(s1P-.10)/.45));
-    if(vidReady && video.duration){
-      video.currentTime=vidP*video.duration;
+  /* ── 구간 B: 영상 스크롤 제어 (0.10~0.58) ── */
+  if(vidReady && videoDuration>0){
+    const videoStart=0.10;
+    const videoEnd=0.58;
+    const freezeTime=0.5;
+    const playableDuration=Math.max(videoDuration-(freezeTime*2),0);
+
+    if(s1P>=videoStart && s1P<videoEnd){
+      layerVideo.style.opacity='1';
+
+      const rawProgress=(s1P-videoStart)/(videoEnd-videoStart);
+      const clampedProgress=Math.max(0,Math.min(1,rawProgress));
+
+      targetVideoTime=freezeTime+(playableDuration*clampedProgress);
+    } else if(s1P<videoStart){
+      targetVideoTime=0;
+    } else {
+      targetVideoTime=videoDuration;
     }
   }
 
@@ -717,7 +760,6 @@ function onScroll(){
 
   /* ── 구간 D: 코드 애니메이션 (0.63~1.00) ── */
   if(s1P>=0.63){
-    /* 흰빛 걷히기 */
     const d0=Math.max(0,Math.min(1,(s1P-.63)/.07));
     lightBurst.style.transform=`scale(${Math.max(0,5*(1-d0))})`;
     lightBurst.style.opacity=String(Math.max(0,1-d0*1.5));
@@ -725,38 +767,34 @@ function onScroll(){
     layerVideo.style.opacity='0';
     layerCode.classList.add('visible');
 
-    const dP=Math.max(0,Math.min(1,(s1P-.65)/.35)); // 코드 내 진행도
+    const dP=Math.max(0,Math.min(1,(s1P-.65)/.35));
 
-    /* 아이콘 등장 */
     if(dP>0.05 && !iconShown){
       iconShown=true;
       bankWrap.classList.add('show');
     }
-    /* 뱃지 등장 */
     if(dP>0.12 && !badgeShown){
       badgeShown=true;
       bankBadge.classList.add('show');
     }
-    /* 아이콘 왼쪽 이동 */
     if(dP>0.20 && !iconLeft){
       iconLeft=true;
       bankWrap.classList.add('left');
     }
-    /* 알림 카드 순차 등장 */
+
     cards.forEach((c,i)=>{
       const t=0.26+(i*0.055);
       if(dP>t) c.classList.add('show');
       else c.classList.remove('show');
     });
-    /* 배경 어두워짐 */
+
     if(dP>0.70) layerCode.classList.add('dark');
     else layerCode.classList.remove('dark');
-    /* 텍스트 오버레이 */
+
     if(dP>0.78) layerText.classList.add('visible');
     else layerText.classList.remove('visible');
 
   } else {
-    /* 구간 D 이전이면 초기화 */
     if(iconShown){
       iconShown=false;iconLeft=false;badgeShown=false;
       bankWrap.classList.remove('show','left');

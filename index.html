@@ -10,26 +10,40 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --green:#568A35;--gl:#8DC85A;--gdim:rgba(86,138,53,.14);
-  --bg:#0C0C0C;--bg2:#111;--bg3:#161616;--bg4:#1a1a1a;
+  --bg:#0C0C0C;--bg2:#111;--bg3:#1a1a1a;
   --bd:rgba(255,255,255,.07);--text:#F0F0EB;--t2:#777;--t3:#3a3a3a;
 }
 html{font-size:16px}
-body{font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{
+  font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;
+  background:var(--bg);color:var(--text);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
 a{text-decoration:none;color:inherit}
 
 /* ── 커서 ── */
-.cdot,.cring{position:fixed;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%);z-index:9999}
-.cdot{width:7px;height:7px;background:var(--gl);transition:opacity .2s}
-.cring{width:32px;height:32px;border:1px solid rgba(141,200,90,.35);transition:width .2s,height .2s,border-color .2s;z-index:9998}
+.cdot,.cring{position:fixed;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%)}
+.cdot{width:7px;height:7px;background:var(--gl);z-index:9999;transition:opacity .2s}
+.cring{width:32px;height:32px;border:1px solid rgba(141,200,90,.35);z-index:9998;transition:width .2s,height .2s,border-color .2s}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(12,12,12,.0);backdrop-filter:blur(0px);border-bottom:.5px solid transparent;transition:all .5s}
-nav.scrolled{background:rgba(12,12,12,.9);backdrop-filter:blur(18px);border-bottom-color:var(--bd)}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:2000;
+  height:62px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;
+  background:rgba(12,12,12,0);backdrop-filter:blur(0px);
+  border-bottom:.5px solid transparent;
+  transition:all .5s;
+}
+nav.scrolled{
+  background:rgba(12,12,12,.92);backdrop-filter:blur(20px);
+  border-bottom-color:var(--bd);
+}
 .nav-logo{display:flex;align-items:center;gap:8px;opacity:0;transition:opacity .5s}
 nav.scrolled .nav-logo{opacity:1}
-.nav-logo-turtle{height:28px;width:auto}
-.nav-logo-text{height:20px;width:auto}
-.nav-logo-fb{font-size:18px;font-weight:800;color:#fff;letter-spacing:-1px;display:none}
+.nav-logo img{height:22px;width:auto}
+.nav-logo .turtle{height:26px}
+.nav-logo-fb{font-size:18px;font-weight:800;color:#fff;display:none}
 .nav-links{display:flex;align-items:center;gap:28px;opacity:0;transition:opacity .5s}
 nav.scrolled .nav-links{opacity:1}
 .nav-links a{font-size:13px;color:var(--t2);font-weight:500;transition:color .2s}
@@ -37,277 +51,366 @@ nav.scrolled .nav-links{opacity:1}
 .nav-cta{background:var(--green);color:#fff!important;font-size:13px;font-weight:700;padding:8px 20px;border-radius:100px;transition:all .2s}
 .nav-cta:hover{background:var(--gl);transform:translateY(-1px)}
 
-/* ══════════════════════════════
-   HERO 섹션
-══════════════════════════════ */
-#hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg)}
+/* ══════════════════════════
+   HERO
+══════════════════════════ */
+#hero{
+  position:relative;height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:var(--bg);
+}
 .hero-bg{position:absolute;inset:0;overflow:hidden}
-.hero-orb{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(86,138,53,.12) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;filter:blur(80px);animation:orbpulse 6s ease-in-out infinite}
-@keyframes orbpulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.8}50%{transform:translate(-50%,-52%) scale(1.08);opacity:1}}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at 50% 50%,black 20%,transparent 75%)}
-.hero-content{position:relative;z-index:2;text-align:center;max-width:800px;padding:0 24px}
-.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--gdim);border:.5px solid rgba(86,138,53,.28);color:var(--gl);font-size:12px;font-weight:600;padding:5px 14px;border-radius:100px;margin-bottom:28px;opacity:0;animation:fadeup .7s ease .2s forwards}
-.hero-bdot{width:5px;height:5px;background:var(--gl);border-radius:50%;animation:blink 2s infinite}
+.hero-orb{
+  position:absolute;
+  width:580px;height:580px;
+  background:radial-gradient(circle,rgba(86,138,53,.13) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  border-radius:50%;filter:blur(80px);
+  animation:orbpulse 7s ease-in-out infinite;
+}
+@keyframes orbpulse{
+  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.8}
+  50%{transform:translate(-50%,-53%) scale(1.07);opacity:1}
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse at 50% 50%,black 20%,transparent 75%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  text-align:center;max-width:820px;padding:0 24px;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--gdim);border:.5px solid rgba(86,138,53,.28);
+  color:var(--gl);font-size:12px;font-weight:600;
+  padding:5px 14px;border-radius:100px;margin-bottom:28px;
+  opacity:0;animation:fadeup .7s ease .2s forwards;
+}
+.hbdot{width:5px;height:5px;background:var(--gl);border-radius:50%;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.hero-title{font-size:clamp(38px,5.5vw,72px);font-weight:900;line-height:1.1;letter-spacing:-2.5px;color:#fff;margin-bottom:20px;word-break:keep-all}
-.hero-title .line{display:block;overflow:hidden}
-.hero-title .line-inner{display:block;transform:translateY(100%);animation:lineup .7s cubic-bezier(.16,1,.3,1) forwards}
-.hero-title .line:nth-child(1) .line-inner{animation-delay:.3s}
-.hero-title .line:nth-child(2) .line-inner{animation-delay:.45s}
-.hero-title .line:nth-child(3) .line-inner{animation-delay:.6s}
-.hero-sub{font-size:clamp(14px,1.5vw,17px);color:var(--t2);line-height:1.9;margin-bottom:12px;opacity:0;animation:fadeup .7s ease 1s forwards;word-break:keep-all}
-.hero-sub2{font-size:clamp(14px,1.5vw,17px);color:var(--text);font-weight:600;margin-bottom:44px;opacity:0;animation:fadeup .7s ease 1.2s forwards;word-break:keep-all}
-.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeup .7s ease 1.4s forwards}
-.btnp{display:inline-flex;align-items:center;gap:9px;background:var(--green);color:#fff;font-size:14px;font-weight:700;padding:13px 24px;border-radius:13px;transition:all .2s;font-family:inherit}
+.hero-title{
+  font-size:clamp(38px,5.5vw,72px);font-weight:900;
+  line-height:1.1;letter-spacing:-2.5px;color:#fff;
+  margin-bottom:20px;word-break:keep-all;
+}
+.hero-title .hl{display:block;overflow:hidden}
+.hero-title .hli{
+  display:block;transform:translateY(100%);
+  animation:lineup .7s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-title .hl:nth-child(1) .hli{animation-delay:.3s}
+.hero-title .hl:nth-child(2) .hli{animation-delay:.44s}
+.hero-title .hl:nth-child(3) .hli{animation-delay:.58s}
+.hero-sub{
+  font-size:clamp(14px,1.5vw,17px);color:var(--t2);line-height:1.9;
+  margin-bottom:12px;word-break:keep-all;
+  opacity:0;animation:fadeup .7s ease 1s forwards;
+}
+.hero-sub2{
+  font-size:clamp(14px,1.5vw,17px);color:var(--text);font-weight:600;
+  margin-bottom:44px;word-break:keep-all;
+  opacity:0;animation:fadeup .7s ease 1.2s forwards;
+}
+.hero-btns{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+  opacity:0;animation:fadeup .7s ease 1.4s forwards;
+}
+.btnp{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--green);color:#fff;
+  font-size:14px;font-weight:700;padding:13px 24px;border-radius:13px;
+  transition:all .2s;font-family:inherit;
+}
 .btnp:hover{background:var(--gl);transform:translateY(-2px);box-shadow:0 10px 36px rgba(86,138,53,.28)}
-.btns{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.05);color:var(--t2);font-size:14px;font-weight:500;padding:13px 24px;border-radius:13px;border:.5px solid var(--bd);transition:all .2s;font-family:inherit}
+.btns{
+  display:inline-flex;align-items:center;gap:9px;
+  background:rgba(255,255,255,.05);color:var(--t2);
+  font-size:14px;font-weight:500;padding:13px 24px;border-radius:13px;
+  border:.5px solid var(--bd);transition:all .2s;font-family:inherit;
+}
 .btns:hover{background:rgba(255,255,255,.08);color:var(--text);transform:translateY(-2px)}
-.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;color:var(--t3);font-size:10px;letter-spacing:1.5px;opacity:0;animation:fadeup .7s ease 1.8s forwards}
-.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--t3),transparent);animation:sclanim 2s ease-in-out infinite}
+.hero-scroll{
+  position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:7px;
+  color:var(--t3);font-size:10px;letter-spacing:1.5px;
+  opacity:0;animation:fadeup .7s ease 1.8s forwards;
+}
+.scroll-line{
+  width:1px;height:36px;
+  background:linear-gradient(to bottom,var(--t3),transparent);
+  animation:sclanim 2s ease-in-out infinite;
+}
 @keyframes sclanim{0%,100%{opacity:.6;transform:scaleY(1)}50%{opacity:.2;transform:scaleY(.5)}}
 
-/* ══════════════════════════════
-   PAINPOINT 래퍼
-══════════════════════════════ */
-#painpoint-wrapper{position:relative}
-
-/* ── 인트로 패널 ── */
-#pain-intro{
+/* ══════════════════════════
+   PAINPOINT 인트로 섹션
+   — 스크롤 공간 + sticky 패널
+══════════════════════════ */
+#section-intro{position:relative;height:250vh}
+#panel-intro{
   position:sticky;top:0;height:100vh;
   display:flex;align-items:center;justify-content:center;
-  background:var(--bg);overflow:hidden;
-  z-index:10;
+  background:var(--bg);overflow:hidden;z-index:10;
 }
-.pi-orb{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(86,138,53,.1) 0%,transparent 70%);border-radius:50%;filter:blur(60px);top:50%;left:50%;transform:translate(-50%,-50%);transition:transform 1s ease,opacity 1s ease}
-.pi-content{position:relative;z-index:2;text-align:center}
-.pi-tag{font-size:10px;font-weight:700;color:var(--green);letter-spacing:2.5px;display:block;margin-bottom:20px;opacity:0;transition:opacity .6s}
-.pi-title{font-size:clamp(36px,5vw,64px);font-weight:900;letter-spacing:-2.5px;line-height:1.1;color:#fff;word-break:keep-all;margin-bottom:20px}
-.pi-title .pt-line{display:block;overflow:hidden}
-.pi-title .pt-inner{display:block;transform:translateY(100%);transition:transform .7s cubic-bezier(.16,1,.3,1)}
-.pi-sub{font-size:15px;color:var(--t2);opacity:0;transition:opacity .6s .3s;word-break:keep-all}
-.pi-arrow{margin-top:40px;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;transition:opacity .6s .5s}
-.pi-arrow-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(86,138,53,.5),transparent)}
-.pi-arrow-text{font-size:10px;letter-spacing:1.5px;color:var(--green);animation:bounce 2s ease-in-out infinite}
+.pi-orb{
+  position:absolute;
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(86,138,53,.09) 0%,transparent 70%);
+  border-radius:50%;filter:blur(70px);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.pi-wrap{position:relative;z-index:2;text-align:center;padding:0 24px}
+.pi-eyebrow{
+  font-size:10px;font-weight:700;color:var(--green);
+  letter-spacing:2.5px;text-transform:uppercase;
+  margin-bottom:20px;display:block;
+  opacity:0;transition:opacity .6s .1s;
+}
+.pi-h2{
+  font-size:clamp(36px,5.5vw,68px);font-weight:900;
+  letter-spacing:-2.5px;line-height:1.1;color:#fff;
+  word-break:keep-all;margin-bottom:20px;
+}
+.pi-h2 .pl{display:block;overflow:hidden}
+.pi-h2 .pli{
+  display:block;transform:translateY(100%);
+  transition:transform .75s cubic-bezier(.16,1,.3,1);
+}
+.pi-h2 .pl:nth-child(1) .pli{transition-delay:.1s}
+.pi-h2 .pl:nth-child(2) .pli{transition-delay:.22s}
+.pi-desc{
+  font-size:15px;color:var(--t2);line-height:1.8;
+  word-break:keep-all;
+  opacity:0;transition:opacity .6s .4s;
+}
+.pi-hint{
+  margin-top:36px;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;transition:opacity .6s .6s;
+}
+.pi-hint-line{
+  width:1px;height:40px;
+  background:linear-gradient(to bottom,rgba(86,138,53,.5),transparent);
+}
+.pi-hint-text{
+  font-size:10px;letter-spacing:1.5px;color:var(--green);
+  animation:bounce 2s ease-in-out infinite;
+}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 
-/* 인트로 활성화 */
-#pain-intro.active .pi-tag,
-#pain-intro.active .pi-sub,
-#pain-intro.active .pi-arrow{opacity:1}
-#pain-intro.active .pt-inner{transform:translateY(0)}
+/* 인트로 활성화 클래스 */
+#panel-intro.active .pi-eyebrow,
+#panel-intro.active .pi-desc,
+#panel-intro.active .pi-hint{opacity:1}
+#panel-intro.active .pli{transform:translateY(0)}
 
-/* 인트로 → 영상 전환: 흰빛 레이어 */
-.light-burst{
-  position:fixed;inset:0;z-index:500;
-  background:radial-gradient(circle at 50% 50%,#fff 0%,rgba(255,255,255,.95) 30%,rgba(255,255,255,0) 70%);
+/* 인트로 페이드아웃 */
+#panel-intro .pi-wrap{transition:opacity .4s,transform .4s}
+
+/* ══════════════════════════
+   PAINPOINT 상황 1 섹션
+   — 하나의 sticky 화면에서 모든 스토리
+══════════════════════════ */
+#section-s1{position:relative;height:600vh}
+#panel-s1{
+  position:sticky;top:0;height:100vh;
+  overflow:hidden;background:#0a0a0a;
+  z-index:20;
+}
+
+/* 흰빛 전환 오버레이 */
+#light-burst{
+  position:absolute;inset:0;z-index:100;
+  background:radial-gradient(circle at 50% 50%,#fff 0%,rgba(255,255,255,.9) 40%,transparent 70%);
   transform:scale(0);opacity:0;
   pointer-events:none;
-  transition:none;
+  will-change:transform,opacity;
 }
 
-/* ── 영상 섹션 ── */
-#pain-video-section{
-  position:sticky;top:0;height:100vh;
-  overflow:hidden;
-  z-index:20;
-  background:#fff;
-}
-.video-wrap{position:absolute;inset:0}
-#pain-video{
-  width:100%;height:100%;
-  object-fit:cover;
-  display:block;
-}
-/* 영상 위 어두운 오버레이 */
-.video-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.2) 0%,rgba(0,0,0,.1) 50%,rgba(0,0,0,.3) 100%);
-}
-/* 영상 위 프로그레스 */
-.video-progress-wrap{
-  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-  display:flex;align-items:center;gap:12px;
+/* 영상 레이어 */
+#layer-video{
+  position:absolute;inset:0;z-index:10;
   opacity:0;transition:opacity .5s;
 }
-.video-progress-wrap.visible{opacity:1}
-.video-prog-bar{width:200px;height:1px;background:rgba(255,255,255,.2);border-radius:1px}
-.video-prog-fill{height:100%;background:var(--gl);border-radius:1px;width:0%;transition:width .1s linear}
-.video-prog-num{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:1px}
+#s1-video{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+}
+.video-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.1) 0%,
+    rgba(0,0,0,0) 40%,
+    rgba(0,0,0,.4) 100%
+  );
+}
 
-/* ── 코드 애니메이션 섹션 ── */
-#pain-code-section{
-  position:sticky;top:0;height:100vh;
-  overflow:hidden;z-index:30;
-  background:#fff;
+/* 코드 애니메이션 레이어 */
+#layer-code{
+  position:absolute;inset:0;z-index:20;
+  opacity:0;pointer-events:none;
+  transition:opacity .5s;
   display:flex;align-items:center;justify-content:center;
 }
-.code-bg{
+#layer-code.visible{opacity:1;pointer-events:auto}
+.code-bg-fill{
   position:absolute;inset:0;
   background:#fff;
-  transition:background 1.5s ease;
+  transition:background 1.2s ease;
 }
-#pain-code-section.darkening .code-bg{
-  background:var(--bg);
-}
-.code-inner{
+#layer-code.dark .code-bg-fill{background:var(--bg)}
+.code-content{
   position:relative;z-index:2;
-  width:100%;max-width:900px;
+  width:100%;max-width:860px;
   padding:0 5%;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:60px;
+  display:flex;align-items:center;
+  justify-content:center;
+  gap:48px;
 }
 
 /* 은행 아이콘 */
-.bank-icon-wrap{
+.bank-wrap{
   flex-shrink:0;
-  display:flex;flex-direction:column;align-items:center;
-  opacity:0;transform:scale(.6);
-  transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  opacity:0;transform:scale(.5);
+  transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1);
+  will-change:transform,opacity;
 }
-.bank-icon-wrap.visible{opacity:1;transform:scale(1)}
-.bank-icon-wrap.move-left{transform:translateX(-60px) scale(1)}
-.bank-icon{
+.bank-wrap.show{opacity:1;transform:scale(1)}
+.bank-wrap.left{
+  transform:translateX(-40px) scale(1);
+}
+.bank-icon-box{
   position:relative;
-  width:80px;height:80px;
-  background:linear-gradient(135deg,#1a6eff,#0050cc);
+  width:78px;height:78px;
+  background:linear-gradient(145deg,#1a6fff,#0041c4);
   border-radius:20px;
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 8px 32px rgba(26,110,255,.35);
-}
-.bank-icon-symbol{
-  font-size:36px;
-  line-height:1;
+  font-size:34px;
+  box-shadow:0 8px 28px rgba(26,111,255,.4);
 }
 .bank-badge{
-  position:absolute;top:-8px;right:-8px;
-  width:26px;height:26px;
-  background:#ff3b30;border-radius:50%;
-  border:2px solid #fff;
+  position:absolute;top:-9px;right:-9px;
+  width:27px;height:27px;
+  background:#ff3b30;border:2.5px solid #fff;
+  border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   font-size:10px;font-weight:800;color:#fff;
   font-family:'DM Sans',sans-serif;
-  animation:badgepop .4s cubic-bezier(.16,1,.3,1) forwards;
-  opacity:0;
+  opacity:0;transform:scale(0);
+  transition:opacity .3s,transform .4s cubic-bezier(.16,1,.3,1);
 }
-@keyframes badgepop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
-.bank-name{
-  margin-top:10px;font-size:12px;font-weight:600;
-  color:#1a1a1a;transition:color .5s;
+.bank-badge.show{opacity:1;transform:scale(1)}
+.bank-label{
+  font-size:12px;font-weight:600;color:#1a1a1a;
+  transition:color .8s;
 }
-#pain-code-section.darkening .bank-name{color:var(--t2)}
+#layer-code.dark .bank-label{color:var(--t2)}
 
-/* 알림 목록 */
-.notif-list{
-  flex:1;
-  display:flex;flex-direction:column;gap:8px;
-  max-height:70vh;overflow:hidden;
+/* 알림 리스트 */
+.notif-wrap{
+  flex:1;min-width:0;
+  display:flex;flex-direction:column;gap:7px;
+  max-height:68vh;overflow:hidden;
 }
-.notif-card{
-  background:#f5f5f5;
-  border-radius:14px;
-  padding:12px 16px;
-  display:flex;align-items:center;gap:12px;
-  transform:translateY(30px);opacity:0;
-  transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .5s,background .5s;
-  border:1px solid rgba(0,0,0,.06);
+.nc{
+  background:#f0f0f0;
+  border-radius:14px;padding:11px 15px;
+  display:flex;align-items:center;gap:11px;
+  opacity:0;transform:translateY(28px);
+  transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1),background .8s,border-color .8s;
+  border:.5px solid rgba(0,0,0,.06);
+  will-change:transform,opacity;
 }
-.notif-card.visible{transform:translateY(0);opacity:1}
-#pain-code-section.darkening .notif-card{
-  background:var(--bg3);
-  border-color:var(--bd);
-}
-.notif-icon{
-  width:36px;height:36px;min-width:36px;
-  background:linear-gradient(135deg,#1a6eff,#0050cc);
+.nc.show{opacity:1;transform:translateY(0)}
+#layer-code.dark .nc{background:var(--bg3);border-color:var(--bd)}
+.nc-icon{
+  width:34px;height:34px;min-width:34px;
+  background:linear-gradient(145deg,#1a6fff,#0041c4);
   border-radius:9px;
   display:flex;align-items:center;justify-content:center;
-  font-size:16px;
-  box-shadow:0 3px 10px rgba(26,110,255,.3);
+  font-size:15px;
+  box-shadow:0 2px 8px rgba(26,111,255,.3);
 }
-.notif-body{flex:1;min-width:0}
-.notif-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
-.notif-bank{font-size:11px;font-weight:700;color:#1a6eff}
-.notif-time{font-size:10px;color:#999}
-.notif-text{font-size:13px;font-weight:500;color:#1a1a1a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .5s}
-#pain-code-section.darkening .notif-text{color:var(--text)}
-.notif-amount{font-size:13px;font-weight:700;color:#1a1a1a;transition:color .5s}
-#pain-code-section.darkening .notif-amount{color:var(--text)}
+.nc-body{flex:1;min-width:0}
+.nc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
+.nc-bank{font-size:10px;font-weight:700;color:#1a6fff}
+.nc-time{font-size:10px;color:#aaa;font-family:'DM Sans',sans-serif}
+.nc-row{display:flex;justify-content:space-between;align-items:center}
+.nc-who{font-size:13px;font-weight:500;color:#111;transition:color .8s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#layer-code.dark .nc-who{color:var(--text)}
+.nc-amt{font-size:13px;font-weight:700;color:#111;transition:color .8s;flex-shrink:0;margin-left:8px}
+#layer-code.dark .nc-amt{color:var(--text)}
 
-/* 텍스트 오버레이 */
-.code-text-overlay{
-  position:absolute;inset:0;z-index:3;
+/* 텍스트 오버레이 레이어 */
+#layer-text{
+  position:absolute;inset:0;z-index:30;
   display:flex;align-items:flex-end;
-  padding:0 8% 10%;
+  padding:0 8% 9%;
   opacity:0;pointer-events:none;
-  transition:opacity .8s;
+  transition:opacity .6s;
 }
-.code-text-overlay.visible{opacity:1}
-.code-text-block{max-width:560px}
-.ct-time{
+#layer-text.visible{opacity:1}
+.txt-block{max-width:580px}
+.txt-time{
   font-size:11px;font-weight:700;color:var(--gl);
-  letter-spacing:2px;margin-bottom:16px;display:block;
-  transform:translateY(20px);opacity:0;transition:all .6s ease .1s;
+  letter-spacing:2px;display:block;margin-bottom:14px;
+  transform:translateY(16px);opacity:0;transition:all .5s .1s;
 }
-.code-text-overlay.visible .ct-time{transform:translateY(0);opacity:1}
-.ct-main{
-  font-size:clamp(32px,4vw,54px);font-weight:900;
+#layer-text.visible .txt-time{transform:translateY(0);opacity:1}
+.txt-main{
+  font-size:clamp(30px,3.8vw,52px);font-weight:900;
   letter-spacing:-2px;line-height:1.1;color:#fff;
-  margin-bottom:16px;word-break:keep-all;
-  text-shadow:0 2px 20px rgba(0,0,0,.5);
+  margin-bottom:14px;word-break:keep-all;
+  text-shadow:0 2px 24px rgba(0,0,0,.6);
 }
-.ct-main .cmline{display:block;overflow:hidden}
-.ct-main .cminner{
+.txt-main .tl{display:block;overflow:hidden}
+.txt-main .tli{
   display:block;transform:translateY(100%);opacity:0;
-  transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .5s;
+  transition:transform .65s cubic-bezier(.16,1,.3,1),opacity .5s;
 }
-.code-text-overlay.visible .cminner{transform:translateY(0);opacity:1}
-.code-text-overlay.visible .cmline:nth-child(1) .cminner{transition-delay:.2s}
-.code-text-overlay.visible .cmline:nth-child(2) .cminner{transition-delay:.35s}
-.ct-desc{
-  font-size:15px;color:rgba(255,255,255,.65);line-height:1.7;
-  transform:translateY(15px);opacity:0;
-  transition:all .6s ease .6s;word-break:keep-all;
+#layer-text.visible .tl:nth-child(1) .tli{transform:translateY(0);opacity:1;transition-delay:.2s}
+#layer-text.visible .tl:nth-child(2) .tli{transform:translateY(0);opacity:1;transition-delay:.35s}
+.txt-desc{
+  font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;
+  word-break:keep-all;
+  transform:translateY(12px);opacity:0;transition:all .5s .6s;
 }
-.code-text-overlay.visible .ct-desc{transform:translateY(0);opacity:1}
+#layer-text.visible .txt-desc{transform:translateY(0);opacity:1}
 
-/* 하단 진행 표시 */
-.pain-progress-bar{
-  position:fixed;bottom:0;left:0;right:0;
-  height:2px;background:rgba(255,255,255,.08);
-  z-index:999;opacity:0;transition:opacity .5s;
-}
-.pain-progress-bar.visible{opacity:1}
-.pain-progress-fill{
-  height:100%;background:linear-gradient(90deg,var(--green),var(--gl));
-  width:0%;transition:width .1s linear;
-}
-.pain-counter{
-  position:fixed;bottom:20px;right:5%;
-  font-size:11px;color:rgba(255,255,255,.3);
-  letter-spacing:1px;z-index:999;
+/* ── 하단 진행 UI ── */
+#pain-prog-wrap{
+  position:fixed;bottom:0;left:0;right:0;z-index:3000;
+  height:2px;background:rgba(255,255,255,.06);
   opacity:0;transition:opacity .5s;
+}
+#pain-prog-wrap.visible{opacity:1}
+#pain-prog-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--gl));width:0%;transition:width .08s linear}
+#pain-counter{
+  position:fixed;bottom:14px;right:5%;z-index:3000;
+  font-size:11px;color:rgba(255,255,255,.28);letter-spacing:1px;
   font-family:'DM Sans',sans-serif;
+  opacity:0;transition:opacity .5s;
 }
-.pain-counter.visible{opacity:1}
+#pain-counter.visible{opacity:1}
 
-/* ── 스크롤 공간 ── */
-.scroll-space{height:0}
-#pain-intro-space{height:150vh}
-#pain-video-space{height:300vh}
-#pain-code-space{height:200vh}
-
-/* ── 나머지 섹션 (placeholder) ── */
-#rest{
-  background:var(--bg);
-  padding:120px 5%;
-  text-align:center;
-  min-height:100vh;
+/* ── 나머지 (placeholder) ── */
+#next-sections{
+  background:var(--bg);min-height:100vh;
   display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:80px 5%;
 }
-.rest-text{font-size:18px;color:var(--t2);font-weight:500}
-.rest-text span{color:var(--gl)}
+.next-label{font-size:17px;color:var(--t2);line-height:2}
+.next-label span{color:var(--gl);font-weight:700}
 
-/* ── 애니메이션 키프레임 ── */
+/* ── 키프레임 ── */
 @keyframes fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes lineup{from{transform:translateY(100%)}to{transform:translateY(0)}}
 </style>
@@ -317,24 +420,21 @@ nav.scrolled .nav-links{opacity:1}
 <div class="cdot" id="cdot"></div>
 <div class="cring" id="cring"></div>
 
-<!-- 흰빛 전환 레이어 -->
-<div class="light-burst" id="lightBurst"></div>
-
 <!-- 하단 진행 바 -->
-<div class="pain-progress-bar" id="painBar"><div class="pain-progress-fill" id="painFill"></div></div>
-<div class="pain-counter" id="painCounter">01 / 06</div>
+<div id="pain-prog-wrap"><div id="pain-prog-fill"></div></div>
+<div id="pain-counter">01 / 06</div>
 
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-logo">
-    <img src="assets/images/turtle.png" class="nav-logo-turtle" alt="" onerror="this.style.display='none'">
-    <img src="assets/images/logo.png" class="nav-logo-text" alt="터TOOL" onerror="this.style.display='none';document.querySelector('.nav-logo-fb').style.display='block'">
+    <img src="assets/images/turtle.png" class="turtle" alt="" onerror="this.style.display='none'">
+    <img src="assets/images/logo.png" alt="터TOOL" onerror="this.style.display='none';document.querySelector('.nav-logo-fb').style.display='block'">
     <span class="nav-logo-fb">터TOOL</span>
   </div>
   <div class="nav-links">
-    <a href="#features">기능</a>
-    <a href="#pricing">요금제</a>
-    <a href="#faq">FAQ</a>
+    <a href="#">기능</a>
+    <a href="#">요금제</a>
+    <a href="#">FAQ</a>
     <a href="#" class="nav-cta">앱 다운로드</a>
   </div>
 </nav>
@@ -346,11 +446,11 @@ nav.scrolled .nav-links{opacity:1}
     <div class="hero-grid"></div>
   </div>
   <div class="hero-content">
-    <div class="hero-badge"><span class="hero-bdot"></span>고시원 관리 앱 · 터TOOL</div>
+    <div class="hero-badge"><span class="hbdot"></span>고시원 관리 앱 · 터TOOL</div>
     <h1 class="hero-title">
-      <span class="line"><span class="line-inner">고시원 운영,</span></span>
-      <span class="line"><span class="line-inner">왜 이렇게</span></span>
-      <span class="line"><span class="line-inner">손이 많이 갈까요?</span></span>
+      <span class="hl"><span class="hli">고시원 운영,</span></span>
+      <span class="hl"><span class="hli">왜 이렇게</span></span>
+      <span class="hl"><span class="hli">손이 많이 갈까요?</span></span>
     </h1>
     <p class="hero-sub">계약서, 수납, 공지, 민원 — 전부 일일이 관리하고 계신가요?</p>
     <p class="hero-sub2">엑셀, 통장, 문자 — 이제 그만 들여다보세요.<br>터TOOL 앱 하나에서 모두 관리하세요.</p>
@@ -362,263 +462,313 @@ nav.scrolled .nav-links{opacity:1}
   <div class="hero-scroll"><div class="scroll-line"></div><span>SCROLL</span></div>
 </section>
 
-<!-- ══ PAINPOINT WRAPPER ══ -->
-<div id="painpoint-wrapper">
-
-  <!-- 스크롤 공간: 인트로 -->
-  <div id="pain-intro-space"></div>
-
-  <!-- 인트로 패널 (sticky) -->
-  <div id="pain-intro">
-    <div class="pi-orb" id="piOrb"></div>
-    <div class="pi-content">
-      <span class="pi-tag">원장님의 하루</span>
-      <h2 class="pi-title">
-        <span class="pt-line"><span class="pt-inner">익숙한 장면이</span></span>
-        <span class="pt-line"><span class="pt-inner">있으신가요?</span></span>
+<!-- ══ 인트로 섹션 ══ -->
+<div id="section-intro">
+  <div id="panel-intro">
+    <div class="pi-orb"></div>
+    <div class="pi-wrap">
+      <span class="pi-eyebrow">원장님의 하루</span>
+      <h2 class="pi-h2">
+        <span class="pl"><span class="pli">익숙한 장면이</span></span>
+        <span class="pl"><span class="pli">있으신가요?</span></span>
       </h2>
-      <p class="pi-sub">스크롤하면 원장님의 하루가 펼쳐집니다</p>
-      <div class="pi-arrow">
-        <div class="pi-arrow-line"></div>
-        <span class="pi-arrow-text">SCROLL</span>
+      <p class="pi-desc">스크롤하면 원장님의 하루가 펼쳐집니다</p>
+      <div class="pi-hint">
+        <div class="pi-hint-line"></div>
+        <span class="pi-hint-text">SCROLL</span>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- 스크롤 공간: 영상 -->
-  <div id="pain-video-space"></div>
+<!-- ══ 상황 1: 수납 ══ -->
+<div id="section-s1">
+  <div id="panel-s1">
 
-  <!-- 영상 패널 (sticky) -->
-  <div id="pain-video-section">
-    <div class="video-wrap">
-      <video id="pain-video" muted playsinline preload="auto">
-        <source src="수납_상황_1.mp4" type="video/mp4">
+    <!-- 흰빛 전환 -->
+    <div id="light-burst"></div>
+
+    <!-- 레이어 1: 영상 -->
+    <div id="layer-video">
+      <video id="s1-video" muted playsinline preload="auto">
+        <source src="scene_01_payment.mp4" type="video/mp4">
+        <source src="%EC%88%98%EB%82%A9_%EC%83%81%ED%99%A9_1.mp4" type="video/mp4">
       </video>
-      <div class="video-overlay"></div>
+      <div class="video-grad"></div>
     </div>
-    <div class="video-progress-wrap" id="videoProg">
-      <div class="video-prog-bar"><div class="video-prog-fill" id="videoFill"></div></div>
-      <span class="video-prog-num" id="videoNum">0%</span>
-    </div>
-  </div>
 
-  <!-- 스크롤 공간: 코드 애니메이션 -->
-  <div id="pain-code-space"></div>
-
-  <!-- 코드 애니메이션 패널 (sticky) -->
-  <div id="pain-code-section">
-    <div class="code-bg"></div>
-    <div class="code-inner">
-      <!-- 은행 아이콘 -->
-      <div class="bank-icon-wrap" id="bankIcon">
-        <div class="bank-icon">
-          <span class="bank-icon-symbol">🏦</span>
-          <div class="bank-badge" id="bankBadge">23</div>
+    <!-- 레이어 2: 코드 애니메이션 -->
+    <div id="layer-code">
+      <div class="code-bg-fill"></div>
+      <div class="code-content">
+        <div class="bank-wrap" id="bankWrap">
+          <div class="bank-icon-box">
+            🏦
+            <div class="bank-badge" id="bankBadge">23</div>
+          </div>
+          <span class="bank-label">○○은행</span>
         </div>
-        <span class="bank-name">은행 앱</span>
+        <div class="notif-wrap" id="notifWrap"></div>
       </div>
-      <!-- 알림 목록 -->
-      <div class="notif-list" id="notifList"></div>
     </div>
-    <!-- 텍스트 오버레이 -->
-    <div class="code-text-overlay" id="codeTextOverlay">
-      <div class="code-text-block">
-        <span class="ct-time">오전 6시 30분</span>
-        <h3 class="ct-main">
-          <span class="cmline"><span class="cminner">이번 달 월세</span></span>
-          <span class="cmline"><span class="cminner">누가 안 냈더라...</span></span>
+
+    <!-- 레이어 3: 텍스트 오버레이 -->
+    <div id="layer-text">
+      <div class="txt-block">
+        <span class="txt-time">오전 6시 30분</span>
+        <h3 class="txt-main">
+          <span class="tl"><span class="tli">이번 달 월세</span></span>
+          <span class="tl"><span class="tli">누가 안 냈더라...</span></span>
         </h3>
-        <p class="ct-desc">잠에서 깨자마자 통장 앱부터 켜는<br>원장님의 아침이 시작됩니다.</p>
+        <p class="txt-desc">
+          잠에서 깨자마자 통장 앱부터 켜는<br>
+          원장님의 아침이 시작됩니다.
+        </p>
       </div>
     </div>
+
   </div>
+</div>
 
-</div><!-- /painpoint-wrapper -->
-
-<!-- 나머지 섹션 placeholder -->
-<div id="rest">
-  <div class="rest-text">다음 상황들이 이어집니다<br><span>— 계약서 / 공지 / 방 현황 / 수동 입주민 / 메시지 —</span></div>
+<!-- ══ 다음 섹션 placeholder ══ -->
+<div id="next-sections">
+  <div class="next-label">
+    상황 02 — <span>계약서</span>가 이어집니다<br>
+    <span style="font-size:13px;color:var(--t3)">이른 아침 / 점심 / 저녁 / 새벽</span>
+  </div>
 </div>
 
 <script>
 /* ── 커서 ── */
 const cdot=document.getElementById('cdot'),cring=document.getElementById('cring');
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cdot.style.left=mx+'px';cdot.style.top=my+'px'});
-(function ar(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cring.style.left=rx+'px';cring.style.top=ry+'px';requestAnimationFrame(ar)})();
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cdot.style.left=mx+'px';cdot.style.top=my+'px';
+});
+(function ar(){
+  rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
+  cring.style.left=rx+'px';cring.style.top=ry+'px';
+  requestAnimationFrame(ar);
+})();
 
-/* ── NAV 스크롤 ── */
+/* ── NAV ── */
 window.addEventListener('scroll',()=>{
-  document.getElementById('nav').classList.toggle('scrolled',scrollY>80);
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>60);
 },{passive:true});
 
-/* ── 알림 목록 데이터 ── */
-const notifications=[
-  {name:'김○○',amount:'350,000',time:'06:31'},
-  {name:'이○○',amount:'350,000',time:'06:29'},
-  {name:'박○○',amount:'420,000',time:'06:27'},
-  {name:'최○○',amount:'350,000',time:'06:25'},
-  {name:'정○○',amount:'380,000',time:'06:22'},
-  {name:'한○○',amount:'350,000',time:'06:18'},
-  {name:'조○○',amount:'350,000',time:'06:14'},
-  {name:'강○○',amount:'400,000',time:'06:09'},
+/* ── 알림 데이터 ── */
+const nData=[
+  {who:'김○○',amt:'350,000',time:'06:31'},
+  {who:'이○○',amt:'350,000',time:'06:29'},
+  {who:'박○○',amt:'420,000',time:'06:27'},
+  {who:'최○○',amt:'350,000',time:'06:25'},
+  {who:'정○○',amt:'380,000',time:'06:22'},
+  {who:'한○○',amt:'350,000',time:'06:18'},
+  {who:'조○○',amt:'350,000',time:'06:14'},
+  {who:'강○○',amt:'400,000',time:'06:09'},
 ];
-
-/* 알림 카드 생성 */
-const notifList=document.getElementById('notifList');
-notifications.forEach((n,i)=>{
-  const card=document.createElement('div');
-  card.className='notif-card';
-  card.style.transitionDelay=(i*.08)+'s';
-  card.innerHTML=`
-    <div class="notif-icon">🏦</div>
-    <div class="notif-body">
-      <div class="notif-header">
-        <span class="notif-bank">○○은행</span>
-        <span class="notif-time">오전 ${n.time}</span>
+const notifWrap=document.getElementById('notifWrap');
+nData.forEach(n=>{
+  const d=document.createElement('div');
+  d.className='nc';
+  d.innerHTML=`
+    <div class="nc-icon">🏦</div>
+    <div class="nc-body">
+      <div class="nc-top">
+        <span class="nc-bank">○○은행</span>
+        <span class="nc-time">오전 ${n.time}</span>
       </div>
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <span class="notif-text">${n.name} 입금</span>
-        <span class="notif-amount">+${n.amount}원</span>
+      <div class="nc-row">
+        <span class="nc-who">${n.who} 입금</span>
+        <span class="nc-amt">+${n.amt}원</span>
       </div>
-    </div>
-  `;
-  notifList.appendChild(card);
+    </div>`;
+  notifWrap.appendChild(d);
 });
 
-/* ── 섹션 위치 계산 ── */
-function getSection(id){
+/* ── 엘리먼트 참조 ── */
+const video=document.getElementById('s1-video');
+const lightBurst=document.getElementById('light-burst');
+const panelIntro=document.getElementById('panel-intro');
+const layerVideo=document.getElementById('layer-video');
+const layerCode=document.getElementById('layer-code');
+const layerText=document.getElementById('layer-text');
+const bankWrap=document.getElementById('bankWrap');
+const bankBadge=document.getElementById('bankBadge');
+const progWrap=document.getElementById('pain-prog-wrap');
+const progFill=document.getElementById('pain-prog-fill');
+const counter=document.getElementById('pain-counter');
+const cards=document.querySelectorAll('.nc');
+
+/* 비디오 로드 */
+let vidReady=false;
+video.addEventListener('loadedmetadata',()=>{
+  vidReady=true;
+  video.currentTime=0;
+  console.log('[VIDEO] loadedmetadata, duration:',video.duration);
+});
+video.addEventListener('canplay',()=>{
+  vidReady=true;
+  console.log('[VIDEO] canplay');
+});
+video.addEventListener('error',(e)=>{
+  console.error('[VIDEO] error:',e,video.error);
+});
+video.addEventListener('stalled',()=>console.warn('[VIDEO] stalled'));
+video.load();
+
+/* ── 섹션 위치 헬퍼 ── */
+function secInfo(id){
   const el=document.getElementById(id);
-  const top=el.getBoundingClientRect().top+scrollY;
-  const h=el.offsetHeight;
-  return{top,bottom:top+h,h};
+  const top=el.getBoundingClientRect().top+window.scrollY;
+  return{top,h:el.offsetHeight,bot:top+el.offsetHeight};
 }
 
-/* ── 메인 스크롤 로직 ── */
-const video=document.getElementById('pain-video');
-const lightBurst=document.getElementById('lightBurst');
-const painIntro=document.getElementById('pain-intro');
-const painVideoSec=document.getElementById('pain-video-section');
-const painCodeSec=document.getElementById('pain-code-section');
-const bankIcon=document.getElementById('bankIcon');
-const bankBadge=document.getElementById('bankBadge');
-const codeTextOverlay=document.getElementById('codeTextOverlay');
-const painBar=document.getElementById('painBar');
-const painFill=document.getElementById('painFill');
-const painCounter=document.getElementById('painCounter');
-const videoProg=document.getElementById('videoProg');
-const videoFill=document.getElementById('videoFill');
-const videoNum=document.getElementById('videoNum');
-
-let videoReady=false;
-video.addEventListener('loadedmetadata',()=>{videoReady=true;video.currentTime=0});
-video.addEventListener('canplay',()=>{videoReady=true});
-
-/* 상태 변수 */
-let introActivated=false;
-let notifShown=[];
-let iconMoved=false;
-let textShown=false;
-let darkeningStarted=false;
+/* ── 스크롤 상태 ── */
+let introActive=false;
+let iconShown=false,iconLeft=false,badgeShown=false;
 
 function onScroll(){
   const sy=window.scrollY;
   const wh=window.innerHeight;
 
-  /* 섹션 위치 */
-  const introSpace=getSection('pain-intro-space');
-  const videoSpace=getSection('pain-video-space');
-  const codeSpace=getSection('pain-code-space');
+  /* 섹션 정보 */
+  const intro=secInfo('section-intro');
+  const s1=secInfo('section-s1');
 
-  /* ── 1. 인트로 활성화 ── */
-  const introProgress=Math.max(0,Math.min(1,(sy-introSpace.top)/introSpace.h));
+  /* ────────────────────────
+     인트로 패널
+  ──────────────────────── */
+  const iRel=sy-intro.top; // intro 내 상대 스크롤
+  const iLen=intro.h-wh;   // 실제 스크롤 가능 길이
+  const iP=Math.max(0,Math.min(1,iRel/iLen)); // 0~1
 
-  if(introProgress>0.05 && !introActivated){
-    introActivated=true;
-    painIntro.classList.add('active');
+  /* 활성화 */
+  if(iP>0.02 && !introActive){
+    introActive=true;
+    panelIntro.classList.add('active');
   }
 
-  /* 인트로 텍스트 페이드아웃 */
-  const introFadeOut=Math.max(0,Math.min(1,(introProgress-.6)/.3));
-  painIntro.querySelector('.pi-content').style.opacity=1-introFadeOut;
-  painIntro.querySelector('.pi-content').style.transform=`translateY(${-introFadeOut*30}px)`;
+  /* 인트로 콘텐츠 페이드아웃 (80%~100%) */
+  const iFade=Math.max(0,Math.min(1,(iP-.75)/.2));
+  const piWrap=panelIntro.querySelector('.pi-wrap');
+  piWrap.style.opacity=String(1-iFade);
+  piWrap.style.transform=`translateY(${-iFade*24}px)`;
 
-  /* ── 2. 흰빛 전환 (인트로 끝) ── */
-  const burstProgress=Math.max(0,Math.min(1,(introProgress-.7)/.25));
-  if(burstProgress>0){
-    lightBurst.style.transform=`scale(${burstProgress*4})`;
-    lightBurst.style.opacity=burstProgress;
-    painBar.classList.add('visible');
-    painCounter.classList.add('visible');
-  }else{
+  /* ────────────────────────
+     흰빛 전환 (인트로 85%~100%)
+  ──────────────────────── */
+  const burstP=Math.max(0,Math.min(1,(iP-.82)/.15));
+  if(burstP>0){
+    lightBurst.style.transform=`scale(${burstP*5})`;
+    lightBurst.style.opacity=String(Math.min(burstP*2,1));
+    progWrap.classList.add('visible');
+    counter.classList.add('visible');
+  } else {
     lightBurst.style.transform='scale(0)';
     lightBurst.style.opacity='0';
   }
 
-  /* 흰빛 걷히며 영상 드러남 */
-  const videoReveal=Math.max(0,Math.min(1,(introProgress-.9)/.1));
-  if(videoReveal>0){
-    lightBurst.style.opacity=1-videoReveal;
-    videoProg.classList.add('visible');
+  /* ────────────────────────
+     상황 1 패널 스크롤
+  ──────────────────────── */
+  const s1Rel=sy-s1.top;
+  const s1Len=s1.h-wh;
+  const s1P=Math.max(0,Math.min(1,s1Rel/s1Len)); // 0~1
+
+  /* 진행바 */
+  progFill.style.width=(s1P*16.67)+'%';
+
+  /* 구간 정의
+     0.00~0.30 : 흰빛 걷히며 영상 등장
+     0.30~0.55 : 영상 재생 스크롤 제어
+     0.55~0.60 : 영상 → 코드 전환 (흰빛 다시)
+     0.60~1.00 : 코드 애니메이션 (아이콘→알림→텍스트)
+  */
+
+  /* ── 구간 A: 흰빛 걷히며 영상 등장 (0~0.30) ── */
+  if(s1P<0.30){
+    const a=Math.max(0,Math.min(1,s1P/.25));
+    /* 흰빛 걷히기 */
+    lightBurst.style.transform=`scale(${Math.max(0,5*(1-a))})`;
+    lightBurst.style.opacity=String(Math.max(0,1-a*1.5));
+    /* 영상 레이어 등장 */
+    layerVideo.style.opacity=String(Math.min(a*1.5,1));
+    layerCode.classList.remove('visible');
+    layerText.classList.remove('visible');
   }
 
-  /* ── 3. 영상 스크롤 제어 ── */
-  const videoProgress=Math.max(0,Math.min(1,(sy-videoSpace.top)/videoSpace.h));
-  if(videoReady && video.duration){
-    video.currentTime=videoProgress*video.duration;
-    videoFill.style.width=(videoProgress*100)+'%';
-    videoNum.textContent=Math.round(videoProgress*100)+'%';
-  }
-
-  /* 진행바 업데이트 */
-  painFill.style.width=(videoProgress*16.67)+'%'; /* 1/6 */
-
-  /* ── 4. 코드 애니메이션 섹션 ── */
-  const codeProgress=Math.max(0,Math.min(1,(sy-codeSpace.top)/codeSpace.h));
-
-  /* 아이콘 등장 */
-  if(codeProgress>0.05){
-    bankIcon.classList.add('visible');
-    setTimeout(()=>{bankBadge.style.animationDelay='0s';bankBadge.style.opacity='1'},400);
-  }
-
-  /* 아이콘 왼쪽 이동 */
-  if(codeProgress>0.2 && !iconMoved){
-    iconMoved=true;
-    bankIcon.classList.add('move-left');
-  }
-
-  /* 알림 카드 순차 등장 */
-  const cards=document.querySelectorAll('.notif-card');
-  cards.forEach((card,i)=>{
-    const threshold=0.25+(i*0.06);
-    if(codeProgress>threshold){
-      card.classList.add('visible');
+  /* ── 구간 B: 영상 스크롤 제어 (0.10~0.55) ── */
+  if(s1P>=0.10 && s1P<0.58){
+    layerVideo.classList.add('visible');
+    const vidP=Math.max(0,Math.min(1,(s1P-.10)/.45));
+    if(vidReady && video.duration){
+      video.currentTime=vidP*video.duration;
     }
-  });
-
-  /* 배경 어두워짐 */
-  if(codeProgress>0.6 && !darkeningStarted){
-    darkeningStarted=true;
-    painCodeSec.classList.add('darkening');
   }
 
-  /* 텍스트 오버레이 */
-  if(codeProgress>0.75){
-    codeTextOverlay.classList.add('visible');
-  }else{
-    codeTextOverlay.classList.remove('visible');
+  /* ── 구간 C: 영상→코드 전환 (0.55~0.65) ── */
+  if(s1P>=0.55 && s1P<0.65){
+    const c=Math.max(0,Math.min(1,(s1P-.55)/.08));
+    lightBurst.style.transform=`scale(${c*5})`;
+    lightBurst.style.opacity=String(Math.min(c*2,1));
   }
 
-  /* 카운터 */
-  painCounter.textContent='01 / 06';
+  /* ── 구간 D: 코드 애니메이션 (0.63~1.00) ── */
+  if(s1P>=0.63){
+    /* 흰빛 걷히기 */
+    const d0=Math.max(0,Math.min(1,(s1P-.63)/.07));
+    lightBurst.style.transform=`scale(${Math.max(0,5*(1-d0))})`;
+    lightBurst.style.opacity=String(Math.max(0,1-d0*1.5));
+
+    layerVideo.style.opacity='0';
+    layerCode.classList.add('visible');
+
+    const dP=Math.max(0,Math.min(1,(s1P-.65)/.35)); // 코드 내 진행도
+
+    /* 아이콘 등장 */
+    if(dP>0.05 && !iconShown){
+      iconShown=true;
+      bankWrap.classList.add('show');
+    }
+    /* 뱃지 등장 */
+    if(dP>0.12 && !badgeShown){
+      badgeShown=true;
+      bankBadge.classList.add('show');
+    }
+    /* 아이콘 왼쪽 이동 */
+    if(dP>0.20 && !iconLeft){
+      iconLeft=true;
+      bankWrap.classList.add('left');
+    }
+    /* 알림 카드 순차 등장 */
+    cards.forEach((c,i)=>{
+      const t=0.26+(i*0.055);
+      if(dP>t) c.classList.add('show');
+      else c.classList.remove('show');
+    });
+    /* 배경 어두워짐 */
+    if(dP>0.70) layerCode.classList.add('dark');
+    else layerCode.classList.remove('dark');
+    /* 텍스트 오버레이 */
+    if(dP>0.78) layerText.classList.add('visible');
+    else layerText.classList.remove('visible');
+
+  } else {
+    /* 구간 D 이전이면 초기화 */
+    if(iconShown){
+      iconShown=false;iconLeft=false;badgeShown=false;
+      bankWrap.classList.remove('show','left');
+      bankBadge.classList.remove('show');
+      cards.forEach(c=>c.classList.remove('show'));
+      layerCode.classList.remove('dark');
+    }
+  }
 }
 
 window.addEventListener('scroll',onScroll,{passive:true});
 onScroll();
-
-/* ── 비디오 preload ── */
-video.load();
 </script>
 </body>
 </html>

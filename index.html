@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>터TOOL — 고시원 관리의 새로운 기준</title>
-<meta name="description" content="원장님과 입주민을 연결하는 스마트 고시원 관리 앱. 수납, 계약, 공지, 민원 — 터TOOL 하나로.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -15,204 +13,303 @@
   --bg:#0C0C0C;--bg2:#111;--bg3:#161616;--bg4:#1a1a1a;
   --bd:rgba(255,255,255,.07);--text:#F0F0EB;--t2:#777;--t3:#3a3a3a;
 }
-html{scroll-behavior:smooth}
-body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html{font-size:16px}
+body{font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{text-decoration:none;color:inherit}
-img{display:block}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:2px}
 
-/* ── CURSOR ── */
-.cdot,.cring{position:fixed;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%)}
-.cdot{width:7px;height:7px;background:var(--gl);z-index:9999;transition:opacity .2s}
-.cring{width:32px;height:32px;border:1px solid rgba(141,200,90,.35);z-index:9998;transition:width .2s,height .2s,border-color .2s}
+/* ── 커서 ── */
+.cdot,.cring{position:fixed;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%);z-index:9999}
+.cdot{width:7px;height:7px;background:var(--gl);transition:opacity .2s}
+.cring{width:32px;height:32px;border:1px solid rgba(141,200,90,.35);transition:width .2s,height .2s,border-color .2s;z-index:9998}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(12,12,12,.85);backdrop-filter:blur(18px);border-bottom:.5px solid var(--bd);transition:background .3s}
-.nav-logo{display:flex;align-items:center;gap:8px}
-.nav-logo-turtle{height:30px;width:auto}
-.nav-logo-text{height:22px;width:auto}
-.nav-logo-fallback{font-size:20px;font-weight:800;color:#fff;letter-spacing:-1px;display:none}
-.nav-links{display:flex;align-items:center;gap:28px}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(12,12,12,.0);backdrop-filter:blur(0px);border-bottom:.5px solid transparent;transition:all .5s}
+nav.scrolled{background:rgba(12,12,12,.9);backdrop-filter:blur(18px);border-bottom-color:var(--bd)}
+.nav-logo{display:flex;align-items:center;gap:8px;opacity:0;transition:opacity .5s}
+nav.scrolled .nav-logo{opacity:1}
+.nav-logo-turtle{height:28px;width:auto}
+.nav-logo-text{height:20px;width:auto}
+.nav-logo-fb{font-size:18px;font-weight:800;color:#fff;letter-spacing:-1px;display:none}
+.nav-links{display:flex;align-items:center;gap:28px;opacity:0;transition:opacity .5s}
+nav.scrolled .nav-links{opacity:1}
 .nav-links a{font-size:13px;color:var(--t2);font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--text)}
-.nav-cta{background:var(--green);color:#fff!important;font-size:13px;font-weight:700;padding:8px 20px;border-radius:100px;transition:all .2s;letter-spacing:-.1px}
+.nav-cta{background:var(--green);color:#fff!important;font-size:13px;font-weight:700;padding:8px 20px;border-radius:100px;transition:all .2s}
 .nav-cta:hover{background:var(--gl);transform:translateY(-1px)}
-.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-.nav-ham span{display:block;width:20px;height:1.5px;background:var(--t2);border-radius:2px}
 
-/* ── HERO ── */
-#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 80px;position:relative;overflow:hidden}
-.hbg{position:absolute;inset:0;z-index:0}
-.horb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
-.horb1{width:560px;height:560px;background:radial-gradient(circle,rgba(86,138,53,.16) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-55%);animation:hfloat 9s ease-in-out infinite}
-.horb2{width:360px;height:360px;background:radial-gradient(circle,rgba(141,200,90,.07) 0%,transparent 70%);top:20%;right:8%;animation:hfloat 13s ease-in-out infinite reverse}
-.horb3{width:260px;height:260px;background:radial-gradient(circle,rgba(86,138,53,.09) 0%,transparent 70%);bottom:15%;left:8%;animation:hfloat 11s ease-in-out infinite 3s}
-@keyframes hfloat{0%,100%{transform:translate(-50%,-55%) scale(1)}50%{transform:translate(-50%,-60%) scale(1.04)}}
-.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 50% 40%,black 25%,transparent 75%)}
-.hcontent{position:relative;z-index:1;max-width:820px}
-.hbadge{display:inline-flex;align-items:center;gap:7px;background:var(--gdim);border:.5px solid rgba(86,138,53,.28);color:var(--gl);font-size:12px;font-weight:600;padding:5px 14px;border-radius:100px;margin-bottom:28px;letter-spacing:.3px;opacity:0;animation:fu .7s ease .1s forwards}
-.hbdot{width:5px;height:5px;background:var(--gl);border-radius:50%;animation:bpulse 2s infinite}
-@keyframes bpulse{0%,100%{opacity:1}50%{opacity:.4}}
-.htitle{font-size:clamp(38px,5.8vw,72px);font-weight:900;line-height:1.1;letter-spacing:-2.5px;color:#fff;margin-bottom:20px;word-break:keep-all}
-.htitle .w{display:inline-block;opacity:0;transform:translateY(18px);animation:wrev .55s ease forwards}
-.hsub{font-size:clamp(14px,1.6vw,17px);color:var(--t2);line-height:1.9;max-width:500px;margin:0 auto 14px;opacity:0;animation:fu .7s ease 1.1s forwards;word-break:keep-all}
-.hsub2{font-size:clamp(14px,1.6vw,17px);color:var(--text);font-weight:600;margin-bottom:44px;opacity:0;animation:fu .7s ease 1.3s forwards;word-break:keep-all}
-.hbtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fu .7s ease 1.5s forwards}
-.btnp{display:inline-flex;align-items:center;gap:9px;background:var(--green);color:#fff;font-size:14px;font-weight:700;padding:13px 24px;border-radius:13px;transition:all .2s;letter-spacing:-.2px;font-family:inherit}
+/* ══════════════════════════════
+   HERO 섹션
+══════════════════════════════ */
+#hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg)}
+.hero-bg{position:absolute;inset:0;overflow:hidden}
+.hero-orb{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(86,138,53,.12) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;filter:blur(80px);animation:orbpulse 6s ease-in-out infinite}
+@keyframes orbpulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.8}50%{transform:translate(-50%,-52%) scale(1.08);opacity:1}}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at 50% 50%,black 20%,transparent 75%)}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:800px;padding:0 24px}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--gdim);border:.5px solid rgba(86,138,53,.28);color:var(--gl);font-size:12px;font-weight:600;padding:5px 14px;border-radius:100px;margin-bottom:28px;opacity:0;animation:fadeup .7s ease .2s forwards}
+.hero-bdot{width:5px;height:5px;background:var(--gl);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-title{font-size:clamp(38px,5.5vw,72px);font-weight:900;line-height:1.1;letter-spacing:-2.5px;color:#fff;margin-bottom:20px;word-break:keep-all}
+.hero-title .line{display:block;overflow:hidden}
+.hero-title .line-inner{display:block;transform:translateY(100%);animation:lineup .7s cubic-bezier(.16,1,.3,1) forwards}
+.hero-title .line:nth-child(1) .line-inner{animation-delay:.3s}
+.hero-title .line:nth-child(2) .line-inner{animation-delay:.45s}
+.hero-title .line:nth-child(3) .line-inner{animation-delay:.6s}
+.hero-sub{font-size:clamp(14px,1.5vw,17px);color:var(--t2);line-height:1.9;margin-bottom:12px;opacity:0;animation:fadeup .7s ease 1s forwards;word-break:keep-all}
+.hero-sub2{font-size:clamp(14px,1.5vw,17px);color:var(--text);font-weight:600;margin-bottom:44px;opacity:0;animation:fadeup .7s ease 1.2s forwards;word-break:keep-all}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeup .7s ease 1.4s forwards}
+.btnp{display:inline-flex;align-items:center;gap:9px;background:var(--green);color:#fff;font-size:14px;font-weight:700;padding:13px 24px;border-radius:13px;transition:all .2s;font-family:inherit}
 .btnp:hover{background:var(--gl);transform:translateY(-2px);box-shadow:0 10px 36px rgba(86,138,53,.28)}
 .btns{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.05);color:var(--t2);font-size:14px;font-weight:500;padding:13px 24px;border-radius:13px;border:.5px solid var(--bd);transition:all .2s;font-family:inherit}
 .btns:hover{background:rgba(255,255,255,.08);color:var(--text);transform:translateY(-2px)}
-.hscroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;color:var(--t3);font-size:10px;letter-spacing:1.5px;opacity:0;animation:fu .7s ease 1.9s forwards}
-.hscline{width:1px;height:36px;background:linear-gradient(to bottom,var(--t3),transparent);animation:scl 2s ease-in-out infinite}
-@keyframes scl{0%,100%{opacity:.6;transform:scaleY(1)}50%{opacity:.2;transform:scaleY(.5)}}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;color:var(--t3);font-size:10px;letter-spacing:1.5px;opacity:0;animation:fadeup .7s ease 1.8s forwards}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--t3),transparent);animation:sclanim 2s ease-in-out infinite}
+@keyframes sclanim{0%,100%{opacity:.6;transform:scaleY(1)}50%{opacity:.2;transform:scaleY(.5)}}
 
-/* ── PAINPOINT ── */
-#painpoint{position:relative}
-.ptrack{height:700vh;position:relative}
-.psticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg2)}
-.porb{position:absolute;width:480px;height:480px;background:radial-gradient(circle,rgba(86,138,53,.05) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;filter:blur(70px);pointer-events:none}
-.pinner{position:relative;z-index:1;width:100%;max-width:980px;padding:0 5%;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-.pleft .ptag{font-size:10px;font-weight:700;color:var(--green);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px;display:block}
-.pleft h2{font-size:clamp(26px,3.2vw,40px);font-weight:800;letter-spacing:-1.5px;line-height:1.2;color:#fff;margin-bottom:18px;word-break:keep-all}
-.pleft p{font-size:14px;color:var(--t2);line-height:1.8;word-break:keep-all}
-.pdots{display:flex;gap:5px;margin-top:28px}
-.pdot{width:5px;height:5px;border-radius:50%;background:var(--t3);transition:all .35s}
-.pdot.on{background:var(--gl);width:22px;border-radius:3px}
-.pcards{position:relative;height:300px}
-.pcard{position:absolute;top:0;left:0;right:0;background:var(--bg4);border:.5px solid var(--bd);border-radius:16px;padding:26px;opacity:0;transform:translateY(36px);transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1);pointer-events:none}
-.pcard.on{opacity:1;transform:translateY(0);pointer-events:auto}
-.pcard.out{opacity:0;transform:translateY(-36px)}
-.pcnum{font-size:10px;font-weight:700;color:var(--green);letter-spacing:1.5px;margin-bottom:18px}
-.pcicon{width:44px;height:44px;background:var(--gdim);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px}
-.pcquote{font-size:16px;font-weight:700;color:#fff;line-height:1.45;margin-bottom:10px;letter-spacing:-.4px;word-break:keep-all}
-.pcquote::before{content:'"';color:var(--gl);margin-right:1px}
-.pcquote::after{content:'"';color:var(--gl);margin-left:1px}
-.pcdesc{font-size:12.5px;color:var(--t2);line-height:1.75;word-break:keep-all}
-.pctag{display:inline-flex;align-items:center;gap:5px;margin-top:14px;background:var(--gdim);border:.5px solid rgba(86,138,53,.18);color:var(--gl);font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:.3px}
+/* ══════════════════════════════
+   PAINPOINT 래퍼
+══════════════════════════════ */
+#painpoint-wrapper{position:relative}
 
-/* ── FEATURES ── */
-#features{padding:110px 5%;background:var(--bg);position:relative}
-#features::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 10%,rgba(86,138,53,.25) 50%,transparent 90%)}
-.fhd{text-align:center;max-width:560px;margin:0 auto 64px}
-.stag{font-size:10px;font-weight:700;color:var(--green);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px;display:block}
-.stitle{font-size:clamp(26px,3.5vw,42px);font-weight:800;letter-spacing:-1.5px;line-height:1.15;color:#fff;margin-bottom:14px;word-break:keep-all}
-.sdesc{font-size:14px;color:var(--t2);line-height:1.8;word-break:keep-all}
-
-/* features grid — 3열 카드 */
-.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1000px;margin:0 auto}
-.fcard{background:var(--bg3);border:.5px solid var(--bd);border-radius:18px;padding:28px;transition:border-color .25s,transform .25s;cursor:default}
-.fcard:hover{border-color:rgba(86,138,53,.35);transform:translateY(-3px)}
-.fcard-icon{width:46px;height:46px;background:var(--gdim);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:18px}
-.fcard h3{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:-.3px}
-.fcard-desc{font-size:12.5px;color:var(--t2);line-height:1.7;word-break:keep-all}
-.fcard-pts{margin-top:16px;display:flex;flex-direction:column;gap:7px}
-.fpt{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--t2);line-height:1.5}
-.fpt::before{content:'—';color:var(--green);flex-shrink:0;font-size:11px;margin-top:1px}
-.fcard.highlight{background:linear-gradient(160deg,rgba(86,138,53,.13) 0%,rgba(86,138,53,.04) 100%);border-color:rgba(86,138,53,.28)}
-
-/* ── NUMBERS ── */
-#numbers{padding:96px 5%;background:var(--bg2)}
-.nwrap{max-width:840px;margin:0 auto;text-align:center}
-.ngrid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:52px;border-radius:18px;overflow:hidden;border:.5px solid var(--bd)}
-.nitem{padding:40px 20px;text-align:center;position:relative}
-.nitem+.nitem::before{content:'';position:absolute;left:0;top:20%;bottom:20%;width:.5px;background:var(--bd)}
-.nval{font-family:'DM Sans',sans-serif;font-size:clamp(34px,5vw,54px);font-weight:700;color:#fff;letter-spacing:-2px;line-height:1;margin-bottom:10px}
-.nval .ga{color:var(--gl)}
-.nlabel{font-size:12.5px;color:var(--t2);line-height:1.55}
-
-/* ── PRICING ── */
-#pricing{padding:110px 5%;background:var(--bg)}
-.prwrap{max-width:720px;margin:0 auto}
-.prhd{text-align:center;margin-bottom:52px}
-.prgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.prcard{background:var(--bg3);border:.5px solid var(--bd);border-radius:22px;padding:30px;transition:transform .2s}
-.prcard:hover{transform:translateY(-3px)}
-.prcard.pf{background:linear-gradient(150deg,rgba(86,138,53,.16) 0%,rgba(86,138,53,.04) 100%);border:1px solid rgba(86,138,53,.32);position:relative;overflow:hidden}
-.prcard.pf::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green) 50%,transparent)}
-.prtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.prname{font-size:13px;font-weight:600;color:var(--t2)}
-.prcard.pf .prname{color:var(--gl)}
-.prbadge{background:var(--green);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px}
-.prprice{font-family:'DM Sans',sans-serif;font-size:40px;font-weight:700;color:#fff;letter-spacing:-1.5px;line-height:1}
-.prunit{font-size:15px;font-weight:400;color:var(--t2);letter-spacing:0}
-.prvat{font-size:11px;color:var(--t3);margin-top:5px}
-.prperiod{font-size:11.5px;color:var(--t3);margin-top:4px;margin-bottom:24px}
-.prdiv{height:.5px;background:var(--bd);margin:18px 0}
-.prfeats{display:flex;flex-direction:column;gap:9px}
-.prfeat{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--t2)}
-.prcard.pf .prfeat{color:rgba(255,255,255,.7)}
-.prck{width:17px;height:17px;background:var(--gdim);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;color:var(--gl)}
-.prnote{text-align:center;margin-top:22px;font-size:11.5px;color:var(--t3);line-height:1.8}
-
-/* ── FAQ ── */
-#faq{padding:110px 5%;background:var(--bg2)}
-.fqwrap{max-width:660px;margin:0 auto}
-.fqhd{text-align:center;margin-bottom:52px}
-.fqlist{display:flex;flex-direction:column}
-.fqitem{border-bottom:.5px solid var(--bd)}
-.fqitem:first-child{border-top:.5px solid var(--bd)}
-.fqq{display:flex;align-items:center;justify-content:space-between;padding:18px 4px;cursor:pointer;gap:16px;transition:opacity .2s}
-.fqq:hover{opacity:.8}
-.fqqt{font-size:14px;font-weight:600;color:var(--text);line-height:1.4;word-break:keep-all}
-.fqarr{width:26px;height:26px;border-radius:50%;border:.5px solid var(--bd);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--t2);font-size:11px;transition:all .3s}
-.fqitem.open .fqarr{background:var(--gdim);border-color:rgba(86,138,53,.2);color:var(--gl);transform:rotate(180deg)}
-.fqa{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}
-.fqai{padding:0 4px 18px;font-size:13px;color:var(--t2);line-height:1.85;word-break:keep-all}
-.fqhint{display:inline-flex;align-items:center;gap:5px;margin-top:10px;background:rgba(86,138,53,.08);border:.5px solid rgba(86,138,53,.18);color:var(--gl);font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px}
-
-/* ── CTA ── */
-#cta{padding:130px 5%;background:var(--bg);text-align:center;position:relative;overflow:hidden}
-.corb{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(86,138,53,.09) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;filter:blur(70px);pointer-events:none}
-.cwrap{position:relative;z-index:1;max-width:580px;margin:0 auto}
-.cturtle{width:72px;height:auto;margin:0 auto 28px;animation:tfl 4.5s ease-in-out infinite}
-@keyframes tfl{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-11px) rotate(4deg)}}
-.ctitle{font-size:clamp(30px,4.5vw,54px);font-weight:900;letter-spacing:-2px;line-height:1.1;color:#fff;margin-bottom:18px;word-break:keep-all}
-.ctitle .ga{color:var(--gl)}
-.cdesc{font-size:15px;color:var(--t2);line-height:1.85;margin-bottom:44px;word-break:keep-all}
-.cbtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
-.cnote{font-size:11.5px;color:var(--t3)}
-
-/* ── FOOTER ── */
-footer{padding:40px 5%;border-top:.5px solid var(--bd);background:var(--bg)}
-.ftin{max-width:1060px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
-.ftlogo{display:flex;align-items:center;gap:8px}
-.ftlogo img{height:20px;width:auto;opacity:.45}
-.ftlinks{display:flex;gap:22px;flex-wrap:wrap}
-.ftlinks a{font-size:11.5px;color:var(--t3);transition:color .2s}
-.ftlinks a:hover{color:var(--t2)}
-.ftcopy{font-size:11.5px;color:var(--t3)}
-
-/* ── ANIMATIONS ── */
-@keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-@keyframes wrev{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.rv{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
-.rv.vis{opacity:1;transform:translateY(0)}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
-
-/* ── MOBILE ── */
-@media(max-width:900px){
-  .fgrid{grid-template-columns:repeat(2,1fr)}
+/* ── 인트로 패널 ── */
+#pain-intro{
+  position:sticky;top:0;height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg);overflow:hidden;
+  z-index:10;
 }
-@media(max-width:700px){
-  .cdot,.cring{display:none}
-  .nav-links{display:none}
-  .nav-ham{display:flex}
-  .pinner{grid-template-columns:1fr;gap:36px;padding:0 20px}
-  .pcards{height:310px}
-  .fgrid{grid-template-columns:1fr}
-  .ngrid{grid-template-columns:1fr;border-radius:16px}
-  .nitem+.nitem::before{top:0;bottom:auto;left:20%;right:20%;width:auto;height:.5px}
-  .prgrid{grid-template-columns:1fr}
-  .ftin{flex-direction:column;text-align:center}
-  .ftlinks{justify-content:center}
+.pi-orb{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(86,138,53,.1) 0%,transparent 70%);border-radius:50%;filter:blur(60px);top:50%;left:50%;transform:translate(-50%,-50%);transition:transform 1s ease,opacity 1s ease}
+.pi-content{position:relative;z-index:2;text-align:center}
+.pi-tag{font-size:10px;font-weight:700;color:var(--green);letter-spacing:2.5px;display:block;margin-bottom:20px;opacity:0;transition:opacity .6s}
+.pi-title{font-size:clamp(36px,5vw,64px);font-weight:900;letter-spacing:-2.5px;line-height:1.1;color:#fff;word-break:keep-all;margin-bottom:20px}
+.pi-title .pt-line{display:block;overflow:hidden}
+.pi-title .pt-inner{display:block;transform:translateY(100%);transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.pi-sub{font-size:15px;color:var(--t2);opacity:0;transition:opacity .6s .3s;word-break:keep-all}
+.pi-arrow{margin-top:40px;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;transition:opacity .6s .5s}
+.pi-arrow-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(86,138,53,.5),transparent)}
+.pi-arrow-text{font-size:10px;letter-spacing:1.5px;color:var(--green);animation:bounce 2s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* 인트로 활성화 */
+#pain-intro.active .pi-tag,
+#pain-intro.active .pi-sub,
+#pain-intro.active .pi-arrow{opacity:1}
+#pain-intro.active .pt-inner{transform:translateY(0)}
+
+/* 인트로 → 영상 전환: 흰빛 레이어 */
+.light-burst{
+  position:fixed;inset:0;z-index:500;
+  background:radial-gradient(circle at 50% 50%,#fff 0%,rgba(255,255,255,.95) 30%,rgba(255,255,255,0) 70%);
+  transform:scale(0);opacity:0;
+  pointer-events:none;
+  transition:none;
 }
-@media(max-width:480px){
-  nav{padding:0 20px}
-  #hero{padding:90px 20px 70px}
-  .hbtns{flex-direction:column;align-items:stretch}
-  .btnp,.btns{justify-content:center}
+
+/* ── 영상 섹션 ── */
+#pain-video-section{
+  position:sticky;top:0;height:100vh;
+  overflow:hidden;
+  z-index:20;
+  background:#fff;
 }
+.video-wrap{position:absolute;inset:0}
+#pain-video{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+}
+/* 영상 위 어두운 오버레이 */
+.video-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.2) 0%,rgba(0,0,0,.1) 50%,rgba(0,0,0,.3) 100%);
+}
+/* 영상 위 프로그레스 */
+.video-progress-wrap{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:12px;
+  opacity:0;transition:opacity .5s;
+}
+.video-progress-wrap.visible{opacity:1}
+.video-prog-bar{width:200px;height:1px;background:rgba(255,255,255,.2);border-radius:1px}
+.video-prog-fill{height:100%;background:var(--gl);border-radius:1px;width:0%;transition:width .1s linear}
+.video-prog-num{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:1px}
+
+/* ── 코드 애니메이션 섹션 ── */
+#pain-code-section{
+  position:sticky;top:0;height:100vh;
+  overflow:hidden;z-index:30;
+  background:#fff;
+  display:flex;align-items:center;justify-content:center;
+}
+.code-bg{
+  position:absolute;inset:0;
+  background:#fff;
+  transition:background 1.5s ease;
+}
+#pain-code-section.darkening .code-bg{
+  background:var(--bg);
+}
+.code-inner{
+  position:relative;z-index:2;
+  width:100%;max-width:900px;
+  padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:60px;
+}
+
+/* 은행 아이콘 */
+.bank-icon-wrap{
+  flex-shrink:0;
+  display:flex;flex-direction:column;align-items:center;
+  opacity:0;transform:scale(.6);
+  transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);
+}
+.bank-icon-wrap.visible{opacity:1;transform:scale(1)}
+.bank-icon-wrap.move-left{transform:translateX(-60px) scale(1)}
+.bank-icon{
+  position:relative;
+  width:80px;height:80px;
+  background:linear-gradient(135deg,#1a6eff,#0050cc);
+  border-radius:20px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 32px rgba(26,110,255,.35);
+}
+.bank-icon-symbol{
+  font-size:36px;
+  line-height:1;
+}
+.bank-badge{
+  position:absolute;top:-8px;right:-8px;
+  width:26px;height:26px;
+  background:#ff3b30;border-radius:50%;
+  border:2px solid #fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:800;color:#fff;
+  font-family:'DM Sans',sans-serif;
+  animation:badgepop .4s cubic-bezier(.16,1,.3,1) forwards;
+  opacity:0;
+}
+@keyframes badgepop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.bank-name{
+  margin-top:10px;font-size:12px;font-weight:600;
+  color:#1a1a1a;transition:color .5s;
+}
+#pain-code-section.darkening .bank-name{color:var(--t2)}
+
+/* 알림 목록 */
+.notif-list{
+  flex:1;
+  display:flex;flex-direction:column;gap:8px;
+  max-height:70vh;overflow:hidden;
+}
+.notif-card{
+  background:#f5f5f5;
+  border-radius:14px;
+  padding:12px 16px;
+  display:flex;align-items:center;gap:12px;
+  transform:translateY(30px);opacity:0;
+  transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .5s,background .5s;
+  border:1px solid rgba(0,0,0,.06);
+}
+.notif-card.visible{transform:translateY(0);opacity:1}
+#pain-code-section.darkening .notif-card{
+  background:var(--bg3);
+  border-color:var(--bd);
+}
+.notif-icon{
+  width:36px;height:36px;min-width:36px;
+  background:linear-gradient(135deg,#1a6eff,#0050cc);
+  border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+  box-shadow:0 3px 10px rgba(26,110,255,.3);
+}
+.notif-body{flex:1;min-width:0}
+.notif-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
+.notif-bank{font-size:11px;font-weight:700;color:#1a6eff}
+.notif-time{font-size:10px;color:#999}
+.notif-text{font-size:13px;font-weight:500;color:#1a1a1a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .5s}
+#pain-code-section.darkening .notif-text{color:var(--text)}
+.notif-amount{font-size:13px;font-weight:700;color:#1a1a1a;transition:color .5s}
+#pain-code-section.darkening .notif-amount{color:var(--text)}
+
+/* 텍스트 오버레이 */
+.code-text-overlay{
+  position:absolute;inset:0;z-index:3;
+  display:flex;align-items:flex-end;
+  padding:0 8% 10%;
+  opacity:0;pointer-events:none;
+  transition:opacity .8s;
+}
+.code-text-overlay.visible{opacity:1}
+.code-text-block{max-width:560px}
+.ct-time{
+  font-size:11px;font-weight:700;color:var(--gl);
+  letter-spacing:2px;margin-bottom:16px;display:block;
+  transform:translateY(20px);opacity:0;transition:all .6s ease .1s;
+}
+.code-text-overlay.visible .ct-time{transform:translateY(0);opacity:1}
+.ct-main{
+  font-size:clamp(32px,4vw,54px);font-weight:900;
+  letter-spacing:-2px;line-height:1.1;color:#fff;
+  margin-bottom:16px;word-break:keep-all;
+  text-shadow:0 2px 20px rgba(0,0,0,.5);
+}
+.ct-main .cmline{display:block;overflow:hidden}
+.ct-main .cminner{
+  display:block;transform:translateY(100%);opacity:0;
+  transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .5s;
+}
+.code-text-overlay.visible .cminner{transform:translateY(0);opacity:1}
+.code-text-overlay.visible .cmline:nth-child(1) .cminner{transition-delay:.2s}
+.code-text-overlay.visible .cmline:nth-child(2) .cminner{transition-delay:.35s}
+.ct-desc{
+  font-size:15px;color:rgba(255,255,255,.65);line-height:1.7;
+  transform:translateY(15px);opacity:0;
+  transition:all .6s ease .6s;word-break:keep-all;
+}
+.code-text-overlay.visible .ct-desc{transform:translateY(0);opacity:1}
+
+/* 하단 진행 표시 */
+.pain-progress-bar{
+  position:fixed;bottom:0;left:0;right:0;
+  height:2px;background:rgba(255,255,255,.08);
+  z-index:999;opacity:0;transition:opacity .5s;
+}
+.pain-progress-bar.visible{opacity:1}
+.pain-progress-fill{
+  height:100%;background:linear-gradient(90deg,var(--green),var(--gl));
+  width:0%;transition:width .1s linear;
+}
+.pain-counter{
+  position:fixed;bottom:20px;right:5%;
+  font-size:11px;color:rgba(255,255,255,.3);
+  letter-spacing:1px;z-index:999;
+  opacity:0;transition:opacity .5s;
+  font-family:'DM Sans',sans-serif;
+}
+.pain-counter.visible{opacity:1}
+
+/* ── 스크롤 공간 ── */
+.scroll-space{height:0}
+#pain-intro-space{height:150vh}
+#pain-video-space{height:300vh}
+#pain-code-space{height:200vh}
+
+/* ── 나머지 섹션 (placeholder) ── */
+#rest{
+  background:var(--bg);
+  padding:120px 5%;
+  text-align:center;
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+}
+.rest-text{font-size:18px;color:var(--t2);font-weight:500}
+.rest-text span{color:var(--gl)}
+
+/* ── 애니메이션 키프레임 ── */
+@keyframes fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes lineup{from{transform:translateY(100%)}to{transform:translateY(0)}}
 </style>
 </head>
 <body>
@@ -220,307 +317,308 @@ footer{padding:40px 5%;border-top:.5px solid var(--bd);background:var(--bg)}
 <div class="cdot" id="cdot"></div>
 <div class="cring" id="cring"></div>
 
+<!-- 흰빛 전환 레이어 -->
+<div class="light-burst" id="lightBurst"></div>
+
+<!-- 하단 진행 바 -->
+<div class="pain-progress-bar" id="painBar"><div class="pain-progress-fill" id="painFill"></div></div>
+<div class="pain-counter" id="painCounter">01 / 06</div>
+
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-logo">
-    <img src="assets/images/turtle.png" alt="" class="nav-logo-turtle" onerror="this.style.display='none'">
-    <img src="assets/images/logo.png" alt="터TOOL" class="nav-logo-text" onerror="this.style.display='none';document.querySelector('.nav-logo-fallback').style.display='block'">
-    <span class="nav-logo-fallback">터TOOL</span>
+    <img src="assets/images/turtle.png" class="nav-logo-turtle" alt="" onerror="this.style.display='none'">
+    <img src="assets/images/logo.png" class="nav-logo-text" alt="터TOOL" onerror="this.style.display='none';document.querySelector('.nav-logo-fb').style.display='block'">
+    <span class="nav-logo-fb">터TOOL</span>
   </div>
   <div class="nav-links">
     <a href="#features">기능</a>
     <a href="#pricing">요금제</a>
     <a href="#faq">FAQ</a>
-    <a href="#cta" class="nav-cta">앱 다운로드</a>
+    <a href="#" class="nav-cta">앱 다운로드</a>
   </div>
-  <div class="nav-ham" id="ham"><span></span><span></span><span></span></div>
 </nav>
 
-<!-- HERO -->
+<!-- ══ HERO ══ -->
 <section id="hero">
-  <div class="hbg">
-    <div class="hgrid"></div>
-    <div class="horb horb1"></div>
-    <div class="horb horb2"></div>
-    <div class="horb horb3"></div>
+  <div class="hero-bg">
+    <div class="hero-orb"></div>
+    <div class="hero-grid"></div>
   </div>
-  <div class="hcontent">
-    <div class="hbadge"><span class="hbdot"></span>고시원 관리 앱 · 터TOOL</div>
-    <h1 class="htitle" id="htitle"></h1>
-    <p class="hsub">계약서, 수납, 공지, 민원 — 전부 일일이 관리하고 계신가요?</p>
-    <p class="hsub2">엑셀, 통장, 문자 — 이제 그만 들여다보세요.<br>터TOOL 앱 하나에서 모두 관리하세요.</p>
-    <div class="hbtns">
+  <div class="hero-content">
+    <div class="hero-badge"><span class="hero-bdot"></span>고시원 관리 앱 · 터TOOL</div>
+    <h1 class="hero-title">
+      <span class="line"><span class="line-inner">고시원 운영,</span></span>
+      <span class="line"><span class="line-inner">왜 이렇게</span></span>
+      <span class="line"><span class="line-inner">손이 많이 갈까요?</span></span>
+    </h1>
+    <p class="hero-sub">계약서, 수납, 공지, 민원 — 전부 일일이 관리하고 계신가요?</p>
+    <p class="hero-sub2">엑셀, 통장, 문자 — 이제 그만 들여다보세요.<br>터TOOL 앱 하나에서 모두 관리하세요.</p>
+    <div class="hero-btns">
       <a href="#" class="btnp">📱&nbsp; App Store</a>
       <a href="#" class="btns">🤖&nbsp; Google Play</a>
     </div>
   </div>
-  <div class="hscroll"><div class="hscline"></div><span>SCROLL</span></div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>SCROLL</span></div>
 </section>
 
-<!-- PAINPOINT -->
-<div id="painpoint">
-  <div class="ptrack">
-    <div class="psticky">
-      <div class="porb"></div>
-      <div class="pinner">
-        <div class="pleft">
-          <span class="ptag">Pain Point</span>
-          <h2 id="ph">익숙한 장면이<br>있으신가요?</h2>
-          <p id="pd">원장님들이 매일 겪는 불편함을 모았어요.<br>하나씩 살펴보세요.</p>
-          <div class="pdots" id="pdots"></div>
-        </div>
-        <div class="pright">
-          <div class="pcards" id="pcards"></div>
-        </div>
+<!-- ══ PAINPOINT WRAPPER ══ -->
+<div id="painpoint-wrapper">
+
+  <!-- 스크롤 공간: 인트로 -->
+  <div id="pain-intro-space"></div>
+
+  <!-- 인트로 패널 (sticky) -->
+  <div id="pain-intro">
+    <div class="pi-orb" id="piOrb"></div>
+    <div class="pi-content">
+      <span class="pi-tag">원장님의 하루</span>
+      <h2 class="pi-title">
+        <span class="pt-line"><span class="pt-inner">익숙한 장면이</span></span>
+        <span class="pt-line"><span class="pt-inner">있으신가요?</span></span>
+      </h2>
+      <p class="pi-sub">스크롤하면 원장님의 하루가 펼쳐집니다</p>
+      <div class="pi-arrow">
+        <div class="pi-arrow-line"></div>
+        <span class="pi-arrow-text">SCROLL</span>
       </div>
     </div>
   </div>
+
+  <!-- 스크롤 공간: 영상 -->
+  <div id="pain-video-space"></div>
+
+  <!-- 영상 패널 (sticky) -->
+  <div id="pain-video-section">
+    <div class="video-wrap">
+      <video id="pain-video" muted playsinline preload="auto">
+        <source src="수납_상황_1.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay"></div>
+    </div>
+    <div class="video-progress-wrap" id="videoProg">
+      <div class="video-prog-bar"><div class="video-prog-fill" id="videoFill"></div></div>
+      <span class="video-prog-num" id="videoNum">0%</span>
+    </div>
+  </div>
+
+  <!-- 스크롤 공간: 코드 애니메이션 -->
+  <div id="pain-code-space"></div>
+
+  <!-- 코드 애니메이션 패널 (sticky) -->
+  <div id="pain-code-section">
+    <div class="code-bg"></div>
+    <div class="code-inner">
+      <!-- 은행 아이콘 -->
+      <div class="bank-icon-wrap" id="bankIcon">
+        <div class="bank-icon">
+          <span class="bank-icon-symbol">🏦</span>
+          <div class="bank-badge" id="bankBadge">23</div>
+        </div>
+        <span class="bank-name">은행 앱</span>
+      </div>
+      <!-- 알림 목록 -->
+      <div class="notif-list" id="notifList"></div>
+    </div>
+    <!-- 텍스트 오버레이 -->
+    <div class="code-text-overlay" id="codeTextOverlay">
+      <div class="code-text-block">
+        <span class="ct-time">오전 6시 30분</span>
+        <h3 class="ct-main">
+          <span class="cmline"><span class="cminner">이번 달 월세</span></span>
+          <span class="cmline"><span class="cminner">누가 안 냈더라...</span></span>
+        </h3>
+        <p class="ct-desc">잠에서 깨자마자 통장 앱부터 켜는<br>원장님의 아침이 시작됩니다.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /painpoint-wrapper -->
+
+<!-- 나머지 섹션 placeholder -->
+<div id="rest">
+  <div class="rest-text">다음 상황들이 이어집니다<br><span>— 계약서 / 공지 / 방 현황 / 수동 입주민 / 메시지 —</span></div>
 </div>
 
-<!-- FEATURES -->
-<section id="features">
-  <div class="fhd rv">
-    <span class="stag">Features</span>
-    <h2 class="stitle">터TOOL이 바꿉니다</h2>
-    <p class="sdesc">원장님의 하루를 더 가볍게 만드는 기능들</p>
-  </div>
-  <div class="fgrid" id="fgrid"></div>
-</section>
-
-<!-- NUMBERS -->
-<section id="numbers">
-  <div class="nwrap">
-    <div class="rv">
-      <span class="stag">Why 터TOOL</span>
-      <h2 class="stitle">숫자로 보는 터TOOL</h2>
-    </div>
-    <div class="ngrid rv d2">
-      <div class="nitem">
-        <div class="nval"><span class="cu" data-t="100">0</span><span class="ga">%</span></div>
-        <div class="nlabel">가입 한 달 무료<br>모든 기능 이용 가능</div>
-      </div>
-      <div class="nitem">
-        <div class="nval"><span class="ga" style="font-size:.6em">月</span>&nbsp;<span class="cu" data-t="19">0</span><span style="font-size:.45em;color:var(--t2);letter-spacing:-.5px">,000원~</span></div>
-        <div class="nlabel">베이직 플랜<br>부가세 별도</div>
-      </div>
-      <div class="nitem">
-        <div class="nval"><span class="cu" data-t="24">0</span><span class="ga">h</span></div>
-        <div class="nlabel">언제 어디서나<br>실시간 관리</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="prwrap">
-    <div class="prhd rv">
-      <span class="stag">Pricing</span>
-      <h2 class="stitle">합리적인 요금제</h2>
-      <p class="sdesc">가입한 달은 무료로 모든 기능을 이용하실 수 있어요.</p>
-    </div>
-    <div class="prgrid">
-      <div class="prcard rv d1">
-        <div class="prtop"><span class="prname">베이직</span></div>
-        <div class="prprice">19,000<span class="prunit">원</span></div>
-        <div class="prvat">부가세 별도</div>
-        <div class="prperiod">/ 월 · 가입 한 달 무료</div>
-        <div class="prdiv"></div>
-        <div class="prfeats">
-          <div class="prfeat"><div class="prck">✓</div>입주민 관리</div>
-          <div class="prfeat"><div class="prck">✓</div>방 현황 대시보드</div>
-          <div class="prfeat"><div class="prck">✓</div>전자계약서</div>
-          <div class="prfeat"><div class="prck">✓</div>메시지 & 민원</div>
-          <div class="prfeat"><div class="prck">✓</div>공지 발송</div>
-          <div class="prfeat"><div class="prck">✓</div>수동 수납 처리</div>
-          <div class="prfeat"><div class="prck">✓</div>수동 독촉 알림</div>
-        </div>
-      </div>
-      <div class="prcard pf rv d2">
-        <div class="prtop"><span class="prname">프로</span><span class="prbadge">추천</span></div>
-        <div class="prprice">29,000<span class="prunit">원</span></div>
-        <div class="prvat">부가세 별도</div>
-        <div class="prperiod">/ 월 · 가입 한 달 무료</div>
-        <div class="prdiv"></div>
-        <div class="prfeats">
-          <div class="prfeat"><div class="prck">✓</div>베이직 전체 포함</div>
-          <div class="prfeat"><div class="prck">✓</div>입금 자동 감지</div>
-          <div class="prfeat"><div class="prck">✓</div>자동 수납 처리</div>
-          <div class="prfeat"><div class="prck">✓</div>자동 독촉 알림</div>
-          <div class="prfeat"><div class="prck">✓</div>차액 자동 계산</div>
-        </div>
-      </div>
-    </div>
-    <p class="prnote rv d3">모든 플랜은 가입 한 달 무료 · 언제든지 해지 가능<br>결제는 <a href="https://billing.turtool.kr" style="color:var(--gl)">billing.turtool.kr</a>에서 진행합니다</p>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-  <div class="fqwrap">
-    <div class="fqhd rv">
-      <span class="stag">FAQ</span>
-      <h2 class="stitle">자주 묻는 질문</h2>
-    </div>
-    <div class="fqlist rv d1" id="fqlist"></div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section id="cta">
-  <div class="corb"></div>
-  <div class="cwrap">
-    <img src="assets/images/turtle.png" alt="터TOOL" class="cturtle rv" onerror="this.style.display='none'">
-    <h2 class="ctitle rv d1">고시원 관리,<br><span class="ga">이제 달라집니다</span></h2>
-    <p class="cdesc rv d2">지금 바로 터TOOL을 시작하세요.<br>가입한 달은 무료로 모든 기능을 이용하실 수 있어요.</p>
-    <div class="cbtns rv d3">
-      <a href="#" class="btnp">📱&nbsp; App Store</a>
-      <a href="#" class="btns">🤖&nbsp; Google Play</a>
-    </div>
-    <p class="cnote rv d4">앱스토어에서 '터TOOL' 검색</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="ftin">
-    <div class="ftlogo">
-      <img src="assets/images/turtle.png" alt="" onerror="this.style.display='none'">
-      <img src="assets/images/logo.png" alt="터TOOL" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=&quot;font-size:14px;font-weight:700;color:#555&quot;>터TOOL</span>')">
-    </div>
-    <div class="ftlinks">
-      <a href="/terms.html">이용약관</a>
-      <a href="/privacy.html">개인정보처리방침</a>
-      <a href="/payment-guide.html">수납 가이드</a>
-      <a href="mailto:turtool@naver.com">문의하기</a>
-    </div>
-    <div class="ftcopy">© 2026 터TOOL · 운영자 김시현</div>
-  </div>
-</footer>
-
 <script>
-/* ── CURSOR ── */
+/* ── 커서 ── */
 const cdot=document.getElementById('cdot'),cring=document.getElementById('cring');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cdot.style.left=mx+'px';cdot.style.top=my+'px'});
 (function ar(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cring.style.left=rx+'px';cring.style.top=ry+'px';requestAnimationFrame(ar)})();
-document.querySelectorAll('a,.fqq').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cring.style.width='50px';cring.style.height='50px';cring.style.borderColor='rgba(141,200,90,.55)';cdot.style.opacity='0'});
-  el.addEventListener('mouseleave',()=>{cring.style.width='32px';cring.style.height='32px';cring.style.borderColor='rgba(141,200,90,.35)';cdot.style.opacity='1'});
-});
 
-/* ── HERO TITLE ── */
-const heroWords=['고시원 운영,','왜 이렇게','손이 많이 갈까요?'];
-const htEl=document.getElementById('htitle');
-heroWords.forEach((w,i)=>{
-  const s=document.createElement('span');
-  s.className='w';
-  s.style.display='block';
-  s.style.animationDelay=(.3+i*.15)+'s';
-  s.textContent=w;
-  htEl.appendChild(s);
-});
+/* ── NAV 스크롤 ── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>80);
+},{passive:true});
 
-/* ── PAIN DATA ── */
-const pains=[
-  {num:'01 / 06',icon:'🏦',q:'이번 달 월세 누가 안 냈더라...',d:'매달 통장 들어가서 입주민 이름 하나하나 대조하고 계신가요?',tag:'수납 관리'},
-  {num:'02 / 06',icon:'📄',q:'새 입주민 들어오는 날, 또 고시원 가야 하네',d:'계약서 들고 직접 방문, 서명 받고, 한 부 돌려주고 — 원장님이 항상 그 자리에 있어야 하나요?',tag:'전자계약'},
-  {num:'03 / 06',icon:'📱',q:'원장님 화장실이요, 원장님 옆방이요...',d:'입주민들이 각자 개인 번호로 문자 폭탄. 답장하고 처리해도 뭘 처리했는지 기억도 안 남아요.',tag:'메시지 & 민원'},
-  {num:'04 / 06',icon:'📢',q:'내일 단수 있어서 공지 보내야 하는데...',d:'입주민 전체 번호에 문자 일일이 복붙. 특정 층만 따로 보낼 방법도 없어요.',tag:'공지'},
-  {num:'05 / 06',icon:'🏠',q:'어떤 방이 비어있었지? 미납이 누구였지?',d:'방 현황, 수납 현황, 입주민 정보 — 전부 원장님 머릿속에만 있어요.',tag:'방 현황'},
-  {num:'06 / 06',icon:'👴',q:'입주민 중에 앱 안 쓰는 분이 있으면 의미 없는 거 아닌가요?',d:'걱정 마세요. 앱을 안 쓰는 입주민도 수동으로 등록하면 수납, 현황, 공지 모두 똑같이 관리돼요. 공지는 자동으로 문자로 전달됩니다.',tag:'수동 입주민'},
+/* ── 알림 목록 데이터 ── */
+const notifications=[
+  {name:'김○○',amount:'350,000',time:'06:31'},
+  {name:'이○○',amount:'350,000',time:'06:29'},
+  {name:'박○○',amount:'420,000',time:'06:27'},
+  {name:'최○○',amount:'350,000',time:'06:25'},
+  {name:'정○○',amount:'380,000',time:'06:22'},
+  {name:'한○○',amount:'350,000',time:'06:18'},
+  {name:'조○○',amount:'350,000',time:'06:14'},
+  {name:'강○○',amount:'400,000',time:'06:09'},
 ];
-const pcEl=document.getElementById('pcards');
-const pdEl=document.getElementById('pdots');
-pains.forEach((p,i)=>{
-  const c=document.createElement('div');
-  c.className='pcard'+(i===0?' on':'');
-  c.innerHTML=`<div class="pcnum">${p.num}</div><div class="pcicon">${p.icon}</div><div class="pcquote">${p.q}</div><div class="pcdesc">${p.d}</div><div class="pctag">✦ ${p.tag}</div>`;
-  pcEl.appendChild(c);
-  const d=document.createElement('div');
-  d.className='pdot'+(i===0?' on':'');
-  pdEl.appendChild(d);
+
+/* 알림 카드 생성 */
+const notifList=document.getElementById('notifList');
+notifications.forEach((n,i)=>{
+  const card=document.createElement('div');
+  card.className='notif-card';
+  card.style.transitionDelay=(i*.08)+'s';
+  card.innerHTML=`
+    <div class="notif-icon">🏦</div>
+    <div class="notif-body">
+      <div class="notif-header">
+        <span class="notif-bank">○○은행</span>
+        <span class="notif-time">오전 ${n.time}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="notif-text">${n.name} 입금</span>
+        <span class="notif-amount">+${n.amount}원</span>
+      </div>
+    </div>
+  `;
+  notifList.appendChild(card);
 });
-let curP=0;
-const pcEls=document.querySelectorAll('.pcard');
-const pdEls=document.querySelectorAll('.pdot');
-function setPain(idx){
-  if(idx===curP)return;
-  pcEls[curP].classList.remove('on');
-  pcEls[curP].classList.add('out');
-  setTimeout(()=>pcEls[curP<pains.length?curP:0].classList.remove('out'),480);
-  curP=idx;
-  pcEls[curP].classList.add('on');
-  pdEls.forEach((d,i)=>d.classList.toggle('on',i===curP));
+
+/* ── 섹션 위치 계산 ── */
+function getSection(id){
+  const el=document.getElementById(id);
+  const top=el.getBoundingClientRect().top+scrollY;
+  const h=el.offsetHeight;
+  return{top,bottom:top+h,h};
 }
-const ptrack=document.querySelector('.ptrack');
-window.addEventListener('scroll',()=>{
-  const r=ptrack.getBoundingClientRect();
-  const prog=Math.max(0,Math.min(1,-r.top/(ptrack.offsetHeight-window.innerHeight)));
-  const idx=Math.min(pains.length-1,Math.floor(prog*pains.length));
-  setPain(idx);
-},{passive:true});
 
-/* ── FEATURES DATA ── */
-const feats=[
-  {icon:'💰',name:'자동 수납',desc:'입주민이 입금하면 터TOOL이 감지해서 즉시 수납을 완료합니다. 통장 안 봐도 돼요.',pts:['실시간 입금 감지','자동 입주민 매칭','미납 자동 독촉'],hl:false},
-  {icon:'📄',name:'전자계약서',desc:'앱으로 계약서 발송 → 입주민 서명 → 자동 보관. 고시원 방문 없이 계약 완료.',pts:['앱에서 바로 발송','전자 서명','자동 보관 및 이력'],hl:false},
-  {icon:'💬',name:'메시지 & 민원',desc:'흩어진 문자 대신 앱 안에서 소통을 관리하세요. 민원 처리 이력까지 자동 기록됩니다.',pts:['1:1 메시지','민원 접수 및 처리','처리 이력 자동 기록'],hl:false},
-  {icon:'📢',name:'공지',desc:'앱 입주민에겐 앱으로, 수동 입주민에겐 자동으로 문자. 층이나 방 단위 선택 발송도 가능.',pts:['전체/선택 공지','수동 입주민 자동 문자','공지 이력 보관'],hl:false},
-  {icon:'🏠',name:'방 & 입주민 현황',desc:'어떤 방이 비어있는지, 누가 미납인지 — 앱 하나로 어디서든 실시간 파악.',pts:['실시간 방 현황','수납 현황 대시보드','입주민 정보 통합'],hl:false},
-  {icon:'👥',name:'수동 입주민',desc:'앱을 못 쓰는 입주민도 수동 등록하면 수납, 현황, 공지 모두 동일하게 관리돼요.',pts:['앱 설치 불필요','자동 수납 매칭','공지 문자 자동 전환'],hl:true},
-];
-const fgEl=document.getElementById('fgrid');
-feats.forEach((f,i)=>{
-  const c=document.createElement('div');
-  c.className='fcard rv'+(f.hl?' highlight':'')+' d'+((i%3)+1);
-  c.innerHTML=`<div class="fcard-icon">${f.icon}</div><h3>${f.name}</h3><div class="fcard-desc">${f.desc}</div><div class="fcard-pts">${f.pts.map(p=>`<div class="fpt">${p}</div>`).join('')}</div>`;
-  fgEl.appendChild(c);
-});
+/* ── 메인 스크롤 로직 ── */
+const video=document.getElementById('pain-video');
+const lightBurst=document.getElementById('lightBurst');
+const painIntro=document.getElementById('pain-intro');
+const painVideoSec=document.getElementById('pain-video-section');
+const painCodeSec=document.getElementById('pain-code-section');
+const bankIcon=document.getElementById('bankIcon');
+const bankBadge=document.getElementById('bankBadge');
+const codeTextOverlay=document.getElementById('codeTextOverlay');
+const painBar=document.getElementById('painBar');
+const painFill=document.getElementById('painFill');
+const painCounter=document.getElementById('painCounter');
+const videoProg=document.getElementById('videoProg');
+const videoFill=document.getElementById('videoFill');
+const videoNum=document.getElementById('videoNum');
 
-/* ── FAQ ── */
-const faqs=[
-  {q:'무료로 써볼 수 있나요?',a:'네, 가입한 달은 무료로 모든 기능을 이용하실 수 있어요. 카드 등록 후 다음 달부터 플랜에 따라 요금이 청구됩니다.',hint:'💡 월 초에 가입할수록 무료로 쓸 수 있는 기간이 길어진다는 거, 비밀이에요.'},
-  {q:'베이직과 프로의 차이가 뭔가요?',a:'베이직은 수동으로 수납을 처리하는 플랜이에요. 프로는 입금 감지부터 수납 완료까지 자동으로 처리되고, 미납 독촉 알림도 자동 발송됩니다.'},
-  {q:'입주민이 앱을 안 써도 되나요?',a:'네. 앱을 설치하지 않는 입주민은 수동 입주민으로 등록하면 수납, 현황, 공지 모두 동일하게 관리할 수 있어요. 공지는 자동으로 문자로 전달됩니다.'},
-  {q:'자동 수납은 어떻게 작동하나요?',a:'원장님 계좌에 입금이 들어오면 터TOOL이 감지해서 해당 입주민의 수납을 자동으로 완료 처리해요. 입주민 이름(송금자명)을 미리 등록해두면 자동으로 매칭됩니다.'},
-  {q:'고시원이 여러 개면 각각 관리할 수 있나요?',a:'현재는 계정 하나당 고시원 하나를 관리할 수 있어요. 추후 다지점 관리 기능을 지원할 예정입니다.'},
-  {q:'전자계약서는 법적 효력이 있나요?',a:'터TOOL의 전자계약서는 입주민이 직접 서명하는 방식으로, 계약 내용과 서명 일시가 기록됩니다. 분쟁 발생 시 참고 자료로 활용하실 수 있어요.'},
-  {q:'중간에 해지하면 어떻게 되나요?',a:'언제든지 해지 신청이 가능하며, 신청 후 해당 월 말일까지 서비스를 이용하실 수 있어요. 이후 별도 청구는 없습니다.'},
-  {q:'입주민 데이터는 안전한가요?',a:'모든 데이터는 암호화되어 보관되며, 터TOOL 외부로 공유되지 않아요.'},
-];
-const fqEl=document.getElementById('fqlist');
-faqs.forEach(f=>{
-  const item=document.createElement('div');
-  item.className='fqitem';
-  item.innerHTML=`<div class="fqq"><span class="fqqt">${f.q}</span><div class="fqarr">▾</div></div><div class="fqa"><div class="fqai">${f.a}${f.hint?`<div class="fqhint">${f.hint}</div>`:''}</div></div>`;
-  const fqq=item.querySelector('.fqq'),fqa=item.querySelector('.fqa');
-  fqq.addEventListener('click',()=>{
-    const op=item.classList.contains('open');
-    document.querySelectorAll('.fqitem').forEach(i=>{i.classList.remove('open');i.querySelector('.fqa').style.maxHeight='0'});
-    if(!op){item.classList.add('open');fqa.style.maxHeight=fqa.scrollHeight+'px'}
+let videoReady=false;
+video.addEventListener('loadedmetadata',()=>{videoReady=true;video.currentTime=0});
+video.addEventListener('canplay',()=>{videoReady=true});
+
+/* 상태 변수 */
+let introActivated=false;
+let notifShown=[];
+let iconMoved=false;
+let textShown=false;
+let darkeningStarted=false;
+
+function onScroll(){
+  const sy=window.scrollY;
+  const wh=window.innerHeight;
+
+  /* 섹션 위치 */
+  const introSpace=getSection('pain-intro-space');
+  const videoSpace=getSection('pain-video-space');
+  const codeSpace=getSection('pain-code-space');
+
+  /* ── 1. 인트로 활성화 ── */
+  const introProgress=Math.max(0,Math.min(1,(sy-introSpace.top)/introSpace.h));
+
+  if(introProgress>0.05 && !introActivated){
+    introActivated=true;
+    painIntro.classList.add('active');
+  }
+
+  /* 인트로 텍스트 페이드아웃 */
+  const introFadeOut=Math.max(0,Math.min(1,(introProgress-.6)/.3));
+  painIntro.querySelector('.pi-content').style.opacity=1-introFadeOut;
+  painIntro.querySelector('.pi-content').style.transform=`translateY(${-introFadeOut*30}px)`;
+
+  /* ── 2. 흰빛 전환 (인트로 끝) ── */
+  const burstProgress=Math.max(0,Math.min(1,(introProgress-.7)/.25));
+  if(burstProgress>0){
+    lightBurst.style.transform=`scale(${burstProgress*4})`;
+    lightBurst.style.opacity=burstProgress;
+    painBar.classList.add('visible');
+    painCounter.classList.add('visible');
+  }else{
+    lightBurst.style.transform='scale(0)';
+    lightBurst.style.opacity='0';
+  }
+
+  /* 흰빛 걷히며 영상 드러남 */
+  const videoReveal=Math.max(0,Math.min(1,(introProgress-.9)/.1));
+  if(videoReveal>0){
+    lightBurst.style.opacity=1-videoReveal;
+    videoProg.classList.add('visible');
+  }
+
+  /* ── 3. 영상 스크롤 제어 ── */
+  const videoProgress=Math.max(0,Math.min(1,(sy-videoSpace.top)/videoSpace.h));
+  if(videoReady && video.duration){
+    video.currentTime=videoProgress*video.duration;
+    videoFill.style.width=(videoProgress*100)+'%';
+    videoNum.textContent=Math.round(videoProgress*100)+'%';
+  }
+
+  /* 진행바 업데이트 */
+  painFill.style.width=(videoProgress*16.67)+'%'; /* 1/6 */
+
+  /* ── 4. 코드 애니메이션 섹션 ── */
+  const codeProgress=Math.max(0,Math.min(1,(sy-codeSpace.top)/codeSpace.h));
+
+  /* 아이콘 등장 */
+  if(codeProgress>0.05){
+    bankIcon.classList.add('visible');
+    setTimeout(()=>{bankBadge.style.animationDelay='0s';bankBadge.style.opacity='1'},400);
+  }
+
+  /* 아이콘 왼쪽 이동 */
+  if(codeProgress>0.2 && !iconMoved){
+    iconMoved=true;
+    bankIcon.classList.add('move-left');
+  }
+
+  /* 알림 카드 순차 등장 */
+  const cards=document.querySelectorAll('.notif-card');
+  cards.forEach((card,i)=>{
+    const threshold=0.25+(i*0.06);
+    if(codeProgress>threshold){
+      card.classList.add('visible');
+    }
   });
-  fqEl.appendChild(item);
-});
 
-/* ── REVEAL ── */
-const rvEls=document.querySelectorAll('.rv');
-new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.12}).observe&&
-rvEls.forEach(el=>new IntersectionObserver(es=>{if(es[0].isIntersecting)el.classList.add('vis')},{threshold:.12}).observe(el));
+  /* 배경 어두워짐 */
+  if(codeProgress>0.6 && !darkeningStarted){
+    darkeningStarted=true;
+    painCodeSec.classList.add('darkening');
+  }
 
-/* ── COUNT UP ── */
-document.querySelectorAll('.cu').forEach(el=>{
-  new IntersectionObserver(es=>{
-    if(!es[0].isIntersecting)return;
-    const t=+el.dataset.t;let c=0;
-    const tm=setInterval(()=>{c=Math.min(c+t/40,t);el.textContent=Math.floor(c);if(c>=t)clearInterval(tm)},28);
-  },{threshold:.5}).observe(el);
-});
+  /* 텍스트 오버레이 */
+  if(codeProgress>0.75){
+    codeTextOverlay.classList.add('visible');
+  }else{
+    codeTextOverlay.classList.remove('visible');
+  }
 
-/* ── NAV ── */
-window.addEventListener('scroll',()=>{
-  document.getElementById('nav').style.background=scrollY>60?'rgba(12,12,12,.96)':'rgba(12,12,12,.85)';
-},{passive:true});
+  /* 카운터 */
+  painCounter.textContent='01 / 06';
+}
+
+window.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+
+/* ── 비디오 preload ── */
+video.load();
 </script>
 </body>
 </html>

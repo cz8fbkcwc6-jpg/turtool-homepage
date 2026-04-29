@@ -21,6 +21,37 @@ body{
 }
 a{text-decoration:none;color:inherit}
 
+
+/* ── BRAND LABEL: PC 기능 섹션 라벨 정리 ── */
+.feature-eyebrow.brand-label{
+  display:inline-block;
+  position:relative;
+  font-family:'DM Sans','Pretendard','Apple SD Gothic Neo',sans-serif;
+  font-weight:900;
+  letter-spacing:1.15px;
+  color:var(--green)!important;
+  font-size:13px;
+  line-height:1;
+  text-transform:none;
+}
+
+.feature-eyebrow.brand-label::after{
+  content:'';
+  position:absolute;
+  left:50%;
+  bottom:-8px;
+  width:calc(100% + 16px);
+  height:1px;
+  transform:translateX(-50%);
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--green),
+    transparent
+  );
+  opacity:0.65;
+}
+
 /* ── 커서 ── */
 .cdot,.cring{position:fixed;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%)}
 .cdot{width:7px;height:7px;background:var(--gl);z-index:9999;transition:opacity .2s}
@@ -3825,7 +3856,7 @@ nav.scrolled .nav-links{opacity:1}
         <div class="feature-copy">
           <div id="payment-copy-main" class="payment-copy-main">
             <div class="payment-copy-inner">
-            <span class="feature-eyebrow">터 TOOL</span>
+            <span class="feature-eyebrow brand-label">터 TOOL</span>
             <h2>자동 수납 관리</h2>
             <p>
               입금 내역을<br>
@@ -3887,7 +3918,7 @@ nav.scrolled .nav-links{opacity:1}
         <div class="feature-copy">
           <div id="contract-feature-copy-main" class="contract-feature-copy-main">
             <div class="contract-feature-copy-inner">
-              <span class="feature-eyebrow">터 TOOL</span>
+              <span class="feature-eyebrow brand-label">터 TOOL</span>
               <h2>전자계약서</h2>
               <p>
                 앱 내에서 계약서를<br>
@@ -3937,7 +3968,7 @@ nav.scrolled .nav-links{opacity:1}
       <div id="feature-notice" class="notice-feature-layer">
         <div id="notice-feature-copy-main" class="notice-feature-copy-main">
           <div class="notice-feature-copy-inner">
-            <span class="feature-eyebrow">터 TOOL</span>
+            <span class="feature-eyebrow brand-label">터 TOOL</span>
             <h2>공지사항</h2>
             <p>
               앱 안에서 모든 입주민에게<br>
@@ -3962,7 +3993,7 @@ nav.scrolled .nav-links{opacity:1}
       <div id="feature-issue" class="issue-feature-layer">
         <div id="issue-feature-copy-main" class="issue-feature-copy-main">
           <div class="issue-feature-copy-inner">
-            <span class="feature-eyebrow">터 TOOL</span>
+            <span class="feature-eyebrow brand-label">터 TOOL</span>
             <h2>민원&amp;고장 신고</h2>
             <p>
               입주민은 <span class="feature-emphasis">앱으로 신고</span>하고,<br>
@@ -4020,7 +4051,7 @@ nav.scrolled .nav-links{opacity:1}
 
         <div id="extra-focus">
           <div id="extra-focus-title">
-            <span class="feature-eyebrow">터 TOOL</span>
+            <span class="feature-eyebrow brand-label">터 TOOL</span>
             <h2 id="extra-focus-heading">현황판</h2>
           </div>
         </div>

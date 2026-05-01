@@ -171,6 +171,30 @@ nav.scrolled .nav-links{opacity:1}
   padding:5px 14px;border-radius:100px;margin-bottom:28px;
   opacity:0;animation:fadeup .7s ease .2s forwards;
 }
+
+.hero-brand{
+  max-width:740px;
+  margin:0 auto 28px;
+  font-size:clamp(15px,1.25vw,19px);
+  line-height:1.72;
+  font-weight:750;
+  letter-spacing:-.35px;
+  color:rgba(255,255,255,.76);
+  word-break:keep-all;
+  opacity:0;
+  animation:fadeup .7s ease .22s forwards;
+}
+.hero-brand .brand-key{
+  color:var(--gl);
+  font-weight:950;
+  letter-spacing:-0.15px;
+  text-shadow:0 0 14px rgba(141,200,90,.22);
+}
+.hero-brand .quote{
+  color:rgba(255,255,255,.94);
+  font-weight:900;
+}
+
 .hbdot{width:5px;height:5px;background:var(--gl);border-radius:50%;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .hero-title{
@@ -3322,6 +3346,28 @@ nav.scrolled .nav-links{opacity:1}
     font-size:12px;font-weight:900;
     margin-bottom:22px;
   }
+
+  .m-hero-brand{
+    max-width:360px;
+    margin:0 0 24px;
+    font-size:15px;
+    line-height:1.78;
+    font-weight:750;
+    letter-spacing:-.35px;
+    color:rgba(255,255,255,.72);
+    word-break:keep-all;
+  }
+  .m-hero-brand .brand-key{
+    color:#8DC85A;
+    font-weight:950;
+    letter-spacing:-0.15px;
+    text-shadow:0 0 12px rgba(141,200,90,.22);
+  }
+  .m-hero-brand .quote{
+    color:rgba(255,255,255,.94);
+    font-weight:900;
+  }
+
   .m-product-label::before{content:'';width:6px;height:6px;border-radius:50%;background:#8DC85A;box-shadow:0 0 18px rgba(141,200,90,.78);}
   .m-hero h1{
     position:relative;z-index:2;
@@ -3531,7 +3577,10 @@ nav.scrolled .nav-links{opacity:1}
   </div>
 
   <div class="hero-content">
-    <div class="hero-badge"><span class="hbdot"></span>고시원 관리 앱 · 터TOOL</div>
+    <p class="hero-brand">
+      <span class="brand-key">터TOOL</span>은 <span class="quote">‘활동의 토대나 일이 이루어지는 밑바탕’</span>이라는 <span class="brand-key">터</span>와<br>
+      운영을 돕는 도구 <span class="brand-key">TOOL</span>을 결합한 고시원 관리 플랫폼입니다.
+    </p>
     <h1 class="hero-title">
       <span class="hl"><span class="hli">고시원 운영,</span></span>
       <span class="hl"><span class="hli">왜 이렇게</span></span>
@@ -4281,12 +4330,14 @@ nav.scrolled .nav-links{opacity:1}
       <section class="m-hero">
         <div class="m-container">
           <div class="m-hero-plain mobile-reveal">
-            <div class="m-product-label">고시원 관리 운영 시스템</div>
-            <h1>고시원 운영,<br>아직도 손으로<br>관리하시나요?</h1>
+            <p class="m-hero-brand">
+              <span class="brand-key">터TOOL</span>은 <span class="quote">‘활동의 토대나 일이 이루어지는 밑바탕’</span>이라는 <span class="brand-key">터</span>와<br>
+              운영을 돕는 도구 <span class="brand-key">TOOL</span>을 결합한 고시원 관리 플랫폼입니다.
+            </p>
+            <h1>고시원 운영,<br>왜 이렇게<br>손이 많이 갈까요?</h1>
             <p class="m-hero-copy">
-              수납, 계약서, 공지, 민원, 메시지까지.<br>
-              흩어진 운영 업무를 하나의 앱에서 정리합니다.
-              <strong>터TOOL은 원장님의 관리 시간을 줄이기 위한 고시원 전용 관리 플랫폼입니다.</strong>
+              계약서, 수납, 공지, 민원 —<br>
+              전부 일일이 관리하고 계신가요?
             </p>
             <div class="m-hero-actions">
               <a href="#" class="m-btn">App Store</a>

@@ -240,7 +240,7 @@ nav.scrolled .nav-links{opacity:1}
 .btns:hover{background:rgba(255,255,255,.08);color:var(--text);transform:translateY(-2px)}
 
 /* ── 통합 스토리 섹션 ── */
-#section-story{position:relative;height:900vh}
+#section-story{position:relative;height:1250vh}
 #panel-story{
   position:sticky;
   top:0;
@@ -565,7 +565,7 @@ nav.scrolled .nav-links{opacity:1}
 /* ── CONTRACT SECTION ── */
 #section-contract{
   position:relative;
-  height:780vh;
+  height:1080vh;
   background:#000;
 }
 #panel-contract{
@@ -701,7 +701,7 @@ nav.scrolled .nav-links{opacity:1}
 /* ── NOTICE SECTION ── */
 #section-notice{
   position:relative;
-  height:780vh;
+  height:1080vh;
   background:#000;
 }
 #panel-notice{
@@ -826,7 +826,7 @@ nav.scrolled .nav-links{opacity:1}
 /* ── CONTACT SECTION ── */
 #section-contact{
   position:relative;
-  height:1050vh;
+  height:1450vh;
   background:#000;
 }
 #panel-contact{
@@ -1133,13 +1133,27 @@ nav.scrolled .nav-links{opacity:1}
 .bridge-base{
   position:absolute;
   inset:0;
+  z-index:0;
   background:
     radial-gradient(circle at 50% 52%, rgba(141,200,90,.16) 0%, rgba(86,138,53,.07) 34%, rgba(0,0,0,0) 68%),
     linear-gradient(135deg, #030503 0%, #09110B 52%, #020302 100%);
 }
+#bridge-green-wash{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  opacity:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 8%, rgba(86,138,53,.20), transparent 34%),
+    radial-gradient(circle at 14% 72%, rgba(86,138,53,.10), transparent 30%),
+    radial-gradient(circle at 52% 46%, rgba(141,200,90,.12), transparent 52%),
+    #161616;
+}
 #bridge-brand-glow{
   position:absolute;
   inset:-20%;
+  z-index:2;
   background:
     radial-gradient(circle at 50% 48%, rgba(141,200,90,.22) 0%, rgba(86,138,53,.08) 34%, rgba(0,0,0,0) 68%);
   opacity:0;
@@ -1149,6 +1163,7 @@ nav.scrolled .nav-links{opacity:1}
 .bridge-grid-soft{
   position:absolute;
   inset:0;
+  z-index:3;
   background-image:
     linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
@@ -3816,6 +3831,7 @@ html.touch-landing .cring{display:none!important}
   }
 }
 
+
 </style>
 </head>
 <body>
@@ -4110,6 +4126,7 @@ html.touch-landing .cring{display:none!important}
 
     <div id="panel-bridge">
       <div class="bridge-base"></div>
+      <div id="bridge-green-wash"></div>
       <div id="bridge-brand-glow"></div>
       <div class="bridge-grid-soft"></div>
 
@@ -4170,13 +4187,15 @@ html.touch-landing .cring{display:none!important}
   </div>
 </section>
 
-<section id="section-features" style="position:relative;height:7600vh;background:
-  radial-gradient(circle at 50% 8%, rgba(86,138,53,.16), transparent 34%),
-  radial-gradient(circle at 14% 72%, rgba(86,138,53,.08), transparent 30%),
+<section id="section-features" style="position:relative;height:9600vh;background:
+  radial-gradient(circle at 50% 8%, rgba(86,138,53,.20), transparent 34%),
+  radial-gradient(circle at 14% 72%, rgba(86,138,53,.10), transparent 30%),
+  radial-gradient(circle at 52% 46%, rgba(141,200,90,.12), transparent 52%),
   #161616;">
   <div id="panel-features" style="position:sticky;top:0;height:100vh;overflow:hidden;background:
-    radial-gradient(circle at 50% 8%, rgba(86,138,53,.16), transparent 34%),
-    radial-gradient(circle at 14% 72%, rgba(86,138,53,.08), transparent 30%),
+    radial-gradient(circle at 50% 8%, rgba(86,138,53,.20), transparent 34%),
+    radial-gradient(circle at 14% 72%, rgba(86,138,53,.10), transparent 30%),
+    radial-gradient(circle at 52% 46%, rgba(141,200,90,.12), transparent 52%),
     #161616;z-index:15;">
         <div id="integrated-features">
             <div class="feature-bg-orb"></div>
@@ -4931,12 +4950,14 @@ const contactAlertCards=document.querySelectorAll('.contact-alert-card');
 
 /* ── 해결 전환 레이어 참조 ── */
 const panelBridge=document.getElementById('panel-bridge');
+const bridgeGreenWash=document.getElementById('bridge-green-wash');
 const bridgeAlertLayer=document.getElementById('bridge-alert-layer');
 const bridgeBrandGlow=document.getElementById('bridge-brand-glow');
 const bridgeCopy=document.getElementById('bridge-copy');
 
 /* ── 통합 features 레이어 참조 ── */
 const integratedFeatures=document.getElementById('integrated-features');
+const panelFeatures=document.getElementById('panel-features');
 const paymentCopyMain=document.getElementById('payment-copy-main');
 const paymentCopyDetail1=document.getElementById('payment-copy-detail-1');
 const paymentCopyDetail2=document.getElementById('payment-copy-detail-2');
@@ -5090,7 +5111,7 @@ startContractScrubLoop();
 function renderNoticeSection(np){
   const nRevealStart = 0.00;
   const nRevealEnd   = 0.14;
-  const nCopyStart   = 0.84;
+  const nCopyStart   = 0.70;
 
   if(np <= 0.001){
     noticeVideoLayer.style.opacity='0';
@@ -5129,12 +5150,12 @@ function renderContactSection(cp){
   const revealEnd = 0.10;
 
   // 전체 contact 섹션 안에서 painpoint → solution → feature까지 이어집니다.
-  const alertStart = 0.30;
-  const copyStart = 0.34;
-  const bridgeStart = 0.46;
-  const bridgeEnd = 0.64;
-  const solutionFadeStart = 0.66;
-  const solutionFadeEnd = 0.72;
+  const alertStart = 0.40;
+  const copyStart = 0.44;
+  const bridgeStart = 0.72;
+  const bridgeEnd = 0.86;
+  const solutionFadeStart = 0.86;
+  const solutionFadeEnd = 0.98;
   const bridgeT = Math.max(0, Math.min(1, (cp - bridgeStart) / (bridgeEnd - bridgeStart)));
   const solutionOutT = Math.max(0, Math.min(1, (cp - solutionFadeStart) / (solutionFadeEnd - solutionFadeStart)));
 
@@ -5211,7 +5232,9 @@ function renderContactSection(cp){
       contactAlertLayer.style.display = 'block';
     }
 
-    contactDarkveil.style.opacity = String(0.50 + (bridgeT * 0.50));
+    // 솔루션 카피가 사라질 때 블랙 베이스를 줄이고 그린 배경으로 넘어갑니다.
+    const greenBridgeT = easeInOut(solutionOutT);
+    contactDarkveil.style.opacity = String((0.50 + (bridgeT * 0.50)) * (1 - greenBridgeT * 0.88));
   }else{
     contactAlertLayer.classList.remove('bridge-out');
     contactAlertLayer.style.opacity='';
@@ -5239,15 +5262,22 @@ function renderContactSection(cp){
     }
   }
 
-  renderBridgeSection(bridgeT, 0);
+  renderBridgeSection(bridgeT, solutionOutT);
 }
 function renderBridgeSection(bp, outT=0){
   const p=Math.max(0,Math.min(1,bp));
   const fadeOut=Math.max(0,Math.min(1,outT));
+  const greenT=easeInOut(fadeOut);
 
   if(panelBridge){
     const baseOpacity = p <= 0.001 ? 0 : Math.min(1, p * 1.25);
+    // 패널 자체는 끝까지 유지합니다. 그래야 별도 페이지로 끊기는 느낌 없이
+    // 솔루션 화면 위에서 배경만 그린 톤으로 이어집니다.
     panelBridge.style.opacity = String(baseOpacity);
+  }
+
+  if(bridgeGreenWash){
+    bridgeGreenWash.style.opacity = String(greenT);
   }
 
   if(bridgeAlertLayer){
@@ -5257,25 +5287,36 @@ function renderBridgeSection(bp, outT=0){
   }
 
   const glowT=Math.max(0,Math.min(1,(p-0.04)/0.62));
-  bridgeBrandGlow.style.opacity=String(glowT);
-  bridgeBrandGlow.style.transform=`scale(${0.96+(glowT*.08)})`;
+  bridgeBrandGlow.style.opacity=String((glowT * (1 - fadeOut * 0.35)) + (greenT * 0.18));
+  bridgeBrandGlow.style.transform=`scale(${0.96+(glowT*.08)+(greenT*.06)})`;
 
   const copyT = Math.max(0, Math.min(1, (p - 0.78) / 0.28));
   const copyEase = easeOut(copyT);
-  const finalOpacity = copyEase;
+  const finalOpacity = copyEase * (1 - fadeOut);
   bridgeCopy.style.opacity = String(finalOpacity);
-  bridgeCopy.style.transform = `translateY(${40 - (40 * copyEase) - (18 * fadeOut)}px) scale(${0.92 + (0.08 * copyEase) - (0.02 * fadeOut)})`;
+  bridgeCopy.style.transform = `translateY(${40 - (40 * copyEase) - (54 * fadeOut)}px) scale(${0.92 + (0.08 * copyEase) - (0.045 * fadeOut)})`;
 }
 
+
 function renderFeatures(p) {
-  const mainFeatureT = Math.max(0, Math.min(1, p / 0.60));
+  const raw = clamp01(p);
+
+  // contact의 TURTOOL SOLUTION 후반부에서 이미 배경이 그린 톤으로 넘어왔기 때문에
+  // features 섹션은 별도 페이지처럼 지연시키지 않고 바로 이어 붙입니다.
+  const featureStart = 0.000;
+  const featureLayerInT = easeOut(clamp01(raw / 0.040));
+  const shifted = raw;
+  const mainFeatureT = Math.max(0, Math.min(1, shifted / 0.60));
 
   renderPaymentFeature(mainFeatureT);
   renderContractFeature(mainFeatureT);
   renderNoticeFeature(mainFeatureT);
   renderIssueFeature(mainFeatureT);
+  renderExtraFeature(shifted);
 
-  renderExtraFeature(p);
+  if(integratedFeatures){
+    integratedFeatures.style.opacity = String(featureLayerInT);
+  }
 }
 
 /* ── 계약서 비디오 로드 ── */
@@ -5401,7 +5442,7 @@ function startNoticeUnifiedLoop(){
 
       if(noticeReady && noticeDuration > 0){
         const nVideoStart = 0.06;
-        const nVideoEnd = 0.94;
+        const nVideoEnd = 0.64;
         let videoProgress = 0;
 
         if(np < nVideoStart){
@@ -5457,7 +5498,7 @@ function startContactUnifiedLoop(){
 
       if(contactReady && contactDuration > 0){
         const videoStart = 0.04;
-        const videoEnd = 0.32;
+        const videoEnd = 0.34;
         let videoProgress = 0;
 
         if(cp < videoStart){
@@ -5529,18 +5570,18 @@ function renderPaymentFeature(p){
   if(!integratedFeatures || !paymentCopyMain) return;
 
   const f=Math.max(0,Math.min(1,p));
-  integratedFeatures.style.opacity = String(f <= 0.001 ? 0 : 1);
 
-  // 수납 feature: 길이를 늘려 전환이 급하게 튀지 않게 처리
+  // 자동 수납 첫 히어로는 솔루션 카피가 완전히 사라진 뒤 바로 이어져야 하므로
+  // 중앙 등장 모션은 유지하되, 이전 수정본보다 짧고 또렷하게 조정합니다.
   const pf=clamp01(f/0.24);
-  const outT=clamp01((f-0.24)/0.06);
+  const outT=clamp01((f-0.29)/0.03);
 
-  const introT=easeOut(pf/0.22);
-  const moveT=easeInOut((pf-0.22)/0.28);
-  const detail1T=easeOut((pf-0.46)/0.18);
-  const phoneInT=easeOut((pf-0.42)/0.20);
-  const switchT=easeInOut((pf-0.66)/0.20);
-  const detail2T=easeOut((pf-0.70)/0.18);
+  const introT=easeInOut(pf/0.22);
+  const moveT=easeInOut((pf-0.26)/0.30);
+  const detail1T=easeOut((pf-0.50)/0.18);
+  const phoneInT=easeOut((pf-0.44)/0.20);
+  const switchT=easeInOut((pf-0.68)/0.20);
+  const detail2T=easeOut((pf-0.73)/0.18);
 
   const mainOutT=clamp01(outT/0.70);
   const detail1OutT=clamp01((outT-0.15)/0.70);
@@ -5548,12 +5589,14 @@ function renderPaymentFeature(p){
 
   const centerX=lerp(50,25,moveT) - (90 * mainOutT);
   const centerY=lerp(50,25,moveT);
-  const scale=lerp(1,0.70,moveT);
+  const baseScale=lerp(1,0.70,moveT);
+  const introScale=lerp(.92,1,introT);
+  const introY=lerp(18,0,introT);
 
   paymentCopyMain.style.opacity=String(introT * (1-mainOutT));
   paymentCopyMain.style.left='0';
   paymentCopyMain.style.top='0';
-  paymentCopyMain.style.transform=`translate(${centerX}vw,${centerY}vh) translate(-50%,-50%) scale(${scale})`;
+  paymentCopyMain.style.transform=`translate(${centerX}vw,${centerY}vh) translate(-50%,-50%) translateY(${introY}px) scale(${baseScale * introScale})`;
 
   paymentCopyDetail1.style.opacity=String(detail1T * (1-detail1OutT));
   paymentCopyDetail1.style.transform=`translateX(${-120*detail1OutT}px) translateY(${lerp(34,0,detail1T)}px)`;
@@ -5572,7 +5615,7 @@ function renderPaymentFeature(p){
 function renderContractFeature(p){
   if(!integratedFeatures || !contractFeatureCopyMain) return;
 
-  // 계약서 feature: 수납 퇴장 후 더 여유 있게 진입
+  // 계약서 feature: 수납 퇴장 후 진입, 완성 화면 유지 후 퇴장
   const start=0.32;
   const cf=clamp01((p-start)/0.18);
 
@@ -5580,7 +5623,7 @@ function renderContractFeature(p){
   // 기존에는 2번째 서브 텍스트(detail2)와 계약서 카드/docStack이 올라오는 순간
   // 메인 타이틀이 바로 왼쪽으로 빠져나가면서 화면이 급하게 끊겨 보였습니다.
   // detail2 + 카드가 모두 등장한 뒤 짧게 유지되고 나서 전체가 함께 퇴장하도록 out 시작점을 뒤로 밀었습니다.
-  const outT=clamp01((p-0.515)/0.065);
+  const outT=clamp01((p-0.56)/0.06);
 
   const introT=easeOut(cf/0.22);
   const moveT=easeInOut((cf-0.22)/0.28);
@@ -5618,10 +5661,10 @@ function renderContractFeature(p){
 function renderNoticeFeature(p){
   if(!integratedFeatures || !noticeFeatureCopyMain || !noticeFeatureVisual) return;
 
-  // 공지 feature: 계약서 이후 여백을 두고 부드럽게 진입
-  const start=0.54;
+  // 공지 feature: 계약서 퇴장 후 진입, 완성 화면 유지 후 퇴장
+  const start=0.62;
   const nf=clamp01((p-start)/0.14);
-  const outT=clamp01((p-0.62)/0.06);
+  const outT=clamp01((p-0.78)/0.04);
 
   const introT=easeOut(nf/0.24);
   const moveT=easeInOut((nf-0.24)/0.32);
@@ -5643,10 +5686,10 @@ function renderNoticeFeature(p){
 function renderIssueFeature(p){
   if(!integratedFeatures || !issueFeatureCopyMain || !issueFeatureVisual) return;
 
-  // 민원&고장 신고 feature: 공지 이후 여유 있게 진입
-  const start=0.72;
+  // 민원&고장 신고 feature: 공지 퇴장 후 진입, 완성 화면 유지 후 퇴장
+  const start=0.78;
   const inf=clamp01((p-start)/0.14);
-  const outT=clamp01((p-0.80)/0.06);
+  const outT=clamp01((p-0.94)/0.05);
 
   const introT=easeOut(inf/0.24);
   const moveT=easeInOut((inf-0.24)/0.32);
@@ -5670,7 +5713,8 @@ function renderExtraFeature(p){
   if(!extraFeatureLayer || !extraOverview || !extraFocusTitle || !extraFocusHeading) return;
 
   // issue feature 이후 추가 기능 섹션. overview → focus → detail을 레이어별로 분리합니다.
-  const ef = clamp01((p - 0.50) / 0.50);
+  // 앞쪽 기능들이 완성 상태로 머문 뒤 종료되도록 시작 시점을 뒤로 이동했습니다.
+  const ef = clamp01((p - 0.60) / 0.40);
   extraFeatureLayer.style.opacity = String(ef <= 0.001 ? 0 : 1);
 
   const overviewInT = easeOut(ef / 0.12);
@@ -5825,10 +5869,10 @@ function onScroll(){
 
   /* 타임라인 */
   const revealStart = 0.08;
-  const revealEnd   = 0.30;
+  const revealEnd   = 0.28;
   const videoStart  = 0.14;
-  const videoEnd    = 0.88;
-  const codeStart   = 0.84;
+  const videoEnd    = 0.66;
+  const codeStart   = 0.68;
 
   /* 인트로 + 영상 드러남 */
   if(p < revealStart){
@@ -5862,20 +5906,20 @@ function onScroll(){
 
   /* 영상 스크럽 */
   if(vidReady && videoDuration>0){
-    if(p >= videoStart && p < codeStart){
+    if(p >= videoStart && p < videoEnd){
       const raw=(p-videoStart)/(videoEnd-videoStart);
       const clamped=Math.max(0,Math.min(1,raw));
       targetVideoTime=videoDuration*clamped;
     } else if (p < videoStart) {
       targetVideoTime=0;
-    } else if (p >= codeStart) {
+    } else if (p >= videoEnd) {
       targetVideoTime=videoDuration;
     }
   }
 
   /* 은행/리스트 화면 */
   if(p >= codeStart){
-    if(p >= 0.955){
+    if(p >= 0.90){
       storyVideoLayer.style.opacity='0';
     }else{
       storyVideoLayer.style.opacity='1';
@@ -5883,7 +5927,7 @@ function onScroll(){
 
     layerCode.classList.add('visible');
 
-    const dP=Math.max(0,Math.min(1,(p-0.82)/0.12));
+    const dP=Math.max(0,Math.min(1,(p-0.68)/0.16));
 
     bankWrap.classList.toggle('show', dP > 0.05);
     bankBadge.classList.toggle('show', dP > 0.16);
@@ -5915,10 +5959,10 @@ const cHold1Start   = 0.44;
 const cHold1End     = 0.54;
 
 const cMotion2Start = 0.54;
-const cMotion2End   = 0.84;
+const cMotion2End   = 0.72;
 
-const cFinalHoldStart = 0.84;
-const cCopyStart      = 0.88;
+const cFinalHoldStart = 0.72;
+const cCopyStart      = 0.74;
 
 
   if(cp <= 0){

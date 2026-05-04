@@ -3211,6 +3211,285 @@ nav.scrolled .nav-links{opacity:1}
   }
 }
 
+/* ─────────────────────────────────────────────
+   RESPONSIVE DESKTOP STAGE FIX
+   - PC 연출은 유지합니다.
+   - iPad/태블릿 가로처럼 1025~1599px 구간에서도 텍스트와 시각 요소가 겹치지 않게
+     feature 구간을 stage 기준으로 축소합니다.
+   - 배경은 계속 full-screen으로 유지합니다.
+───────────────────────────────────────────── */
+@media (min-width:1025px) and (max-width:1599px){
+  :root{
+    --pc-stage-pad:clamp(32px,5vw,76px);
+    --pc-copy-w:clamp(380px,36vw,520px);
+    --pc-copy-half:clamp(190px,18vw,260px);
+    --pc-detail-copy-w:var(--pc-copy-w);
+    --pc-detail-copy-half:var(--pc-copy-half);
+    --pc-visual-w:clamp(520px,44vw,640px);
+    --pc-phone-w:clamp(238px,20vw,292px);
+    --pc-phone-h:clamp(508px,42vw,620px);
+  }
+
+  .hero-content{max-width:min(820px,78vw)}
+  .hero-title{font-size:clamp(42px,5vw,68px)}
+  .hero-brand{font-size:clamp(15px,1.2vw,18px)}
+
+  .story-h2{font-size:clamp(42px,5vw,62px)}
+  .txt-main{font-size:clamp(44px,5vw,68px)}
+  .txt-block{max-width:560px}
+  #layer-text{padding-left:var(--pc-stage-pad)}
+
+  .code-content{width:min(1180px,100%);padding:0 var(--pc-stage-pad)}
+  .notif-wrap{right:var(--pc-stage-pad);width:clamp(500px,48vw,620px)}
+  .bank-wrap.left{transform:translate(calc(-50% - 320px), -50%) scale(.82)}
+
+  #payment-copy-main,
+  #contract-feature-copy-main,
+  #notice-feature-copy-main,
+  #issue-feature-copy-main,
+  #extra-focus-title{
+    width:var(--pc-copy-w);
+  }
+  .payment-copy-inner,
+  .contract-feature-copy-inner,
+  .notice-feature-copy-inner,
+  .issue-feature-copy-inner{
+    width:100%;
+  }
+  #payment-copy-main h2,
+  #contract-feature-copy-main h2,
+  #notice-feature-copy-main h2,
+  #issue-feature-copy-main h2,
+  #extra-focus-title h2{
+    font-size:clamp(48px,5.5vw,78px);
+    letter-spacing:-2.6px;
+  }
+  #payment-copy-main p,
+  #contract-feature-copy-main p{
+    font-size:clamp(18px,1.65vw,21px);
+  }
+  #notice-feature-copy-main p,
+  #issue-feature-copy-main p{
+    font-size:clamp(20px,1.9vw,28px);
+  }
+
+  .payment-copy-detail,
+  .contract-feature-detail,
+  .extra-detail-copy{
+    left:calc(25vw - var(--pc-detail-copy-half));
+    width:var(--pc-detail-copy-w);
+  }
+  .payment-copy-detail p,
+  .contract-feature-detail p,
+  .extra-detail-copy p{
+    font-size:clamp(21px,2vw,29px);
+    line-height:1.35;
+  }
+  .payment-copy-detail strong,
+  .contract-feature-detail strong{
+    font-size:clamp(23px,2.1vw,32px);
+  }
+  #payment-copy-detail-1,
+  #contract-feature-detail-1{top:42vh}
+  #payment-copy-detail-2,
+  #contract-feature-detail-2{top:63vh}
+  .extra-detail-copy{top:61vh}
+
+  .feature-visual{
+    right:clamp(40px,5vw,76px);
+    width:clamp(340px,31vw,430px);
+    height:clamp(580px,72vh,700px);
+  }
+  .contract-feature-visual{
+    right:clamp(36px,5vw,72px);
+    width:clamp(420px,36vw,520px);
+    height:clamp(580px,72vh,700px);
+  }
+  .notice-feature-visual,
+  .issue-feature-visual,
+  .extra-feature-visual{
+    right:clamp(24px,4vw,64px);
+    width:var(--pc-visual-w);
+    height:clamp(560px,70vh,700px);
+  }
+
+  .phone-frame,
+  .notice-phone-frame,
+  .issue-phone-frame,
+  .extra-phone-frame{
+    width:var(--pc-phone-w);
+    height:var(--pc-phone-h);
+    border-radius:42px;
+  }
+  .phone-screen,
+  .notice-phone-frame img,
+  .issue-phone-frame img,
+  .extra-phone-frame img{
+    border-radius:32px;
+  }
+  .phone-notch,
+  .notice-phone-frame::before,
+  .issue-phone-frame::before,
+  .extra-phone-frame::before{
+    width:82px;
+    height:19px;
+  }
+  .notice-phone-pair,
+  .issue-phone-pair,
+  .extra-phone-pair{gap:clamp(18px,2vw,28px)}
+
+  #contract-alert-card{width:clamp(360px,32vw,430px)}
+  #contract-doc-stack{width:clamp(390px,34vw,470px);height:clamp(540px,52vw,640px)}
+  .contract-doc-card{width:clamp(270px,25vw,330px);height:clamp(430px,40vw,520px)}
+
+  .payment-message-card{width:clamp(360px,32vw,430px)}
+
+  .extra-overview-head{top:10vh;width:min(960px,84vw)!important;max-width:none!important}
+  .extra-overview-head h2{font-size:clamp(44px,5vw,72px);letter-spacing:-2.8px}
+  .extra-overview-cards{
+    top:55vh;
+    width:min(1120px,88vw)!important;
+    max-width:none!important;
+    height:180px;
+    gap:22px;
+  }
+  .extra-overview-card{height:180px;min-height:180px;border-radius:32px}
+  .extra-overview-card h3{font-size:clamp(28px,2.35vw,38px)}
+  .extra-card-icon{width:120px;height:120px;right:20px;bottom:16px}
+  .extra-card-icon.chart{font-size:92px}
+  .extra-card-icon.message svg{width:110px;height:110px}
+
+  .extra-dashboard-highlight{
+    width:var(--pc-phone-w);
+    height:clamp(380px,34vw,500px);
+    border-radius:36px;
+  }
+  .extra-dashboard-highlight img{border-radius:26px}
+
+  .pricing-inner,
+  .faq-inner,
+  .footer-inner{width:min(1080px,86vw)!important;max-width:none!important}
+  .final-cta-inner{width:min(860px,82vw)!important;max-width:none!important}
+}
+
+@media (min-width:1025px) and (max-width:1280px){
+  :root{
+    --pc-stage-pad:clamp(26px,4vw,56px);
+    --pc-copy-w:clamp(340px,35vw,460px);
+    --pc-copy-half:clamp(170px,17.5vw,230px);
+    --pc-detail-copy-w:var(--pc-copy-w);
+    --pc-detail-copy-half:var(--pc-copy-half);
+    --pc-visual-w:clamp(500px,45vw,580px);
+    --pc-phone-w:clamp(220px,19vw,260px);
+    --pc-phone-h:clamp(470px,40vw,560px);
+  }
+
+  #payment-copy-main h2,
+  #contract-feature-copy-main h2,
+  #notice-feature-copy-main h2,
+  #issue-feature-copy-main h2,
+  #extra-focus-title h2{
+    font-size:clamp(42px,5vw,62px);
+  }
+
+  .notice-feature-visual,
+  .issue-feature-visual,
+  .extra-feature-visual{
+    right:24px;
+  }
+
+  .payment-copy-detail p,
+  .contract-feature-detail p,
+  .extra-detail-copy p{
+    font-size:clamp(19px,2vw,25px);
+  }
+
+  .extra-overview-cards{width:min(980px,88vw)!important;gap:16px}
+  .extra-overview-card{height:160px;min-height:160px}
+}
+
+
+
+/* ── EXTRA DASHBOARD VISUAL FIX ──
+   dashboard_02는 가로형 캡처라서 일반 세로 핸드폰 프레임처럼 좁히면 우측 이미지가 잘립니다.
+   현황판 구간만 별도 visual 폭을 확보하고, dashboard_02는 contain으로 전체가 보이게 처리합니다. */
+@media (min-width:1025px){
+  #extra-dashboard .extra-feature-visual{
+    right:clamp(40px,5vw,88px);
+    width:min(860px,52vw);
+  }
+
+  #extra-dashboard .extra-phone-pair{
+    justify-content:center;
+    gap:clamp(24px,2vw,38px);
+  }
+
+  #extra-dashboard .extra-dashboard-highlight{
+    width:clamp(380px,25vw,460px);
+    height:clamp(420px,31vw,540px);
+    padding:12px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  #extra-dashboard .extra-dashboard-highlight img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center center;
+    border-radius:30px;
+  }
+}
+
+@media (min-width:1025px) and (max-width:1599px){
+  #extra-dashboard .extra-feature-visual{
+    right:clamp(28px,4vw,64px);
+    width:clamp(700px,54vw,820px);
+  }
+
+  #extra-dashboard .extra-dashboard-highlight{
+    width:clamp(340px,28vw,410px);
+    height:clamp(360px,34vw,480px);
+  }
+}
+
+@media (min-width:1025px) and (max-width:1280px){
+  #extra-dashboard .extra-feature-visual{
+    right:24px;
+    width:clamp(640px,56vw,720px);
+  }
+
+  #extra-dashboard .extra-dashboard-highlight{
+    width:clamp(300px,28vw,360px);
+    height:clamp(320px,34vw,430px);
+  }
+}
+
+/* Touch desktop(iPad 등)에서는 PC 연출은 유지하되, 불필요한 커서/무거운 blur를 줄입니다. */
+html.touch-landing .cdot,
+html.touch-landing .cring{display:none!important}
+
+@media (hover:none) and (pointer:coarse) and (min-width:1025px){
+  #integrated-features .feature-bg-orb,
+  .extra-feature-glow,
+  .notice-feature-glow,
+  .issue-feature-glow,
+  .phone-glow{
+    filter:blur(34px);
+  }
+  .extra-overview-head::before{filter:blur(24px)}
+  .contact-alert-card,
+  .bridge-ghost-card,
+  #contract-alert-card,
+  .contract-doc-badge{
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
+}
+
+
 
 
 
@@ -4531,8 +4810,15 @@ nav.scrolled .nav-links{opacity:1}
   </div>
 </div>
 <script>
-// ── DESKTOP LANDING: PC에서만 무거운 영상 스크럽 실행 ──
-if (window.innerWidth > 1024) {
+// ── DESKTOP LANDING: PC/태블릿 가로에서도 PC 연출 유지 ──
+const TURTOOL_DESKTOP_BREAKPOINT = 1024;
+const turtoolIsDesktopLanding = window.innerWidth > TURTOOL_DESKTOP_BREAKPOINT;
+const turtoolIsTouchLanding = ((navigator.maxTouchPoints || 0) > 0) || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+if (turtoolIsTouchLanding) {
+  document.documentElement.classList.add('touch-landing');
+}
+
+if (turtoolIsDesktopLanding) {
 
   // 모바일에서는 PC 영상 리소스가 불필요하게 로드되지 않도록 source를 data-src로 보관하고,
   // PC에서만 실제 src를 주입합니다.
@@ -4556,17 +4842,22 @@ window.onload = () => {
 const cdot=document.getElementById('cdot');
 const cring=document.getElementById('cring');
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX;my=e.clientY;
-  cdot.style.left=mx+'px';
-  cdot.style.top=my+'px';
-});
-(function ar(){
-  rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
-  cring.style.left=rx+'px';
-  cring.style.top=ry+'px';
-  requestAnimationFrame(ar);
-})();
+if(!turtoolIsTouchLanding && cdot && cring){
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    cdot.style.left=mx+'px';
+    cdot.style.top=my+'px';
+  });
+  (function ar(){
+    rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
+    cring.style.left=rx+'px';
+    cring.style.top=ry+'px';
+    requestAnimationFrame(ar);
+  })();
+}else{
+  if(cdot) cdot.style.display='none';
+  if(cring) cring.style.display='none';
+}
 
 /* ── NAV ── */
 window.addEventListener('scroll',()=>{
@@ -4668,6 +4959,13 @@ const extraFocusTitle=document.getElementById('extra-focus-title');
 const extraFocusHeading=document.getElementById('extra-focus-heading');
 const extraPanels=[document.getElementById('extra-dashboard'),document.getElementById('extra-message'),document.getElementById('extra-manage')];
 
+let storyActive=false;
+let contractActive=false;
+let noticeActive=false;
+let contactActive=false;
+let featuresActive=false;
+let lastFeaturesRendered=-1;
+
 let contactReady=false;
 let contactDuration=0;
 let contactProgress=0;
@@ -4734,21 +5032,24 @@ video.load();
 
 function startVideoScrubLoop(){
   if(scrubRAF) return;
+  const seekThreshold = turtoolIsTouchLanding ? 0.018 : 0.004;
+  const settleThreshold = turtoolIsTouchLanding ? 0.012 : 0.006;
+  const followEase = turtoolIsTouchLanding ? 0.085 : 0.11;
   const tick=()=>{
     if(vidReady && videoDuration>0){
       const diff=targetVideoTime-currentVideoTime;
-// 변경 후
-if(Math.abs(diff)<0.006){
-  currentVideoTime=targetVideoTime;
-}else{
-  currentVideoTime+=diff*0.11;
-}
-
-currentVideoTime=Math.max(0,Math.min(videoDuration - 0.03,currentVideoTime));
-
-if(Math.abs(video.currentTime-currentVideoTime)>0.004){
-  video.currentTime=currentVideoTime;
-}
+      const shouldWork = storyActive || Math.abs(diff) > settleThreshold;
+      if(shouldWork){
+        if(Math.abs(diff)<settleThreshold){
+          currentVideoTime=targetVideoTime;
+        }else{
+          currentVideoTime+=diff*followEase;
+        }
+        currentVideoTime=Math.max(0,Math.min(videoDuration - 0.03,currentVideoTime));
+        if(Math.abs(video.currentTime-currentVideoTime)>seekThreshold){
+          video.currentTime=currentVideoTime;
+        }
+      }
     }
     scrubRAF=requestAnimationFrame(tick);
   };
@@ -4758,25 +5059,25 @@ startVideoScrubLoop();
 function startContractScrubLoop(){
   if(contractScrubRAF) return;
 
+  const seekThreshold = turtoolIsTouchLanding ? 0.028 : 0.014;
+  const settleThreshold = turtoolIsTouchLanding ? 0.02 : 0.014;
+  const followEase = turtoolIsTouchLanding ? 0.06 : 0.075;
+
   const tick = () => {
     if(contractReady && contractDuration>0){
       const diff = contractTargetVideoTime - contractCurrentVideoTime;
-
-// 변경 후
-if(Math.abs(diff) < 0.014){
-  contractCurrentVideoTime = contractTargetVideoTime;
-}else{
-  contractCurrentVideoTime += diff * 0.075;
-}
-
-contractCurrentVideoTime = Math.max(
-  0,
-  Math.min(contractDuration - 0.06, contractCurrentVideoTime)
-);
-
-if(Math.abs(contractVideo.currentTime - contractCurrentVideoTime) > 0.014){
-  contractVideo.currentTime = contractCurrentVideoTime;
-}
+      const shouldWork = contractActive || Math.abs(diff) > settleThreshold;
+      if(shouldWork){
+        if(Math.abs(diff) < settleThreshold){
+          contractCurrentVideoTime = contractTargetVideoTime;
+        }else{
+          contractCurrentVideoTime += diff * followEase;
+        }
+        contractCurrentVideoTime = Math.max(0, Math.min(contractDuration - 0.06, contractCurrentVideoTime));
+        if(Math.abs(contractVideo.currentTime - contractCurrentVideoTime) > seekThreshold){
+          contractVideo.currentTime = contractCurrentVideoTime;
+        }
+      }
     }
 
     contractScrubRAF = requestAnimationFrame(tick);
@@ -5064,11 +5365,14 @@ function startContractSmoothLoop(){
 
   const tick = () => {
     const diff = contractSmoothTarget - contractSmoothProgress;
+    const shouldWork = contractActive || Math.abs(diff) > 0.0015 || (contractSmoothProgress > 0.001 && contractSmoothProgress < 0.999);
 
-    if(Math.abs(diff) < 0.0015){
-      contractSmoothProgress = contractSmoothTarget;
-    }else{
-      contractSmoothProgress += diff * 0.075;
+    if(shouldWork){
+      if(Math.abs(diff) < 0.0015){
+        contractSmoothProgress = contractSmoothTarget;
+      }else{
+        contractSmoothProgress += diff * (turtoolIsTouchLanding ? 0.06 : 0.075);
+      }
     }
 
     contractSmoothRAF = requestAnimationFrame(tick);
@@ -5082,59 +5386,48 @@ function startNoticeUnifiedLoop(){
   if(noticeScrubRAF) return;
 
   const tick = () => {
-    // 1) 텍스트/veil용 progress만 부드럽게 처리
     const pDiff = noticeTargetProgress - noticeProgress;
+    const shouldWork = noticeActive || Math.abs(pDiff) > 0.0012 || (noticeProgress > 0.001 && noticeProgress < 0.999);
 
-    if(Math.abs(pDiff) < 0.0012){
-      noticeProgress = noticeTargetProgress;
-    }else{
-      noticeProgress += pDiff * 0.24;
-    }
-
-    const np = noticeProgress;
-
-    // 2) 공지 섹션 화면 상태는 RAF에서만 렌더링
-    renderNoticeSection(np);
-
-    // 3) 영상은 원본 스크롤 목표값 기준으로 잡고, currentTime만 보간
-    if(noticeReady && noticeDuration > 0){
-      const nVideoStart = 0.06;
-      const nVideoEnd = 0.94;
-
-      let videoProgress = 0;
-
-if(np < nVideoStart){
-  videoProgress = 0;
-}else if(np >= nVideoEnd){
-  videoProgress = 1;
-}else{
-  videoProgress = (np - nVideoStart) / (nVideoEnd - nVideoStart);
-}
-
-      videoProgress = Math.max(0, Math.min(1, videoProgress));
-
-      // 중요:
-      // 기존처럼 startHold 0.5초부터 시작하지 않습니다.
-      // 0초부터 자연스럽게 지나가야 첫 프레임 점프가 사라집니다.
-      noticeTargetVideoTime = noticeDuration * videoProgress;
-
-      const tDiff = noticeTargetVideoTime - noticeCurrentVideoTime;
-
-      if(Math.abs(tDiff) < 0.01){
-        noticeCurrentVideoTime = noticeTargetVideoTime;
+    if(shouldWork){
+      if(Math.abs(pDiff) < 0.0012){
+        noticeProgress = noticeTargetProgress;
       }else{
-        noticeCurrentVideoTime += tDiff * 0.15;
+        noticeProgress += pDiff * (turtoolIsTouchLanding ? 0.18 : 0.24);
       }
 
-      noticeCurrentVideoTime = Math.max(
-        0,
-        Math.min(noticeDuration - 0.03, noticeCurrentVideoTime)
-      );
+      const np = noticeProgress;
+      renderNoticeSection(np);
 
-      // 0.033은 너무 둔해서 프레임을 건너뛰는 느낌이 납니다.
-      // 다시 0.008 수준으로 낮춥니다.
-      if(Math.abs(noticeVideo.currentTime - noticeCurrentVideoTime) > 0.008){
-        noticeVideo.currentTime = noticeCurrentVideoTime;
+      if(noticeReady && noticeDuration > 0){
+        const nVideoStart = 0.06;
+        const nVideoEnd = 0.94;
+        let videoProgress = 0;
+
+        if(np < nVideoStart){
+          videoProgress = 0;
+        }else if(np >= nVideoEnd){
+          videoProgress = 1;
+        }else{
+          videoProgress = (np - nVideoStart) / (nVideoEnd - nVideoStart);
+        }
+
+        videoProgress = Math.max(0, Math.min(1, videoProgress));
+        noticeTargetVideoTime = noticeDuration * videoProgress;
+
+        const tDiff = noticeTargetVideoTime - noticeCurrentVideoTime;
+        if(Math.abs(tDiff) < 0.01){
+          noticeCurrentVideoTime = noticeTargetVideoTime;
+        }else{
+          noticeCurrentVideoTime += tDiff * (turtoolIsTouchLanding ? 0.11 : 0.15);
+        }
+
+        noticeCurrentVideoTime = Math.max(0, Math.min(noticeDuration - 0.03, noticeCurrentVideoTime));
+
+        const seekThreshold = turtoolIsTouchLanding ? 0.02 : 0.008;
+        if(Math.abs(noticeVideo.currentTime - noticeCurrentVideoTime) > seekThreshold){
+          noticeVideo.currentTime = noticeCurrentVideoTime;
+        }
       }
     }
 
@@ -5150,47 +5443,47 @@ function startContactUnifiedLoop(){
 
   const tick = () => {
     const pDiff = contactTargetProgress - contactProgress;
+    const shouldWork = contactActive || Math.abs(pDiff) > 0.0012 || (contactProgress > 0.001 && contactProgress < 0.999);
 
-    if(Math.abs(pDiff) < 0.0012){
-      contactProgress = contactTargetProgress;
-    }else{
-      contactProgress += pDiff * 0.18;
-    }
-
-    const cp = contactProgress;
-    renderContactSection(cp);
-
-    if(contactReady && contactDuration > 0){
-      const videoStart = 0.04;
-      const videoEnd = 0.32;
-      let videoProgress = 0;
-
-      if(cp < videoStart){
-        videoProgress = 0;
-      }else if(cp >= videoEnd){
-        videoProgress = 1;
+    if(shouldWork){
+      if(Math.abs(pDiff) < 0.0012){
+        contactProgress = contactTargetProgress;
       }else{
-        videoProgress = (cp - videoStart) / (videoEnd - videoStart);
+        contactProgress += pDiff * (turtoolIsTouchLanding ? 0.14 : 0.18);
       }
 
-      videoProgress = Math.max(0, Math.min(1, videoProgress));
-      contactTargetVideoTime = contactDuration * videoProgress;
+      const cp = contactProgress;
+      renderContactSection(cp);
 
-      const tDiff = contactTargetVideoTime - contactCurrentVideoTime;
+      if(contactReady && contactDuration > 0){
+        const videoStart = 0.04;
+        const videoEnd = 0.32;
+        let videoProgress = 0;
 
-      if(Math.abs(tDiff) < 0.01){
-        contactCurrentVideoTime = contactTargetVideoTime;
-      }else{
-        contactCurrentVideoTime += tDiff * 0.15;
-      }
+        if(cp < videoStart){
+          videoProgress = 0;
+        }else if(cp >= videoEnd){
+          videoProgress = 1;
+        }else{
+          videoProgress = (cp - videoStart) / (videoEnd - videoStart);
+        }
 
-      contactCurrentVideoTime = Math.max(
-        0,
-        Math.min(contactDuration - 0.03, contactCurrentVideoTime)
-      );
+        videoProgress = Math.max(0, Math.min(1, videoProgress));
+        contactTargetVideoTime = contactDuration * videoProgress;
 
-      if(Math.abs(contactVideo.currentTime - contactCurrentVideoTime) > 0.008){
-        contactVideo.currentTime = contactCurrentVideoTime;
+        const tDiff = contactTargetVideoTime - contactCurrentVideoTime;
+        if(Math.abs(tDiff) < 0.01){
+          contactCurrentVideoTime = contactTargetVideoTime;
+        }else{
+          contactCurrentVideoTime += tDiff * (turtoolIsTouchLanding ? 0.11 : 0.15);
+        }
+
+        contactCurrentVideoTime = Math.max(0, Math.min(contactDuration - 0.03, contactCurrentVideoTime));
+
+        const seekThreshold = turtoolIsTouchLanding ? 0.02 : 0.008;
+        if(Math.abs(contactVideo.currentTime - contactCurrentVideoTime) > seekThreshold){
+          contactVideo.currentTime = contactCurrentVideoTime;
+        }
       }
     }
 
@@ -5204,12 +5497,22 @@ startContactUnifiedLoop();
 function startFeaturesLoop() {
   const tick = () => {
     const diff = featuresTargetProgress - featuresProgress;
-    if (Math.abs(diff) < 0.0012) {
-      featuresProgress = featuresTargetProgress;
-    } else {
-      featuresProgress += diff * 0.18;
+    const shouldWork = featuresActive || Math.abs(diff) > 0.0012 || (featuresProgress > 0.001 && featuresProgress < 0.999);
+
+    if(shouldWork){
+      if (Math.abs(diff) < 0.0012) {
+        featuresProgress = featuresTargetProgress;
+      } else {
+        featuresProgress += diff * (turtoolIsTouchLanding ? 0.14 : 0.18);
+      }
+
+      const rounded = Math.round(featuresProgress * 10000) / 10000;
+      if(rounded !== lastFeaturesRendered){
+        renderFeatures(rounded);
+        lastFeaturesRendered = rounded;
+      }
     }
-    renderFeatures(featuresProgress);
+
     requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);
@@ -5380,7 +5683,8 @@ function renderExtraFeature(p){
 const overviewOutT = hasCycle ? easeInOut(cycleT / 0.30) : 0;
 extraOverview.style.opacity = String(overviewInT * (1 - overviewOutT));
 extraOverview.style.transform = `scale(${1 + overviewOutT * 0.12})`;
-extraOverview.style.filter = `blur(${overviewOutT * 16}px)`;
+const overviewBlurMax = turtoolIsTouchLanding ? 6 : 16;
+extraOverview.style.filter = `blur(${overviewOutT * overviewBlurMax}px)`;
 
   extraOverviewCards.forEach((card, i)=>{
     const cardT = clamp01((overviewInT * 1.24) - (i * 0.16));
@@ -5433,6 +5737,12 @@ function secInfo(el){
   return { top, h: el.offsetHeight, bot: top + el.offsetHeight };
 }
 
+function sectionVisible(el, buffer=160){
+  if(!el) return false;
+  const r=el.getBoundingClientRect();
+  return r.top < window.innerHeight + buffer && r.bottom > -buffer;
+}
+
 function onScroll(){
   const sy=window.scrollY;
   const wh=window.innerHeight;
@@ -5469,12 +5779,18 @@ function onScroll(){
   contactTargetProgress = ctpRaw;
   const ctp = contactProgress;
 
+  storyActive = sectionVisible(sectionStory);
+  contractActive = sectionVisible(sectionContract);
+  noticeActive = sectionVisible(sectionNotice);
+  contactActive = sectionVisible(sectionContact);
+
   const sectionFeatures = document.getElementById('section-features');
   if (sectionFeatures) {
     const ft = secInfo(sectionFeatures);
     const ftRel = sy - ft.top;
     const ftLen = ft.h - wh;
     featuresTargetProgress = Math.max(0, Math.min(1, ftRel / ftLen));
+    featuresActive = sectionVisible(sectionFeatures);
   }
 
   const sectionPricing = document.getElementById('section-pricing');
@@ -5767,7 +6083,7 @@ const cCopyStart      = 0.88;
 
 // ── MOBILE LANDING: 가벼운 등장 애니메이션만 실행 ──
 (function(){
-  if (window.innerWidth > 1024) return;
+  if (turtoolIsDesktopLanding) return;
   history.scrollRestoration = "manual";
   window.addEventListener('load',()=>window.scrollTo(0,0),{once:true});
   const revealEls = document.querySelectorAll('#mobile-site .mobile-reveal');

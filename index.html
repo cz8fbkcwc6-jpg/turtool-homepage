@@ -4542,15 +4542,9 @@ if (window.innerWidth > 1024) {
     if (videoEl) videoEl.load();
   });
 
-  // PC에서는 최초 접속한 전체화면 너비를 기준으로 레이아웃을 고정합니다.
-  // 1025~1439px PC/노트북은 최소 1440 기준으로 보호하고,
-  // 1440px 이상은 실제 접속 너비를 그대로 사용해 vw 기반 애니메이션 좌표가 틀어지지 않게 합니다.
-  if (window.innerWidth > 1024) {
-    const initialLockW = Math.max(window.innerWidth, 1440);
-    document.documentElement.style.setProperty('--initial-lock-w', `${initialLockW}px`);
-    document.documentElement.classList.add('pc-initial-width-lock');
-    document.body.classList.add('pc-initial-width-lock');
-  }
+  // PC 최초 너비 고정은 비활성화합니다.
+  // 중요: 기존 스크롤 영상/텍스트 연출 JS는 그대로 유지합니다.
+  // 기존 pc-initial-width-lock CSS는 남겨두지만 class를 붙이지 않으므로 작동하지 않습니다.
 
   history.scrollRestoration = "manual";
 

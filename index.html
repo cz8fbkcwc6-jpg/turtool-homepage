@@ -5679,7 +5679,7 @@ html,body{
             </div>
             <div class="m-progress-main">
               <div class="m-progress-top">
-                <span class="m-progress-label" data-m-progress-label>3개월 무료 마감까지</span>
+                <span class="m-progress-label" data-m-progress-label>3개월 무료 혜택 마감까지</span>
                 <span class="m-progress-nums"><strong class="m-progress-cur" data-m-progress-cur>0</strong> / <span data-m-progress-goal>100</span></span>
               </div>
               <div class="m-progress-track"><div class="m-progress-fill" data-m-progress-fill></div></div>
@@ -7251,13 +7251,13 @@ const cCopyStart      = 0.74;
   function getProgressStage(count) {
     const n = Math.max(0, Math.floor(Number(count) || 0));
     if (n < 100) {
-      return { mode: 'bar', count: n, months: 3, goal: 100, pct: (n / 100) * 100, left: 100 - n, label: '3개월 무료 마감까지' };
+      return { mode: 'bar', count: n, months: 3, goal: 100, pct: (n / 100) * 100, left: 100 - n, label: '3개월 무료 혜택 마감까지' };
     }
     if (n < 200) {
-      return { mode: 'bar', count: n, months: 2, goal: 200, pct: ((n - 100) / 100) * 100, left: 200 - n, label: '2개월 무료 마감까지' };
+      return { mode: 'bar', count: n, months: 2, goal: 200, pct: ((n - 100) / 100) * 100, left: 200 - n, label: '2개월 무료 혜택 마감까지' };
     }
     if (n < 300) {
-      return { mode: 'bar', count: n, months: 1, goal: 300, pct: ((n - 200) / 100) * 100, left: 300 - n, label: '1개월 무료 마감까지' };
+      return { mode: 'bar', count: n, months: 1, goal: 300, pct: ((n - 200) / 100) * 100, left: 300 - n, label: '1개월 무료 혜택 마감까지' };
     }
     return { mode: 'closing', count: n, months: 1, goal: 300, pct: 100, left: 0, label: '마감 임박' };
   }

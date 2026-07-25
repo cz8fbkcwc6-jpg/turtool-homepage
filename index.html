@@ -3508,19 +3508,17 @@ html.touch-landing .cring{display:none!important}
 
 
 
-/* ── MOBILE LANDING: 전문형 모바일 전용 페이지 ── */
-#mobile-site{display:none;}
+/* ── MOBILE LANDING: 전환용 사전신청 랜딩 (전 화면 크기) ── */
+#desktop-site{display:none!important;}
 
-@media (max-width:1024px){
-  html,body{
+html,body{
     width:100%;
     min-width:0!important;
     max-width:none!important;
     overflow-x:hidden;
-    background:#090B0A;
+    background:#0C0C0C;
     color:#F4F4EF;
   }
-  #desktop-site{display:none!important;}
   #mobile-site{
     display:block;
     min-height:100vh;
@@ -3529,12 +3527,13 @@ html.touch-landing .cring{display:none!important}
       linear-gradient(180deg,#090B0A 0%,#111311 42%,#090B0A 100%);
     color:#F4F4EF;
     font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;
+    padding-bottom:88px;
   }
   #mobile-site *{box-sizing:border-box;}
   #mobile-site a{text-decoration:none;color:inherit;}
   .cdot,.cring{display:none!important;}
 
-  .m-page{position:relative;width:100%;overflow:hidden;}
+  .m-page{position:relative;width:100%;overflow-x:hidden;}
   .m-page::before{
     content:'';
     position:fixed;
@@ -3574,8 +3573,7 @@ html.touch-landing .cring{display:none!important}
   }
 
   .m-container{width:100%;max-width:480px;margin:0 auto;padding:0 20px;}
-  .m-section{padding:84px 0;}
-  .m-section-tight{padding:64px 0;}
+  .m-section{padding:72px 0;}
   .m-section-dark{background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,0));}
 
   .m-eyebrow{
@@ -3590,9 +3588,9 @@ html.touch-landing .cring{display:none!important}
   .m-eyebrow.center::after{content:'';width:28px;height:1px;background:rgba(141,200,90,.72);}
   .m-title{
     margin:0;
-    font-size:clamp(32px,9.2vw,46px);
-    line-height:1.07;
-    letter-spacing:-2.15px;
+    font-size:clamp(30px,8.6vw,42px);
+    line-height:1.12;
+    letter-spacing:-1.8px;
     font-weight:950;
     color:#fff;
     word-break:keep-all;
@@ -3607,227 +3605,877 @@ html.touch-landing .cring{display:none!important}
     word-break:keep-all;
   }
   .m-sub.center{text-align:center;}
-  .m-highlight{color:#fff;font-weight:900;}
   .m-green{color:#8DC85A;}
+  .m-section-label-ko{display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:12px;font-weight:900;letter-spacing:.1px;color:#8DC85A;}
+  .m-section-label-ko.center{display:flex;text-align:center;}
 
   .m-hero{
     min-height:100svh;
     display:flex;
     align-items:center;
-    padding:98px 0 52px;
-  }
-  .m-hero-card{
-    position:relative;
-    padding:34px 22px 24px;
-    border-radius:34px;
+    padding:112px 0 88px;
     background:
-      radial-gradient(circle at 50% 10%, rgba(141,200,90,.20), transparent 38%),
-      linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.028));
-    border:1px solid rgba(255,255,255,.10);
-    box-shadow:0 34px 110px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.07);
-    overflow:hidden;
+      radial-gradient(circle at 16% 14%, rgba(86,138,53,.18), transparent 34%),
+      radial-gradient(circle at 84% 72%, rgba(141,200,90,.07), transparent 32%);
   }
-  .m-hero-card::after{
-    content:'';position:absolute;right:-72px;bottom:-88px;width:210px;height:210px;border-radius:50%;
-    background:radial-gradient(circle,rgba(86,138,53,.32),transparent 70%);filter:blur(16px);opacity:.8;
+  .m-hero-plain{position:relative;padding:0 2px;}
+  .m-hero-plain::before{
+    content:'';
+    position:absolute;left:-20px;top:-34px;width:1px;height:82px;
+    background:linear-gradient(to bottom, rgba(141,200,90,.85), rgba(141,200,90,0));
   }
-  .m-product-label{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:7px 12px;border-radius:999px;
-    background:rgba(86,138,53,.17);
-    border:1px solid rgba(86,138,53,.32);
-    color:#dff4e7;
-    font-size:12px;font-weight:900;
-    margin-bottom:22px;
-  }
-
-  .m-hero-brand{
-    max-width:360px;
-    margin:0 0 24px;
-    font-size:15px;
-    line-height:1.78;
-    font-weight:750;
-    letter-spacing:-.35px;
-    color:rgba(255,255,255,.72);
+  .m-hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    max-width:100%;
+    margin:0 0 20px;
+    padding:8px 16px;
+    border-radius:999px;
+    background:rgba(141,200,90,.12);
+    border:1px solid rgba(141,200,90,.35);
+    color:#8DC85A;
+    font-size:13px;
+    font-weight:600;
+    line-height:1.35;
     word-break:keep-all;
   }
-  .m-hero-brand .brand-key{
-    color:#8DC85A;
-    font-weight:950;
-    letter-spacing:-0.15px;
-    text-shadow:0 0 12px rgba(141,200,90,.22);
+  .m-hero-badge[hidden]{display:none!important;}
+  .m-hero-badge-emoji{
+    display:inline-block;
+    flex:none;
+    animation:m-hero-fire-pulse 2s ease-in-out infinite;
+    transform-origin:center;
   }
-  .m-hero-brand .quote{
-    color:rgba(255,255,255,.94);
-    font-weight:900;
+  @keyframes m-hero-fire-pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.15);}
   }
-
-  .m-product-label::before{content:'';width:6px;height:6px;border-radius:50%;background:#8DC85A;box-shadow:0 0 18px rgba(141,200,90,.78);}
-  .m-hero h1{
-    position:relative;z-index:2;
+  .m-hero-badge-dot{opacity:.5;margin:0 1px;}
+  .m-hero-badge-accent{color:#fff;font-weight:700;}
+  .m-hero-badge-num{color:#fff;font-weight:950;}
+  .m-hero-plain h1{
     margin:0;
-    font-size:clamp(42px,12vw,60px);
-    line-height:1.02;
-    letter-spacing:-2.9px;
+    font-size:clamp(34px,9.4vw,48px);
+    line-height:1.12;
+    letter-spacing:-2.2px;
     font-weight:950;
     color:#fff;
     word-break:keep-all;
   }
   .m-hero-copy{
-    position:relative;z-index:2;
-    margin-top:20px;
-    font-size:16px;
-    line-height:1.76;
-    font-weight:650;
-    color:rgba(255,255,255,.66);
+    max-width:340px;
+    margin-top:16px;
+    font-size:16.5px;
+    line-height:1.75;
+    font-weight:700;
+    color:rgba(255,255,255,.72);
     word-break:keep-all;
   }
-  .m-hero-copy strong{display:block;margin-top:10px;color:#fff;font-weight:900;}
-  .m-hero-actions{position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:10px;margin-top:30px;}
+  .m-hero-extra{
+    max-width:340px;
+    margin-top:14px;
+    font-size:14px;
+    line-height:1.7;
+    font-weight:650;
+    color:rgba(255,255,255,.48);
+    word-break:keep-all;
+  }
   .m-btn{
     display:flex;align-items:center;justify-content:center;
-    min-height:52px;border-radius:17px;
+    min-height:52px;border-radius:17px;border:0;
     background:#568A35;color:#fff;
     font-size:15px;font-weight:950;
+    font-family:inherit;
     box-shadow:0 18px 46px rgba(86,138,53,.24);
+    cursor:pointer;
+    width:100%;
   }
+  .m-btn:disabled{opacity:.55;cursor:not-allowed;box-shadow:none;}
   .m-btn.secondary{background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.11);box-shadow:none;color:rgba(255,255,255,.86);}
-  .m-hero-meta{
-    position:relative;z-index:2;
-    display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
-    margin-top:24px;
+
+  /* pre-signup progress */
+  .m-progress{
+    margin-top:22px;
+    padding:16px 14px;
+    border-radius:18px;
+    background:rgba(12,12,12,.72);
+    border:1px solid rgba(255,255,255,.08);
   }
-  .m-meta-item{
-    padding:13px 9px;border-radius:18px;
-    background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.075);
+  .m-progress[hidden]{display:none!important;}
+  .m-signup .m-progress{
+    margin:16px 0 0;
+    background:rgba(12,12,12,.55);
+    border-color:rgba(141,200,90,.22);
+  }
+  .m-progress-open,
+  .m-progress-closing,
+  .m-progress-main{display:none;}
+  .m-progress.is-open .m-progress-open{display:block;}
+  .m-progress.is-closing .m-progress-closing{display:block;}
+  .m-progress.is-bar .m-progress-main{display:block;}
+  .m-progress-open-title,
+  .m-progress-closing .m-progress-open-title{
+    margin:0;
+    font-size:15px;font-weight:950;line-height:1.4;color:#fff;
+    word-break:keep-all;
+  }
+  .m-progress-open-sub{
+    margin:8px 0 0;
+    font-size:13.5px;font-weight:800;line-height:1.5;color:#8DC85A;
+    word-break:keep-all;
+  }
+  .m-progress-top{
+    display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+    margin-bottom:10px;
+  }
+  .m-progress-label{
+    font-size:12.5px;font-weight:800;line-height:1.35;
+    color:rgba(255,255,255,.62);word-break:keep-all;
+  }
+  .m-progress-nums{
+    font-size:13px;font-weight:800;color:rgba(255,255,255,.45);
+    white-space:nowrap;
+  }
+  .m-progress-cur{
+    font-size:20px;font-weight:950;letter-spacing:-.6px;color:#8DC85A;
+  }
+  .m-progress-track{
+    height:8px;border-radius:999px;overflow:hidden;
+    background:rgba(255,255,255,.08);
+  }
+  .m-progress-fill{
+    height:100%;width:0%;
+    border-radius:999px;
+    background:linear-gradient(90deg,#568A35,#8DC85A);
+    transition:width .8s ease-out;
+  }
+  .m-progress-remain{
+    margin:10px 0 0;
+    font-size:13px;font-weight:750;line-height:1.45;
+    color:rgba(255,255,255,.58);word-break:keep-all;
+  }
+  .m-progress-remain strong{color:#8DC85A;font-weight:950;}
+
+  .m-form-hint{
+    margin:10px 0 0;
     text-align:center;
+    font-size:12.5px;font-weight:700;line-height:1.5;
+    color:rgba(255,255,255,.48);word-break:keep-all;
   }
-  .m-meta-item b{display:block;color:#fff;font-size:17px;font-weight:950;font-family:'DM Sans','Pretendard',sans-serif;}
-  .m-meta-item span{display:block;margin-top:4px;color:rgba(255,255,255,.48);font-size:11px;font-weight:800;}
 
-  /* 모바일 전문형 v2: 첫 화면 카드 제거 + 절제된 히어로 */
-  .m-hero{min-height:100svh;display:flex;align-items:center;padding:112px 0 72px;background:radial-gradient(circle at 16% 14%, rgba(86,138,53,.18), transparent 34%),radial-gradient(circle at 84% 72%, rgba(141,200,90,.07), transparent 32%);}
-  .m-hero-plain{position:relative;padding:0 2px;}
-  .m-hero-plain::before{content:'';position:absolute;left:-20px;top:-34px;width:1px;height:82px;background:linear-gradient(to bottom, rgba(141,200,90,.85), rgba(141,200,90,0));}
-  .m-hero-plain .m-product-label{margin-bottom:24px;background:transparent;border-color:rgba(141,200,90,.28);color:#8DC85A;}
-  .m-hero-plain h1{margin:0;font-size:clamp(44px,12.6vw,64px);line-height:1.01;letter-spacing:-3.2px;font-weight:950;color:#fff;word-break:keep-all;}
-  .m-hero-plain .m-hero-copy{max-width:330px;margin-top:24px;font-size:16px;line-height:1.78;font-weight:650;color:rgba(255,255,255,.66);}
-  .m-hero-plain .m-hero-copy strong{display:block;margin-top:12px;color:rgba(255,255,255,.92);font-weight:900;}
-  .m-hero-plain .m-hero-actions{margin-top:34px;}
-  .m-section-label-ko{display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:12px;font-weight:900;letter-spacing:.1px;color:#8DC85A;}
-  .m-section-label-ko.center{display:flex;text-align:center;}
+  .m-privacy{
+    margin:4px 0 14px;
+  }
+  .m-privacy-row{
+    display:flex;align-items:flex-start;gap:7px;
+    flex-wrap:wrap;
+  }
+  .m-privacy-check{
+    display:inline-flex;align-items:flex-start;gap:6px;
+    cursor:pointer;
+    font-size:11.5px;font-weight:600;line-height:1.45;
+    color:#999;word-break:keep-all;
+  }
+  .m-privacy-check input{
+    width:13px;height:13px;margin:2px 0 0;padding:0;
+    flex-shrink:0;accent-color:#8DC85A;
+    cursor:pointer;
+  }
+  .m-privacy-toggle{
+    appearance:none;border:0;background:none;padding:0;margin:0 0 0 2px;
+    font:inherit;font-size:11px;font-weight:600;line-height:1.45;
+    color:#999;text-decoration:underline;text-underline-offset:2px;
+    cursor:pointer;
+  }
+  .m-privacy-detail{
+    display:none;
+    margin:8px 0 0;
+    padding:10px 11px;
+    border-radius:10px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.06);
+    list-style:none;
+  }
+  .m-privacy-detail.is-open{display:block;}
+  .m-privacy-detail li{
+    position:relative;
+    padding-left:10px;
+    font-size:10.5px;font-weight:600;line-height:1.55;
+    color:#999;word-break:keep-all;
+  }
+  .m-privacy-detail li + li{margin-top:5px;}
+  .m-privacy-detail li::before{
+    content:'·';
+    position:absolute;left:0;top:0;
+    color:#888;
+  }
 
-
-  .m-diagnostic-grid{display:grid;grid-template-columns:1fr;gap:13px;margin-top:30px;}
+  .m-diagnostic-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:30px;}
   .m-diagnostic-card{
     position:relative;
-    display:grid;grid-template-columns:44px 1fr;gap:15px;
-    padding:20px;
-    border-radius:26px;
+    display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;
+    padding:18px 18px;
+    border-radius:22px;
     background:rgba(255,255,255,.045);
     border:1px solid rgba(255,255,255,.085);
-    box-shadow:0 22px 70px rgba(0,0,0,.26);
-    overflow:hidden;
+    box-shadow:0 18px 56px rgba(0,0,0,.24);
   }
-  .m-diagnostic-card::after{content:'';position:absolute;right:-52px;top:-52px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(141,200,90,.16),transparent 72%);}
   .m-icon-box{
     width:44px;height:44px;border-radius:16px;
     display:flex;align-items:center;justify-content:center;
-    background:rgba(86,138,53,.17);color:#8DC85A;font-size:21px;
+    background:rgba(86,138,53,.17);color:#8DC85A;font-size:20px;
   }
-  .m-diagnostic-card h3{margin:0 0 8px;font-size:20px;line-height:1.22;font-weight:950;letter-spacing:-.65px;color:#fff;word-break:keep-all;}
-  .m-diagnostic-card p{margin:0;font-size:14.5px;line-height:1.65;font-weight:650;color:rgba(255,255,255,.61);word-break:keep-all;}
-  .m-card-label{display:inline-flex;margin-top:14px;padding:7px 10px;border-radius:999px;background:rgba(141,200,90,.12);color:#8DC85A;font-size:11px;font-weight:950;}
-
-  .m-bridge-panel{
-    margin:0 20px;
-    padding:58px 22px;
-    border-radius:36px;
+  .m-diagnostic-card h3{margin:0;font-size:17px;line-height:1.35;font-weight:950;letter-spacing:-.5px;color:#fff;word-break:keep-all;}
+  .m-pain-note{
+    margin-top:22px;
     text-align:center;
-    background:
-      radial-gradient(circle at 50% 14%, rgba(141,200,90,.23), transparent 42%),
-      linear-gradient(145deg,#111B11,#061006 68%,#0A0C0A);
-    border:1px solid rgba(141,200,90,.22);
-    box-shadow:0 34px 110px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.075);
+    font-size:15px;
+    font-weight:850;
+    line-height:1.6;
+    color:rgba(255,255,255,.72);
+    word-break:keep-all;
   }
-  .m-bridge-panel .m-eyebrow{justify-content:center;}
-  .m-bridge-panel .m-eyebrow::after{content:'';width:28px;height:1px;background:rgba(141,200,90,.72);}
-  .m-bridge-panel h2{margin:0;font-size:clamp(34px,9vw,49px);font-weight:950;line-height:1.07;letter-spacing:-2.15px;color:#fff;word-break:keep-all;}
-  .m-bridge-panel p{margin:18px 0 0;font-size:15.5px;line-height:1.75;font-weight:700;color:rgba(255,255,255,.62);word-break:keep-all;}
 
-  .m-feature-stack{display:grid;grid-template-columns:1fr;gap:18px;margin-top:34px;}
+  .m-feature-stack{display:grid;grid-template-columns:1fr;gap:18px;margin-top:30px;}
   .m-feature-card{
     position:relative;
     padding:24px 20px 20px;
-    border-radius:30px;
+    border-radius:28px;
     background:#171918;
     border:1px solid rgba(255,255,255,.085);
     box-shadow:0 26px 86px rgba(0,0,0,.31), inset 0 1px 0 rgba(255,255,255,.055);
     overflow:hidden;
   }
   .m-feature-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 96% 0%, rgba(86,138,53,.16), transparent 34%);pointer-events:none;}
-  .m-feature-head{position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px;}
+  .m-feature-head{position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:12px;}
   .m-feature-index{font-size:12px;font-weight:950;letter-spacing:1.3px;color:#8DC85A;font-family:'DM Sans','Pretendard',sans-serif;}
   .m-feature-type{padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.055);color:rgba(255,255,255,.52);font-size:11px;font-weight:900;}
-  .m-feature-card h3{position:relative;z-index:2;margin:0 0 10px;font-size:24px;line-height:1.16;font-weight:950;letter-spacing:-.95px;color:#fff;word-break:keep-all;}
-  .m-feature-card p{position:relative;z-index:2;margin:0;font-size:14.7px;line-height:1.72;font-weight:650;color:rgba(255,255,255,.62);word-break:keep-all;}
-  .m-feature-points{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
-  .m-feature-points span{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(86,138,53,.14);color:#cfe8bf;font-size:11.5px;font-weight:900;}
+  .m-feature-card h3{position:relative;z-index:2;margin:0 0 14px;font-size:22px;line-height:1.2;font-weight:950;letter-spacing:-.8px;color:#fff;word-break:keep-all;}
+  .m-feature-bullets{
+    position:relative;z-index:2;
+    list-style:none;margin:0;padding:0;
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .m-feature-bullets li{
+    display:flex;gap:9px;
+    font-size:14px;line-height:1.55;font-weight:700;
+    color:rgba(255,255,255,.72);word-break:keep-all;
+  }
+  .m-feature-bullets li::before{
+    content:'·';
+    color:#8DC85A;font-weight:950;font-size:18px;line-height:1.2;
+  }
   .m-shot-frame{
     position:relative;z-index:2;
     margin-top:18px;
     min-height:148px;
-    border-radius:24px;
+    border-radius:22px;
     background:linear-gradient(145deg,rgba(86,138,53,.16),rgba(255,255,255,.035));
     border:1px solid rgba(255,255,255,.08);
     overflow:hidden;
   }
-  .m-shot-frame img{width:100%;height:100%;min-height:148px;object-fit:cover;display:block;}
+  .m-shot-frame img{width:100%;height:100%;min-height:148px;object-fit:cover;object-position:top center;display:block;}
   .m-shot-placeholder{height:148px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.38);font-size:13px;font-weight:900;}
-
-  .m-plan-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:34px;}
-  .m-plan-card{
-    position:relative;
-    padding:25px 22px 22px;
-    border-radius:30px;
-    background:#171918;
-    border:1px solid rgba(255,255,255,.09);
-    box-shadow:0 26px 86px rgba(0,0,0,.31);
-    overflow:hidden;
+  .m-shot-stack{position:relative;z-index:2;}
+  .m-shot-figure{margin:0;}
+  .m-shot-figure .m-shot-frame{margin-top:14px;}
+  .m-shot-caption{
+    margin:10px 0 0;
+    text-align:center;
+    font-size:13px;font-weight:700;line-height:1.55;
+    color:#888780;word-break:keep-all;
   }
-  .m-plan-card.featured{border-color:rgba(86,138,53,.50);box-shadow:0 30px 96px rgba(0,0,0,.38),0 0 0 1px rgba(86,138,53,.18);}
-  .m-plan-card.featured::after{content:'추천';position:absolute;top:20px;right:20px;padding:7px 10px;border-radius:999px;background:#568A35;color:#fff;font-size:11px;font-weight:950;}
-  .m-plan-name{margin:0;font-size:25px;font-weight:950;letter-spacing:-.8px;color:#fff;}
-  .m-plan-desc{margin:8px 52px 0 0;font-size:13.5px;line-height:1.58;font-weight:650;color:rgba(255,255,255,.52);word-break:keep-all;}
-  .m-price{display:flex;align-items:flex-end;gap:7px;margin-top:22px;color:#fff;}
-  .m-price strong{font-size:38px;line-height:1;font-weight:950;letter-spacing:-2px;}
-  .m-price span{position:relative;bottom:4px;font-size:14px;font-weight:850;color:rgba(255,255,255,.72);}
-  .m-vat{margin-top:7px;font-size:12px;font-weight:700;color:rgba(255,255,255,.42);}
-  .m-list{display:flex;flex-direction:column;gap:10px;list-style:none;margin:20px 0 0;padding:20px 0 0;border-top:1px solid rgba(255,255,255,.08);}
-  .m-list li{display:flex;gap:9px;font-size:14px;line-height:1.45;font-weight:750;color:rgba(255,255,255,.80);word-break:keep-all;}
-  .m-list li::before{content:'✓';width:18px;height:18px;min-width:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(86,138,53,.16);color:#8DC85A;font-size:11px;font-weight:950;margin-top:1px;}
+  .m-shot-stack > .m-lang-mockup:first-child{margin-top:18px!important;}
 
-  .m-faq-list{display:grid;grid-template-columns:1fr;gap:13px;margin-top:34px;}
+  /* overdue card mockup (feature 02) */
+  .m-ov-wrap{
+    position:relative;z-index:2;
+    margin-top:18px;
+  }
+  .m-ov-card{
+    padding:16px 14px 14px;
+    border-radius:18px;
+    background:#fff;
+    border:2px solid #E24B4A;
+    color:#1a1a1a;
+    font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;
+    box-shadow:0 18px 40px rgba(0,0,0,.22);
+  }
+  .m-ov-top{
+    display:flex;align-items:flex-start;justify-content:space-between;gap:10px;
+  }
+  .m-ov-name-row{display:flex;align-items:center;gap:6px;min-width:0;}
+  .m-ov-name{
+    font-size:17px;font-weight:950;letter-spacing:-.4px;color:#1a1a1a;
+  }
+  .m-ov-tags{display:flex;align-items:center;gap:5px;flex-shrink:0;}
+  .m-ov-pill{
+    display:inline-flex;align-items:center;justify-content:center;
+    height:22px;padding:0 8px;border-radius:999px;
+    font-size:11px;font-weight:900;line-height:1;white-space:nowrap;
+  }
+  .m-ov-pill-auto{background:#EAF3DE;color:#5F7A46;}
+  .m-ov-pill-danger{background:#FCEBEB;color:#E24B4A;}
+  .m-ov-more{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:22px;height:22px;
+    color:#888780;font-size:16px;font-weight:900;line-height:1;
+  }
+  .m-ov-meta{
+    margin:8px 0 0;
+    font-size:13px;font-weight:700;color:#888780;
+  }
+  .m-ov-progress-row{
+    display:flex;align-items:center;gap:10px;
+    margin-top:10px;
+  }
+  .m-ov-track{
+    flex:1;height:8px;border-radius:999px;overflow:hidden;
+    background:#F1EFEC;
+  }
+  .m-ov-fill{
+    width:0%;height:100%;
+    background:#E24B4A;border-radius:999px;
+  }
+  .m-ov-amt{
+    flex-shrink:0;
+    font-size:12px;font-weight:800;color:#888780;white-space:nowrap;
+  }
+  .m-ov-due-row{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    margin-top:10px;
+    font-size:12.5px;font-weight:750;color:#888780;
+  }
+  .m-ov-late{color:#E24B4A;font-weight:900;}
+  .m-ov-actions{
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;
+    margin-top:12px;
+  }
+  .m-ov-btn{
+    height:40px;border-radius:12px;border:0;
+    font-size:14px;font-weight:900;font-family:inherit;
+    cursor:default;
+  }
+  .m-ov-btn-paid{background:#639922;color:#fff;}
+  .m-ov-btn-partial{background:#EFEFEA;color:#888780;}
+  .m-ov-toggle{
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    width:100%;margin-top:12px;padding:11px 12px;
+    border-radius:12px;border:1px solid rgba(226,75,74,.35);
+    background:#FCEBEB;color:#A32D2D;
+    font-size:13.5px;font-weight:900;font-family:inherit;
+    cursor:pointer;
+  }
+  .m-ov-chevron{
+    width:8px;height:8px;
+    border-right:2px solid currentColor;
+    border-bottom:2px solid currentColor;
+    transform:rotate(-135deg);
+    margin-top:3px;
+    transition:transform .2s ease;
+  }
+  .m-ov-toggle.is-collapsed .m-ov-chevron{
+    transform:rotate(45deg);
+    margin-top:-2px;
+  }
+  .m-ov-panel{
+    margin-top:10px;
+    padding:14px 12px;
+    border-radius:14px;
+    background:#FCEBEB;
+  }
+  .m-ov-panel[hidden]{display:none!important;}
+  .m-ov-panel-lead{
+    margin:0;
+    font-size:13px;font-weight:800;line-height:1.5;
+    color:#A32D2D;word-break:keep-all;
+  }
+  .m-ov-panel-list{
+    list-style:none;margin:12px 0 0;padding:0;
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .m-ov-panel-list li{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    font-size:13px;font-weight:750;color:#888780;
+  }
+  .m-ov-panel-list strong{color:#E24B4A;font-weight:900;white-space:nowrap;}
+
+  /* admin mockups (feature 05) */
+  .m-adm-stack{
+    position:relative;z-index:2;
+    margin-top:18px;
+    display:flex;flex-direction:column;align-items:center;gap:18px;
+  }
+  .m-adm-phone{
+    width:100%;max-width:300px;
+    border-radius:24px;
+    background:#EEF0EC;
+    border:1px solid rgba(0,0,0,.06);
+    overflow:hidden;
+    box-shadow:0 18px 40px rgba(0,0,0,.22);
+    font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;
+  }
+  .m-adm-receipt-head{
+    padding:16px 16px 18px;
+    background:#5A7D3C;
+    color:#fff;
+  }
+  .m-adm-back{
+    display:inline-flex;align-items:center;gap:2px;
+    margin:0;font-size:14px;font-weight:800;color:rgba(255,255,255,.92);
+  }
+  .m-adm-back svg{width:18px;height:18px;flex-shrink:0;}
+  .m-adm-tenant{
+    margin:14px 0 0;
+    font-size:13px;font-weight:700;color:rgba(255,255,255,.72);
+  }
+  .m-adm-amount{
+    margin:6px 0 0;
+    font-size:28px;font-weight:950;letter-spacing:-.8px;line-height:1.15;color:#fff;
+  }
+  .m-adm-sub{
+    margin:6px 0 0;
+    font-size:12.5px;font-weight:650;color:rgba(255,255,255,.68);
+  }
+  .m-adm-body{padding:12px 12px 14px;}
+  .m-adm-card{
+    margin-top:10px;padding:12px 12px;
+    border-radius:14px;background:#fff;
+  }
+  .m-adm-card:first-child{margin-top:0;}
+  .m-adm-card-title{
+    margin:0 0 10px;
+    font-size:12px;font-weight:900;color:#5A7D3C;letter-spacing:-.2px;
+  }
+  .m-adm-row{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:8px 0;
+    border-top:1px solid rgba(0,0,0,.05);
+    font-size:13px;font-weight:700;
+  }
+  .m-adm-row:first-of-type{border-top:0;padding-top:0;}
+  .m-adm-row:last-child{padding-bottom:0;}
+  .m-adm-label{color:#8B948A;font-weight:700;}
+  .m-adm-value{color:#1a1a1a;font-weight:850;text-align:right;}
+  .m-adm-value.is-select{
+    display:inline-flex;align-items:center;gap:4px;
+  }
+  .m-adm-value.is-select svg{width:14px;height:14px;color:#8B948A;}
+  .m-adm-value.is-green{color:#5A7D3C;font-weight:950;}
+  .m-adm-card.is-muted{
+    background:#F6F5EF;
+  }
+  .m-adm-card.is-muted .m-adm-card-title{color:#8B948A;}
+  .m-adm-card.is-muted .m-adm-label,
+  .m-adm-card.is-muted .m-adm-value{color:#8B948A;font-weight:700;}
+  .m-adm-tip{
+    display:flex;align-items:flex-start;gap:8px;
+    margin-top:10px;padding:11px 12px;
+    border-radius:12px;background:#EDF4E3;
+    font-size:12.5px;font-weight:750;line-height:1.5;color:#5A7D3C;
+    word-break:keep-all;
+  }
+  .m-adm-tip svg{width:16px;height:16px;flex-shrink:0;margin-top:1px;}
+  .m-adm-cta{
+    display:flex;align-items:center;justify-content:center;
+    width:100%;margin-top:12px;height:46px;
+    border:0;border-radius:14px;
+    background:#5A7D3C;color:#fff;
+    font-size:14.5px;font-weight:900;font-family:inherit;
+    cursor:default;
+  }
+
+  .m-adm-mail{
+    width:100%;max-width:300px;
+    padding:18px 14px 16px;
+    border-radius:20px;
+    background:#EEF0EC;
+    border:1px solid rgba(0,0,0,.06);
+    box-shadow:0 18px 40px rgba(0,0,0,.22);
+    font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;
+  }
+  .m-adm-mail-head{
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    margin:0 0 14px;
+    font-size:13.5px;font-weight:900;color:#5A7D3C;
+  }
+  .m-adm-mail-head svg{width:18px;height:18px;flex-shrink:0;}
+  .m-adm-mail-card{
+    padding:6px 8px;
+    border-radius:14px;background:#fff;
+  }
+  .m-adm-pdf{
+    display:flex;align-items:center;gap:10px;
+    padding:11px 8px;
+    border-top:1px solid rgba(0,0,0,.05);
+  }
+  .m-adm-pdf:first-child{border-top:0;}
+  .m-adm-pdf-icon{
+    width:36px;height:36px;border-radius:10px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    background:#FCEBEB;color:#C0392B;
+  }
+  .m-adm-pdf-icon svg{width:18px;height:18px;}
+  .m-adm-pdf-text{flex:1;min-width:0;text-align:left;}
+  .m-adm-pdf-name{
+    margin:0;
+    font-size:13px;font-weight:850;line-height:1.35;color:#1a1a1a;
+    word-break:keep-all;
+  }
+  .m-adm-pdf-meta{
+    margin:3px 0 0;
+    font-size:11.5px;font-weight:700;color:#8B948A;
+  }
+  .m-adm-pdf-dl{
+    width:28px;height:28px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    color:#8B948A;
+  }
+  .m-adm-pdf-dl svg{width:16px;height:16px;}
+  .m-adm-mail-foot{
+    margin:14px 0 0;
+    text-align:center;
+    font-size:12.5px;font-weight:700;line-height:1.55;color:#8B948A;
+    word-break:keep-all;
+  }
+
+  /* signup form */
+  .m-signup{
+    padding:72px 0 40px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(141,200,90,.16), transparent 42%),
+      linear-gradient(180deg,rgba(255,255,255,.02),transparent);
+  }
+  .m-benefit-box{
+    margin-top:24px;
+    padding:18px 16px;
+    border-radius:22px;
+    background:rgba(86,138,53,.12);
+    border:1px solid rgba(141,200,90,.28);
+  }
+  .m-benefit-box h3{margin:0 0 12px;font-size:14px;font-weight:950;color:#8DC85A;}
+  .m-benefit-rows{display:flex;flex-direction:column;gap:8px;}
+  .m-benefit-row{
+    display:flex;justify-content:space-between;gap:12px;align-items:center;
+    font-size:13.5px;font-weight:800;color:rgba(255,255,255,.78);
+  }
+  .m-benefit-row strong{color:#fff;font-weight:950;white-space:nowrap;}
+  .m-benefit-extra{
+    margin-top:12px;padding-top:12px;
+    border-top:1px solid rgba(255,255,255,.1);
+    font-size:13px;font-weight:750;line-height:1.55;color:rgba(255,255,255,.68);
+    word-break:keep-all;
+  }
+
+  .m-form{margin-top:26px;}
+  .m-form-step{display:none;}
+  .m-form-step.active{display:block;}
+  .m-form-done{
+    display:none;
+    text-align:center;
+    padding:60px 8px;
+  }
+  .m-form-done.active{display:block;}
+  .m-done-icon{
+    width:56px;height:56px;margin:0 auto;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:#568A35;
+    color:#fff;
+    box-shadow:0 12px 28px rgba(86,138,53,.28);
+  }
+  .m-done-icon svg{width:28px;height:28px;display:block;}
+  .m-done-card{
+    margin:20px auto 0;
+    max-width:300px;
+    padding:28px 20px;
+    border-radius:20px;
+    background:rgba(86,138,53,.08);
+    border:1px solid rgba(141,200,90,.35);
+  }
+  .m-done-card[hidden]{display:none!important;}
+  .m-done-card-lead{
+    margin:0;
+    font-size:16px;font-weight:800;line-height:1.45;
+    color:#fff;word-break:keep-all;
+  }
+  .m-done-card-lead strong{
+    font-size:40px;font-weight:950;letter-spacing:-1.2px;line-height:1;
+    color:#8DC85A;vertical-align:-2px;margin-right:2px;
+  }
+  .m-done-card-divider{
+    height:1px;margin:16px 0;
+    background:rgba(255,255,255,.12);
+    border:0;
+  }
+  .m-done-card-months{
+    margin:0;
+    font-size:18px;font-weight:900;line-height:1.35;
+    color:#8DC85A;word-break:keep-all;
+  }
+  .m-done-message{
+    margin:20px 0 0;
+    font-size:14px;font-weight:700;line-height:1.7;
+    color:#999;word-break:keep-all;
+  }
+  .m-done-message + .m-done-message{margin-top:12px;}
+  .m-done-total{
+    margin:20px 0 0;
+    font-size:13px;font-weight:700;line-height:1.55;
+    color:#888;word-break:keep-all;
+  }
+  .m-done-total[hidden]{display:none!important;}
+  .m-done-total strong{color:#8DC85A;font-weight:950;}
+
+  .m-field{margin-bottom:16px;}
+  .m-field > label{
+    display:block;margin-bottom:8px;
+    font-size:13px;font-weight:900;color:rgba(255,255,255,.78);
+  }
+  .m-field > label .req{color:#8DC85A;margin-left:2px;}
+  .m-field > label .opt{color:rgba(255,255,255,.45);font-weight:700;margin-left:4px;font-size:12px;}
+
+  .m-input,.m-select,.m-textarea{
+    width:100%;
+    min-height:52px;
+    padding:14px 16px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.14);
+    background:#1a1a1a;
+    color:#F0F0EB;
+    font-size:16px;
+    font-weight:650;
+    font-family:inherit;
+    outline:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+  }
+  .m-select{
+    background-color:#1a1a1a;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' fill='none' stroke='%238DC85A' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-position:right 16px center;
+    background-size:12px 8px;
+    background-repeat:no-repeat;
+    padding-right:44px;
+    color:#F0F0EB;
+    color-scheme:dark;
+  }
+  .m-select option,
+  .m-select optgroup{
+    background-color:#1a1a1a;
+    color:#F0F0EB;
+  }
+  .m-select option:checked,
+  .m-select option:hover,
+  .m-select option:focus{
+    background-color:#2a2a2a;
+    color:#F0F0EB;
+  }
+  .m-textarea{
+    min-height:110px;
+    resize:vertical;
+    line-height:1.55;
+    background:#1a1a1a;
+    color:#F0F0EB;
+  }
+  .m-input:focus,.m-select:focus,.m-textarea:focus{
+    border-color:#8DC85A;
+    box-shadow:0 0 0 3px rgba(86,138,53,.22);
+    background:#1a1a1a;
+  }
+  .m-input::placeholder,.m-textarea::placeholder{
+    color:rgba(240,240,235,.45);
+    opacity:1;
+  }
+
+  .m-radio-group{display:flex;flex-direction:column;gap:10px;}
+  .m-field .m-radio,
+  label.m-radio{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    min-height:52px;
+    margin:0;
+    padding:14px 16px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.1);
+    background:#1a1a1a;
+    cursor:pointer;
+    box-sizing:border-box;
+  }
+  .m-field .m-radio input,
+  label.m-radio input{
+    width:22px;
+    height:22px;
+    margin:0;
+    flex-shrink:0;
+    accent-color:#568A35;
+  }
+  .m-field .m-radio span,
+  label.m-radio span{
+    display:block;
+    flex:1;
+    min-width:0;
+    font-size:14.5px;
+    font-weight:800;
+    line-height:1.45;
+    color:#F0F0EB;
+    word-break:keep-all;
+  }
+  .m-radio-other{margin-top:10px;display:none;}
+  .m-radio-other.show{display:block;}
+
+  .m-form-error{
+    display:none;
+    margin:12px 0 0;
+    padding:12px 14px;
+    border-radius:14px;
+    background:rgba(220,60,60,.12);
+    border:1px solid rgba(220,80,80,.35);
+    color:#ffb4b4;
+    font-size:13.5px;font-weight:800;line-height:1.5;
+    word-break:keep-all;
+    white-space:pre-line;
+  }
+  .m-form-error.show{display:block;}
+  .m-step2-lead{
+    margin:0 0 20px;
+    font-size:16px;font-weight:900;line-height:1.5;color:#fff;
+    word-break:keep-all;
+  }
+
+  .m-faq-list{display:grid;grid-template-columns:1fr;gap:13px;margin-top:28px;}
   .m-faq-item{padding:21px 19px;border-radius:24px;background:#171918;border:1px solid rgba(255,255,255,.08);box-shadow:0 18px 58px rgba(0,0,0,.23);}
   .m-faq-item h3{margin:0;font-size:16px;font-weight:950;line-height:1.42;color:#fff;letter-spacing:-.4px;word-break:keep-all;}
   .m-faq-item p{margin:10px 0 0;font-size:14px;line-height:1.7;font-weight:600;color:rgba(255,255,255,.60);word-break:keep-all;}
 
-  .m-final{padding:82px 0 78px;text-align:center;background:radial-gradient(circle at 50% 20%, rgba(141,200,90,.18), transparent 38%);}
-  .m-final h2{margin:0;font-size:clamp(38px,10vw,54px);font-weight:950;line-height:1.05;letter-spacing:-2.35px;color:#fff;word-break:keep-all;}
-  .m-final p{margin:16px 0 0;font-size:16px;font-weight:800;line-height:1.65;color:rgba(255,255,255,.64);}
-  .m-final .m-hero-actions{margin-top:30px;}
-  .m-footer{padding:24px 18px 34px;border-top:1px solid rgba(255,255,255,.07);text-align:center;color:rgba(255,255,255,.46);font-size:12px;font-weight:650;}
-  .m-footer-links{display:flex;justify-content:center;gap:13px;flex-wrap:wrap;margin-top:12px;}
-  .m-footer-links a{color:rgba(255,255,255,.50);}
+  .m-footer{
+    padding:32px 20px 48px;
+    border-top:1px solid rgba(255,255,255,.07);
+    text-align:center;
+  }
+  .m-footer-brand{
+    font-size:13px;font-weight:900;letter-spacing:-.2px;
+    color:rgba(255,255,255,.55);
+  }
+  .m-footer-info{
+    margin-top:12px;
+    font-size:11.5px;font-weight:600;line-height:1.85;
+    color:#888;word-break:keep-all;
+  }
+  .m-footer-links{
+    display:flex;justify-content:center;align-items:center;gap:14px;
+    flex-wrap:wrap;margin-top:14px;
+  }
+  .m-footer-links a,
+  .m-footer-links button{
+    appearance:none;border:0;background:none;padding:0;
+    font:inherit;font-size:12px;font-weight:700;line-height:1.4;
+    color:rgba(255,255,255,.55);text-decoration:underline;
+    text-underline-offset:2px;cursor:pointer;
+  }
+  .m-footer-copy{
+    margin-top:16px;
+    font-size:11px;font-weight:600;line-height:1.5;
+    color:rgba(255,255,255,.32);
+  }
+  .m-privacy-modal{
+    display:none;
+    position:fixed;inset:0;z-index:7000;
+    align-items:center;justify-content:center;
+    padding:24px 18px;
+    background:rgba(0,0,0,.62);
+  }
+  .m-privacy-modal.is-open{display:flex;}
+  .m-privacy-modal-card{
+    width:100%;max-width:340px;
+    padding:20px 18px 16px;
+    border-radius:18px;
+    background:#171918;
+    border:1px solid rgba(255,255,255,.1);
+    box-shadow:0 24px 64px rgba(0,0,0,.45);
+    text-align:left;
+  }
+  .m-privacy-modal-card h3{
+    margin:0 0 12px;
+    font-size:15px;font-weight:900;line-height:1.35;
+    color:#fff;letter-spacing:-.3px;word-break:keep-all;
+  }
+  .m-privacy-modal-card ul{
+    margin:0;padding:0;list-style:none;
+  }
+  .m-privacy-modal-card li{
+    position:relative;
+    padding-left:10px;
+    font-size:12px;font-weight:600;line-height:1.6;
+    color:#999;word-break:keep-all;
+  }
+  .m-privacy-modal-card li + li{margin-top:7px;}
+  .m-privacy-modal-card li::before{
+    content:'·';
+    position:absolute;left:0;top:0;color:#888;
+  }
+  .m-privacy-modal-close{
+    display:block;width:100%;margin-top:16px;
+    height:40px;border:0;border-radius:12px;
+    background:rgba(255,255,255,.08);
+    color:rgba(255,255,255,.82);
+    font-size:13px;font-weight:800;cursor:pointer;
+  }
 
-  .mobile-reveal{opacity:0;transform:translateY(26px);filter:blur(5px);transition:opacity .78s ease,transform .78s cubic-bezier(.16,1,.3,1),filter .78s ease;}
-  .mobile-reveal.visible{opacity:1;transform:translateY(0);filter:blur(0);}
-  .mobile-reveal.delay-1{transition-delay:.08s;}
-  .mobile-reveal.delay-2{transition-delay:.16s;}
-  .mobile-reveal.delay-3{transition-delay:.24s;}
+  .m-sticky-cta{
+    position:fixed;
+    left:0;right:0;bottom:0;
+    z-index:6000;
+    padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px));
+    background:transparent;
+    border:0;
+    transform:translateY(0);
+    opacity:1;
+    transition:transform .25s ease, opacity .25s ease;
+    pointer-events:none;
+  }
+  .m-sticky-cta .m-btn{
+    pointer-events:auto;
+    box-shadow:0 8px 24px rgba(0,0,0,.4);
+  }
+  .m-sticky-cta.hide{
+    transform:translateY(120%);
+    opacity:0;
+  }
+  .m-sticky-cta.hide .m-btn{pointer-events:none;}
 
-  @media (prefers-reduced-motion: reduce){
-    .mobile-reveal{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;}
+  /* reveal 애니메이션 비활성: 처음부터 본문 표시 */
+  .mobile-reveal,.mobile-reveal.delay-1,.mobile-reveal.delay-2,.mobile-reveal.delay-3{
+    opacity:1!important;
+    transform:none!important;
+    filter:none!important;
+    transition:none!important;
+  }
+
+/* PC: 모바일 랜딩을 폰 너비로 가운데 정렬 */
+@media (min-width:1025px){
+  #mobile-site{
+    max-width:440px;
+    margin-left:auto;
+    margin-right:auto;
+    box-shadow:0 0 0 1px rgba(255,255,255,.04);
+  }
+  .m-nav{
+    left:50%;
+    right:auto;
+    width:440px;
+    max-width:440px;
+    margin-left:-220px;
+  }
+  .m-sticky-cta{
+    left:50%;
+    right:auto;
+    width:440px;
+    max-width:440px;
+    margin-left:-220px;
   }
 }
 
@@ -3843,9 +4491,7 @@ html.touch-landing .cring{display:none!important}
 
 <nav id="nav">
   <div class="nav-logo">
-    <img src="assets/images/turtle.png" class="turtle" alt="" onerror="this.style.display='none'">
-    <img src="assets/images/logo.png" alt="터TOOL" onerror="this.style.display='none';document.querySelector('.nav-logo-fb').style.display='block'">
-    <span class="nav-logo-fb">터TOOL</span>
+    <span class="nav-logo-fb" style="display:block">터TOOL</span>
   </div>
   <div class="nav-links">
     <a href="#section-features">기능</a>
@@ -4629,233 +5275,608 @@ html.touch-landing .cring{display:none!important}
   <div class="m-page">
     <header class="m-nav">
       <div class="m-brand">
-        <img src="assets/images/turtle.png" alt="" onerror="this.style.display='none'">
+        <img src="assets/features/turtle_logo.png" alt="" onerror="this.style.display='none'">
         <span>터TOOL</span>
       </div>
-      <a href="#m-install" class="m-nav-cta">앱 설치 안내</a>
+      <a href="#m-signup" class="m-nav-cta">사전 신청하기</a>
     </header>
 
     <main>
       <section class="m-hero">
         <div class="m-container">
           <div class="m-hero-plain mobile-reveal">
-            <p class="m-hero-brand">
-              <span class="brand-key">터TOOL</span>은 <span class="quote">‘활동의 토대나 일이 이루어지는 밑바탕’</span>이라는 <span class="brand-key">터</span>와<br>
-              운영을 돕는 도구 <span class="brand-key">TOOL</span>을 결합한 고시원 관리 플랫폼입니다.
-            </p>
-            <h1>고시원 운영,<br>왜 이렇게<br>손이 많이 갈까요?</h1>
-            <p class="m-hero-copy">
-              계약서, 수납, 공지, 민원 —<br>
-              전부 일일이 관리하고 계신가요?
-            </p>
-            <div class="m-hero-actions">
-              <a href="#m-install" class="m-btn">앱 설치 안내</a>
-              <a href="#m-pricing" class="m-btn secondary">요금제 보기</a>
+            <div class="m-hero-badge" id="m-hero-badge" hidden>
+              <span class="m-hero-badge-emoji" aria-hidden="true">🔥</span>
+              <span class="m-hero-badge-body" id="m-hero-badge-body"></span>
             </div>
+            <h1>이번 달, 누가 월세 안 냈는지<br>통장 열어보지 마세요</h1>
+            <p class="m-hero-copy">은행 앱 열어볼 필요 없이,<br>입금 확인부터 미납 관리까지 완전 자동으로.</p>
+            <p class="m-hero-extra">수납 관리부터 고시원 전체 관리까지,<br>스마트 비서 터TOOL과 함께.</p>
           </div>
         </div>
       </section>
 
       <section class="m-section">
         <div class="m-container">
-          <span class="m-section-label-ko center mobile-reveal">현재 운영 방식</span>
-          <h2 class="m-title center mobile-reveal delay-1">익숙한 상황이<br>있으신가요?</h2>
-          <p class="m-sub center mobile-reveal delay-2">
-            고시원 운영에서 반복되는 문제는 대부분 관리 방식이 흩어져 있을 때 발생합니다.
-          </p>
-
+          <h2 class="m-title center mobile-reveal">원장님을 괴롭히는<br>수납 관리</h2>
           <div class="m-diagnostic-grid">
             <article class="m-diagnostic-card mobile-reveal">
               <div class="m-icon-box">🏦</div>
-              <div>
-                <h3>입금 내역을 매번 확인</h3>
-                <p>통장 앱과 엑셀을 오가며 누가 냈고, 누가 안 냈는지 직접 확인해야 합니다.</p>
-                <span class="m-card-label">수납 관리</span>
-              </div>
+              <div><h3>통장 열어 입금 확인</h3></div>
             </article>
             <article class="m-diagnostic-card mobile-reveal delay-1">
-              <div class="m-icon-box">📄</div>
-              <div>
-                <h3>계약서를 직접 전달</h3>
-                <p>입실 때마다 계약서를 준비하고, 서명 여부와 보관까지 원장님이 챙겨야 합니다.</p>
-                <span class="m-card-label">전자계약</span>
-              </div>
+              <div class="m-icon-box">📒</div>
+              <div><h3>장부와 하나하나 대조</h3></div>
             </article>
             <article class="m-diagnostic-card mobile-reveal delay-2">
-              <div class="m-icon-box">📢</div>
-              <div>
-                <h3>공지사항을 반복 발송</h3>
-                <p>입주민 한 명씩 따로 연락하다 보면 같은 안내를 여러 번 반복하게 됩니다.</p>
-                <span class="m-card-label">공지 발송</span>
-              </div>
+              <div class="m-icon-box">🔍</div>
+              <div><h3>안 낸 사람 골라내기</h3></div>
             </article>
             <article class="m-diagnostic-card mobile-reveal delay-3">
-              <div class="m-icon-box">💬</div>
-              <div>
-                <h3>개인 시간까지 침범하는 연락</h3>
-                <p>민원, 고장, 문의가 개인 번호로 들어오면 업무와 휴식의 경계가 사라집니다.</p>
-                <span class="m-card-label">민원 · 메시지</span>
-              </div>
+              <div class="m-icon-box">✉️</div>
+              <div><h3>독촉 문자 일일이 보내기</h3></div>
             </article>
           </div>
-        </div>
-      </section>
-
-      <section class="m-section-tight">
-        <div class="m-bridge-panel mobile-reveal">
-          <span class="m-eyebrow">TURTOOL SOLUTION</span>
-          <h2>흩어진 운영 업무를<br><span class="m-green">터TOOL 하나로</span><br>정리합니다</h2>
-          <p>원장님은 확인하고 결정만 하면 됩니다. 반복 업무는 앱이 구조화해서 보여줍니다.</p>
+          <p class="m-pain-note mobile-reveal">입주민 30명이면 30번 반복하셨죠.</p>
         </div>
       </section>
 
       <section class="m-section m-section-dark" id="m-features">
         <div class="m-container">
-          <span class="m-section-label-ko center mobile-reveal">이렇게 바뀝니다</span>
-          <h2 class="m-title center mobile-reveal delay-1">터TOOL이 필요한 일을<br>대신 정리합니다</h2>
-          <p class="m-sub center mobile-reveal delay-2">
-            보여주기식 기능보다 실제 고시원 운영 흐름에 맞는 기능을 우선했습니다.
-          </p>
-
+          <span class="m-section-label-ko center mobile-reveal">기능</span>
+          <h2 class="m-title center mobile-reveal delay-1">원장님 손이 가는 일을<br>앱이 대신합니다</h2>
           <div class="m-feature-stack">
             <article class="m-feature-card mobile-reveal">
               <div class="m-feature-head"><span class="m-feature-index">01</span><span class="m-feature-type">수납</span></div>
-              <h3>자동 수납 관리</h3>
-              <p>입금 내역을 기준으로 납부 여부를 정리하고, 미납 대상자 확인과 독촉 흐름을 단순화합니다.</p>
-              <div class="m-feature-points"><span>납부 상태 정리</span><span>미납 알림</span><span>수납 현황</span></div>
-              <div class="m-shot-frame"><img src="assets/features/payment.png" alt="터TOOL 자동 수납 관리 화면" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'m-shot-placeholder',textContent:'자동 수납 관리 화면'}))"></div>
+              <h3>입금되면 알아서 처리, 완전 자동 수납</h3>
+              <ul class="m-feature-bullets">
+                <li>입금 내역을 입주민별로 자동 대사</li>
+                <li>원장님이 확인 버튼 누를 필요 없이 자동 완료</li>
+                <li>부분 납부·초과 납부·동명이인까지 자동 판별</li>
+              </ul>
+              <div class="m-shot-stack">
+                <div class="m-shot-frame"><img src="assets/features/payment.png" alt="터TOOL 수납 자동 관리 화면" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'m-shot-placeholder',textContent:'수납 자동 관리 화면'}))"></div>
+                <figure class="m-shot-figure">
+                  <div class="m-shot-frame"><img src="assets/features/auto_dunning.png" alt="터TOOL 자동 독촉 문자 화면" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'m-shot-placeholder',textContent:'자동 독촉 화면'}))"></div>
+                  <figcaption class="m-shot-caption">미납이 감지되면 독촉 문자가<br>자동으로 발송돼요</figcaption>
+                </figure>
+              </div>
             </article>
 
             <article class="m-feature-card mobile-reveal">
-              <div class="m-feature-head"><span class="m-feature-index">02</span><span class="m-feature-type">계약</span></div>
+              <div class="m-feature-head"><span class="m-feature-index">02</span><span class="m-feature-type">알림</span></div>
+              <h3>야반도주, 터지기 전에 막으세요</h3>
+              <ul class="m-feature-bullets">
+                <li>입주민 목록에 미납 개월 수 자동 표시</li>
+                <li>월세 밀린 입주민이 한눈에</li>
+                <li>야반도주 위험성을 사전에 감지하세요</li>
+              </ul>
+              <div class="m-ov-wrap">
+                <div class="m-ov-card">
+                  <div class="m-ov-top">
+                    <div class="m-ov-name-row">
+                      <span class="m-ov-name">홍길동</span>
+                      <span class="m-ov-pill m-ov-pill-auto">자동</span>
+                    </div>
+                    <div class="m-ov-tags">
+                      <span class="m-ov-pill m-ov-pill-danger">위험</span>
+                      <span class="m-ov-pill m-ov-pill-danger">미납</span>
+                      <span class="m-ov-more" aria-hidden="true">⋯</span>
+                    </div>
+                  </div>
+                  <p class="m-ov-meta">101 · 370,000원</p>
+                  <div class="m-ov-progress-row">
+                    <div class="m-ov-track"><div class="m-ov-fill"></div></div>
+                    <span class="m-ov-amt">0 / 370,000원</span>
+                  </div>
+                  <div class="m-ov-due-row">
+                    <span>납부일 · 4월 11일</span>
+                    <span class="m-ov-late">18일 경과</span>
+                  </div>
+                  <div class="m-ov-actions">
+                    <button type="button" class="m-ov-btn m-ov-btn-paid" tabindex="-1">완납</button>
+                    <button type="button" class="m-ov-btn m-ov-btn-partial" tabindex="-1">부분</button>
+                  </div>
+                  <button type="button" class="m-ov-toggle" id="m-ov-toggle" aria-expanded="true" aria-controls="m-ov-panel">
+                    <span class="m-ov-toggle-label">연체 내역 접기</span>
+                    <span class="m-ov-chevron" aria-hidden="true"></span>
+                  </button>
+                  <div class="m-ov-panel" id="m-ov-panel">
+                    <p class="m-ov-panel-lead">2월부터 밀린, 총 3개월 연체 중인 입주민이에요</p>
+                    <ul class="m-ov-panel-list">
+                      <li><span>2월분</span><strong>370,000원 미납</strong></li>
+                      <li><span>3월분</span><strong>370,000원 미납</strong></li>
+                      <li><span>4월분</span><strong>370,000원 미납</strong></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="m-feature-card mobile-reveal">
+              <div class="m-feature-head"><span class="m-feature-index">03</span><span class="m-feature-type">계약</span></div>
               <h3>전자계약서</h3>
-              <p>앱에서 계약서를 작성하고 입주민에게 전달할 수 있습니다. 서명 완료 후 PDF 저장까지 고려했습니다.</p>
-              <div class="m-feature-points"><span>계약서 작성</span><span>앱 서명</span><span>PDF 변환</span></div>
+              <ul class="m-feature-bullets">
+                <li>앱에서 작성하고 전자서명까지</li>
+                <li>법적 효력을 갖춘 계약서</li>
+                <li>앱이 없는 입주민은 링크로 전송</li>
+              </ul>
               <div class="m-shot-frame"><img src="assets/features/contract_01.png" alt="터TOOL 전자계약서 화면" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'m-shot-placeholder',textContent:'전자계약서 화면'}))"></div>
             </article>
 
             <article class="m-feature-card mobile-reveal">
-              <div class="m-feature-head"><span class="m-feature-index">03</span><span class="m-feature-type">공지</span></div>
-              <h3>공지사항</h3>
-              <p>입주민 전체에게 필요한 안내를 한 번에 전송하고, 공지 내역을 앱 안에서 관리할 수 있습니다.</p>
-              <div class="m-feature-points"><span>전체 공지</span><span>게시판</span><span>반복 안내 감소</span></div>
-              <div class="m-shot-frame"><img src="assets/features/notice_01.png" alt="터TOOL 공지 작성 화면" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'m-shot-placeholder',textContent:'공지사항 화면'}))"></div>
+              <div class="m-feature-head"><span class="m-feature-index">04</span><span class="m-feature-type">소통</span></div>
+              <h3>공지·민원</h3>
+              <ul class="m-feature-bullets">
+                <li>전체 공지 한 번에, 읽음 확인까지</li>
+                <li>민원과 시설 신고를 앱에서 모두 관리하세요</li>
+                <li>접수완료/처리중/처리완료 상태 표시로<br>입주민에게 처리 현황을 공유할 수 있어요</li>
+                <li>고시원 관련 응대는 앱에서만!<br>(입주민끼리 대화할 수 없어요)</li>
+              </ul>
+              <div class="m-shot-stack">
+                <div class="m-shot-frame"><img src="assets/features/notice_01.png" alt="터TOOL 공지·민원 화면" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'m-shot-placeholder',textContent:'공지·민원 화면'}))"></div>
+                <figure class="m-shot-figure">
+                  <div class="m-shot-frame"><img src="assets/features/complaint_receipt.png" alt="터TOOL 민원·시설 신고 접수 화면" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'m-shot-placeholder',textContent:'민원 접수 화면'}))"></div>
+                  <figcaption class="m-shot-caption">민원과 시설 신고를 앱에서 접수받으세요</figcaption>
+                </figure>
+                <figure class="m-shot-figure">
+                  <div class="m-shot-frame"><img src="assets/features/chat_1on1.png" alt="터TOOL 입주민 1:1 메시지 화면" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'m-shot-placeholder',textContent:'1:1 메시지 화면'}))"></div>
+                  <figcaption class="m-shot-caption">입주민과 1:1로만 소통, 입주민끼리는 연결 안 돼요</figcaption>
+                </figure>
+              </div>
             </article>
 
             <article class="m-feature-card mobile-reveal">
-              <div class="m-feature-head"><span class="m-feature-index">04</span><span class="m-feature-type">민원</span></div>
-              <h3>민원 &amp; 고장 신고</h3>
-              <p>입주민은 앱으로 신고하고, 원장님은 확인·답변·처리 상태까지 한 흐름으로 관리합니다.</p>
-              <div class="m-feature-points"><span>신고 접수</span><span>처리 상태</span><span>답변 관리</span></div>
-              <div class="m-shot-frame"><img src="assets/features/issue_01.png" alt="터TOOL 민원 고장 신고 화면" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'m-shot-placeholder',textContent:'민원 고장 신고 화면'}))"></div>
+              <div class="m-feature-head"><span class="m-feature-index">05</span><span class="m-feature-type">행정</span></div>
+              <h3>행정 업무</h3>
+              <ul class="m-feature-bullets">
+                <li>현금영수증도 앱에서 발급·관리하세요</li>
+                <li>소방 점검 가이드, 계약서 작성 요령 등<br>전문가가 정리한 고시원 운영 팁을<br>메일로 주기적으로 받아보세요</li>
+              </ul>
+              <div class="m-adm-stack">
+                <div class="m-adm-phone" aria-hidden="true">
+                  <div class="m-adm-receipt-head">
+                    <p class="m-adm-back">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      현금영수증 발급
+                    </p>
+                    <p class="m-adm-tenant">홍길동 · 101호</p>
+                    <p class="m-adm-amount">370,000원</p>
+                    <p class="m-adm-sub">2026년 4월 입실료 · 완납</p>
+                  </div>
+                  <div class="m-adm-body">
+                    <div class="m-adm-card">
+                      <p class="m-adm-card-title">발급 정보</p>
+                      <div class="m-adm-row">
+                        <span class="m-adm-label">발급 용도</span>
+                        <span class="m-adm-value is-select">소득공제용
+                          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                      </div>
+                      <div class="m-adm-row">
+                        <span class="m-adm-label">휴대폰 번호</span>
+                        <span class="m-adm-value">010-1234-5678</span>
+                      </div>
+                      <div class="m-adm-row">
+                        <span class="m-adm-label">거래일자</span>
+                        <span class="m-adm-value">2026-04-11</span>
+                      </div>
+                    </div>
+                    <div class="m-adm-card">
+                      <p class="m-adm-card-title">금액</p>
+                      <div class="m-adm-row">
+                        <span class="m-adm-label">공급가액</span>
+                        <span class="m-adm-value">336,364원</span>
+                      </div>
+                      <div class="m-adm-row">
+                        <span class="m-adm-label">부가세</span>
+                        <span class="m-adm-value">33,636원</span>
+                      </div>
+                      <div class="m-adm-row">
+                        <span class="m-adm-label">합계</span>
+                        <span class="m-adm-value is-green">370,000원</span>
+                      </div>
+                    </div>
+                    <div class="m-adm-card is-muted">
+                      <p class="m-adm-card-title">공급자 (자동 입력)</p>
+                      <div class="m-adm-row">
+                        <span class="m-adm-label">상호</span>
+                        <span class="m-adm-value">터툴고시원</span>
+                      </div>
+                      <div class="m-adm-row">
+                        <span class="m-adm-label">사업자번호</span>
+                        <span class="m-adm-value">123-45-67890</span>
+                      </div>
+                    </div>
+                    <div class="m-adm-tip">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 10v6M12 7.5h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                      <span>복잡한 홈택스 없이, 앱에서 바로 발급하세요.</span>
+                    </div>
+                    <button type="button" class="m-adm-cta" tabindex="-1">현금영수증 발급하기</button>
+                  </div>
+                </div>
+
+                <div class="m-adm-mail" aria-hidden="true">
+                  <p class="m-adm-mail-head">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7.5A2.5 2.5 0 016.5 5h11A2.5 2.5 0 0120 7.5v9a2.5 2.5 0 01-2.5 2.5h-11A2.5 2.5 0 014 16.5v-9z" stroke="currentColor" stroke-width="1.8"/><path d="M5 8l7 5 7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    고시원 운영 꿀팁 · 4월호
+                  </p>
+                  <div class="m-adm-mail-card">
+                    <div class="m-adm-pdf">
+                      <div class="m-adm-pdf-icon">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3.5h7l4 4V20a1.5 1.5 0 01-1.5 1.5h-9.5A1.5 1.5 0 015.5 20V5A1.5 1.5 0 017 3.5z" stroke="currentColor" stroke-width="1.7"/><path d="M14 3.5V8h4" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 14h7M8.5 17h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                      </div>
+                      <div class="m-adm-pdf-text">
+                        <p class="m-adm-pdf-name">소방 안전점검 가이드</p>
+                        <p class="m-adm-pdf-meta">PDF 2.1MB</p>
+                      </div>
+                      <div class="m-adm-pdf-dl">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v10m0 0l-4-4m4 4l4-4M5 18h14" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </div>
+                    </div>
+                    <div class="m-adm-pdf">
+                      <div class="m-adm-pdf-icon">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3.5h7l4 4V20a1.5 1.5 0 01-1.5 1.5h-9.5A1.5 1.5 0 015.5 20V5A1.5 1.5 0 017 3.5z" stroke="currentColor" stroke-width="1.7"/><path d="M14 3.5V8h4" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 14h7M8.5 17h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                      </div>
+                      <div class="m-adm-pdf-text">
+                        <p class="m-adm-pdf-name">전자계약서 작성 요령</p>
+                        <p class="m-adm-pdf-meta">PDF 1.4MB</p>
+                      </div>
+                      <div class="m-adm-pdf-dl">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v10m0 0l-4-4m4 4l4-4M5 18h14" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </div>
+                    </div>
+                    <div class="m-adm-pdf">
+                      <div class="m-adm-pdf-icon">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3.5h7l4 4V20a1.5 1.5 0 01-1.5 1.5h-9.5A1.5 1.5 0 015.5 20V5A1.5 1.5 0 017 3.5z" stroke="currentColor" stroke-width="1.7"/><path d="M14 3.5V8h4" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 14h7M8.5 17h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                      </div>
+                      <div class="m-adm-pdf-text">
+                        <p class="m-adm-pdf-name">퇴실 정산 체크리스트</p>
+                        <p class="m-adm-pdf-meta">PDF 0.9MB</p>
+                      </div>
+                      <div class="m-adm-pdf-dl">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v10m0 0l-4-4m4 4l4-4M5 18h14" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="m-adm-mail-foot">매달 전문가가 정리한 운영 자료를<br>메일로 받아보세요</p>
+                </div>
+              </div>
             </article>
 
             <article class="m-feature-card mobile-reveal">
-              <div class="m-feature-head"><span class="m-feature-index">05</span><span class="m-feature-type">운영</span></div>
-              <h3>현황판 · 1:1 메시지 · 터 관리</h3>
-              <p>운영 상태를 한눈에 보고, 입주민과 앱 안에서 연락하며, 주요 관리 메뉴를 한 곳에서 접근할 수 있습니다.</p>
-              <div class="m-feature-points"><span>현황판</span><span>1:1 메시지</span><span>터 관리</span></div>
-              <div class="m-shot-frame"><img src="assets/features/dashboard_01.png" alt="터TOOL 현황판 화면" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'m-shot-placeholder',textContent:'운영 현황 화면'}))"></div>
+              <div class="m-feature-head"><span class="m-feature-index">06</span><span class="m-feature-type">번역</span></div>
+              <h3>외국인 입주민도 걱정 없어요</h3>
+              <ul class="m-feature-bullets">
+                <li>중국어·베트남어·영어 자동 번역</li>
+                <li>입주민이 보낸 외국어는 한글로,<br>원장님 답장은 입주민 언어로 자동 번역</li>
+                <li>앱 화면도 입주민이 고른 언어로 표시돼요</li>
+              </ul>
+              <div class="m-shot-stack">
+<!-- ============ 목업 1: 언어 설정 드롭다운 ============ -->
+<div class="m-lang-mockup" style="margin:0 auto 10px;">
+  <div style="background:#EEF0EC; border-radius:24px; padding:0; max-width:300px; margin:0 auto; overflow:hidden; font-family:inherit; border:1px solid #E0E2DC; position:relative; min-height:340px;">
+
+    <div style="background:#ffffff; padding:15px 16px; border-bottom:1px solid #F0EFE9; display:flex; align-items:center; justify-content:space-between;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-size:20px; color:#3f3f3f; line-height:1;">‹</span>
+        <span style="font-size:16px; font-weight:500; color:#2b2b2b;">설정</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:6px; background:#EDF4E3; padding:5px 11px 5px 6px; border-radius:999px;">
+        <svg width="18" height="18" viewBox="0 0 18 18" style="border-radius:50%; flex-shrink:0;"><clipPath id="vnpill"><circle cx="9" cy="9" r="9"/></clipPath><g clip-path="url(#vnpill)"><rect width="18" height="18" fill="#DA251D"/><polygon points="9,3.5 10.35,7.6 14.6,7.6 11.15,10.1 12.5,14.2 9,11.7 5.5,14.2 6.85,10.1 3.4,7.6 7.65,7.6" fill="#FFFF00"/></g></svg>
+        <span style="font-size:12px; font-weight:500; color:#4A6830;">Tiếng Việt</span>
+        <span style="font-size:12px; color:#5A7D3C;">▾</span>
+      </div>
+    </div>
+
+    <div style="padding:14px;">
+      <div style="background:#ffffff; border-radius:12px; padding:14px 15px; margin-bottom:10px; display:flex; align-items:center; gap:11px;">
+        <span style="font-size:16px; color:#B4B2A9;">◔</span>
+        <span style="font-size:13px; color:#C0BEB6;">프로필</span>
+      </div>
+      <div style="background:#ffffff; border-radius:12px; padding:14px 15px; display:flex; align-items:center; gap:11px;">
+        <span style="font-size:16px; color:#B4B2A9;">◔</span>
+        <span style="font-size:13px; color:#C0BEB6;">알림</span>
+      </div>
+    </div>
+
+    <div style="position:absolute; top:56px; right:14px; width:194px; background:#ffffff; border-radius:14px; border:1px solid #ECEBE4; box-shadow:0 10px 28px rgba(60,70,40,0.16); overflow:hidden; z-index:5;">
+      <div style="padding:11px 14px 9px; font-size:11px; color:#9A9A93; border-bottom:1px solid #F2F1EB;">언어 선택</div>
+
+      <div style="display:flex; align-items:center; gap:11px; padding:11px 14px;">
+        <svg width="22" height="22" viewBox="0 0 22 22" style="flex-shrink:0;"><clipPath id="krF"><circle cx="11" cy="11" r="11"/></clipPath><g clip-path="url(#krF)"><rect width="22" height="22" fill="#fff"/><circle cx="11" cy="11" r="4.2" fill="#CD2E3A"/><path d="M11 6.8a4.2 4.2 0 0 1 0 8.4 2.1 2.1 0 0 0 0-4.2 2.1 2.1 0 0 1 0-4.2z" fill="#0047A0"/></g></svg>
+        <span style="flex:1; font-size:13px; color:#2b2b2b;">한국어</span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; background:#EDF4E3;">
+        <svg width="22" height="22" viewBox="0 0 22 22" style="flex-shrink:0;"><clipPath id="vnF"><circle cx="11" cy="11" r="11"/></clipPath><g clip-path="url(#vnF)"><rect width="22" height="22" fill="#DA251D"/><polygon points="11,4.2 12.65,9.3 18,9.3 13.68,12.45 15.33,17.55 11,14.4 6.67,17.55 8.32,12.45 4,9.3 9.35,9.3" fill="#FFFF00"/></g></svg>
+        <span style="flex:1; font-size:13px; font-weight:500; color:#3f5a28;">Tiếng Việt</span>
+        <span style="font-size:14px; color:#5A7D3C;">✓</span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:11px; padding:11px 14px;">
+        <svg width="22" height="22" viewBox="0 0 22 22" style="flex-shrink:0;"><clipPath id="cnF"><circle cx="11" cy="11" r="11"/></clipPath><g clip-path="url(#cnF)"><rect width="22" height="22" fill="#DE2910"/><polygon points="6,4 6.9,6.6 9.5,6.6 7.4,8.2 8.2,10.8 6,9.2 3.8,10.8 4.6,8.2 2.5,6.6 5.1,6.6" fill="#FFDE00" transform="scale(0.62) translate(2,1.5)"/><circle cx="12" cy="4.5" r="0.9" fill="#FFDE00"/><circle cx="13.6" cy="6.2" r="0.9" fill="#FFDE00"/><circle cx="13.6" cy="8.6" r="0.9" fill="#FFDE00"/><circle cx="12" cy="10.2" r="0.9" fill="#FFDE00"/></g></svg>
+        <span style="flex:1; font-size:13px; color:#2b2b2b;">中文</span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:11px; padding:11px 14px;">
+        <svg width="22" height="22" viewBox="0 0 22 22" style="flex-shrink:0;"><clipPath id="usF"><circle cx="11" cy="11" r="11"/></clipPath><g clip-path="url(#usF)"><rect width="22" height="22" fill="#fff"/><g fill="#B22234"><rect width="22" height="1.7" y="0"/><rect width="22" height="1.7" y="3.4"/><rect width="22" height="1.7" y="6.8"/><rect width="22" height="1.7" y="10.2"/><rect width="22" height="1.7" y="13.6"/><rect width="22" height="1.7" y="17"/><rect width="22" height="1.7" y="20.4"/></g><rect width="10" height="8.5" fill="#3C3B6E"/></g></svg>
+        <span style="flex:1; font-size:13px; color:#2b2b2b;">English</span>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:center; font-size:13px; color:#888780; margin-top:10px;">설정에서 언어를 고르면 앱 전체가 바뀌어요</div>
+</div>
+
+<!-- ============ 목업 2: 채팅 자동 번역 ============ -->
+<div class="m-lang-mockup" style="margin:18px auto 0;">
+  <div style="background:#4A6B2E; border-radius:24px; padding:16px 14px 18px; max-width:300px; margin:0 auto; font-family:inherit; border:1px solid #3d5926;">
+
+    <div style="text-align:center; margin-bottom:16px;">
+      <span style="font-size:11px; color:#C5D9B0; background:rgba(0,0,0,0.12); padding:4px 12px; border-radius:999px;">2026. 5. 18</span>
+    </div>
+
+    <div style="display:flex; justify-content:flex-start; margin-bottom:4px;">
+      <div style="max-width:80%; background:#7A9B5C; border-radius:16px 16px 16px 4px; padding:11px 13px;">
+        <div style="font-size:14px; color:#ffffff; line-height:1.4;">Điều hòa bật từ ngày nào ạ?</div>
+        <div style="height:1px; background:rgba(255,255,255,0.25); margin:8px 0;"></div>
+        <div style="font-size:13px; color:#E5EEDA; line-height:1.4;">에어컨은 며칠부터 트나요?</div>
+      </div>
+    </div>
+    <div style="font-size:10px; color:#B8CCA2; margin:0 0 16px 4px;">오후 4:54</div>
+
+    <div style="display:flex; justify-content:flex-end; margin-bottom:4px;">
+      <div style="max-width:80%; background:#ffffff; border-radius:16px 16px 4px 16px; padding:11px 13px;">
+        <div style="font-size:14px; color:#2b2b2b; line-height:1.4;">5월 12일부터 가동할 예정이에요 😊</div>
+        <div style="height:1px; background:#ECEBE4; margin:8px 0;"></div>
+        <div style="font-size:13px; color:#8B948A; line-height:1.4;">Sẽ bật từ ngày 12 tháng 5 ạ 😊</div>
+      </div>
+    </div>
+    <div style="font-size:10px; color:#B8CCA2; text-align:right; margin:0 4px 16px 0;">오후 7:16</div>
+
+    <div style="display:flex; justify-content:flex-start; margin-bottom:4px;">
+      <div style="max-width:80%; background:#7A9B5C; border-radius:16px 16px 16px 4px; padding:11px 13px;">
+        <div style="font-size:14px; color:#ffffff; line-height:1.4;">Cảm ơn ạ!</div>
+        <div style="height:1px; background:rgba(255,255,255,0.25); margin:8px 0;"></div>
+        <div style="font-size:13px; color:#E5EEDA; line-height:1.4;">감사합니다!</div>
+      </div>
+    </div>
+    <div style="font-size:10px; color:#B8CCA2; margin:0 0 0 4px;">오후 7:17</div>
+
+    <div style="display:flex; align-items:center; gap:6px; justify-content:center; margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.12);">
+      <span style="font-size:12px; color:#C5D9B0;">🌐 베트남어 ↔ 한국어 자동 번역 중</span>
+    </div>
+
+  </div>
+  <div style="text-align:center; font-size:13px; color:#888780; margin-top:10px;">원문과 번역이 함께 표시돼요</div>
+</div>
+              </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="m-section" id="m-pricing">
+      <section class="m-signup" id="m-signup">
         <div class="m-container">
-          <span class="m-eyebrow center mobile-reveal">PRICING</span>
-          <h2 class="m-title center mobile-reveal delay-1">운영 규모에 맞춰<br>선택하세요</h2>
-          <p class="m-sub center mobile-reveal delay-2">모든 플랜은 첫 달 무료로 시작할 수 있으며, 부가세는 별도입니다. 결제 단계에서 총 결제금액을 확인할 수 있습니다.</p>
+          <span class="m-section-label-ko center mobile-reveal">사전 신청</span>
+          <h2 class="m-title center mobile-reveal delay-1">터TOOL을 사용해 보실<br>원장님을 모십니다</h2>
 
-          <div class="m-plan-grid">
-            <article class="m-plan-card mobile-reveal">
-              <h3 class="m-plan-name">베이직</h3>
-              <p class="m-plan-desc">고시원 운영에 필요한 기본 관리 기능을 담은 플랜입니다.</p>
-              <div class="m-price"><strong>19,000원</strong><span>/월</span></div>
-              <p class="m-vat">부가세 별도 · 결제 단계에서 총 결제금액을 확인할 수 있습니다.</p>
-              <ul class="m-list">
-                <li>입주민 등록 · 관리</li>
-                <li>객실 현황 관리</li>
-                <li>수동 수납 처리</li>
-                <li>미납 독촉 알림</li>
-                <li>전자계약서 작성 · 서명</li>
-                <li>공지사항 · 게시판</li>
-                <li>입주민 1:1 메시지</li>
-                <li>시설 · 민원 접수 · 처리</li>
-                <li>핸드북 입주민 안내</li>
-              </ul>
-              <a href="#m-install" class="m-btn secondary" style="margin-top:18px;box-shadow:none;">앱 설치 후 베이직 시작하기</a>
-            </article>
-
-            <article class="m-plan-card featured mobile-reveal delay-1">
-              <h3 class="m-plan-name">프로</h3>
-              <p class="m-plan-desc">자동 수납과 확장 운영을 고려한 고급 관리 플랜입니다.</p>
-              <div class="m-price"><strong>29,000원</strong><span>/월</span></div>
-              <p class="m-vat">부가세 별도 · 결제 단계에서 총 결제금액을 확인할 수 있습니다.</p>
-              <ul class="m-list">
-                <li>베이직 전체 포함</li>
-                <li>자동 수납 관리</li>
-                <li>자동 미납 독촉 알림</li>
-                <li>방 이동 시 차액 계산기</li>
-              </ul>
-              <a href="#m-install" class="m-btn" style="margin-top:18px;">앱 설치 후 프로 시작하기</a>
-            </article>
+          <div class="m-benefit-box mobile-reveal delay-2">
+            <h3>신청 혜택</h3>
+            <div class="m-benefit-rows">
+              <div class="m-benefit-row"><span>1~100번째</span><strong>3개월 무료</strong></div>
+              <div class="m-benefit-row"><span>101~200번째</span><strong>2개월 무료</strong></div>
+              <div class="m-benefit-row"><span>201번째~</span><strong>1개월 무료</strong></div>
+            </div>
+            <p class="m-benefit-extra">+ 신청 즉시 소방 안전점검 체크리스트 발송</p>
           </div>
-          <p class="m-sub center mobile-reveal" style="margin-top:22px;font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.48);">
-            터TOOL은 앱에서 원장 회원가입과 승인 절차를 완료한 뒤 사용할 수 있습니다.<br>
-            승인된 원장 계정으로 앱에서 결제 웹으로 이동해 플랜을 선택합니다.
-          </p>
+
+          <div class="m-progress mobile-reveal delay-2" data-m-progress hidden>
+            <div class="m-progress-closing">
+              <p class="m-progress-open-title">사전 신청 마감 임박</p>
+              <p class="m-progress-open-sub">지금 신청하시면 1개월 무료</p>
+            </div>
+            <div class="m-progress-main">
+              <div class="m-progress-top">
+                <span class="m-progress-label" data-m-progress-label>3개월 무료 마감까지</span>
+                <span class="m-progress-nums"><strong class="m-progress-cur" data-m-progress-cur>0</strong> / <span data-m-progress-goal>100</span></span>
+              </div>
+              <div class="m-progress-track"><div class="m-progress-fill" data-m-progress-fill></div></div>
+              <p class="m-progress-remain"><strong data-m-progress-left>0</strong>자리 남았어요</p>
+            </div>
+          </div>
+
+          <div class="m-form mobile-reveal" id="m-presignup-form">
+            <div class="m-form-step active" id="m-step1" data-step="1">
+              <div class="m-field">
+                <label for="m-phone">전화번호 <span class="req">*</span></label>
+                <input class="m-input" id="m-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-1234-5678" required>
+              </div>
+              <div class="m-field">
+                <label for="m-email">이메일 <span class="req">*</span></label>
+                <input class="m-input" id="m-email" name="email" type="email" autocomplete="email" placeholder="example@email.com" required>
+              </div>
+              <div class="m-privacy">
+                <div class="m-privacy-row">
+                  <label class="m-privacy-check">
+                    <input type="checkbox" id="m-privacy-agree" name="privacy_agreed">
+                    <span>개인정보 수집·이용 동의 (필수)</span>
+                  </label>
+                  <button type="button" class="m-privacy-toggle" id="m-privacy-toggle" aria-expanded="false" aria-controls="m-privacy-detail">내용 보기</button>
+                </div>
+                <ul class="m-privacy-detail" id="m-privacy-detail">
+                  <li>수집 항목: 전화번호, 이메일, 고시원 정보</li>
+                  <li>수집 목적: 서비스 출시 안내 및 사전 신청 혜택 제공</li>
+                  <li>보관 기간: 서비스 출시 목적 달성 시까지</li>
+                  <li>문의 및 삭제 요청: turtool@naver.com</li>
+                </ul>
+              </div>
+              <button type="button" class="m-btn" id="m-step1-btn">신청 / 조회하기</button>
+              <p class="m-form-hint">이미 신청하셨다면 같은 정보로 조회하실 수 있어요</p>
+              <p class="m-form-error" id="m-step1-error" role="alert"></p>
+            </div>
+
+            <div class="m-form-step" id="m-step2" data-step="2">
+              <p class="m-step2-lead">거의 다 됐어요! 몇 가지만 더 알려주세요</p>
+
+              <div class="m-field">
+                <label for="m-hostel">고시원명 <span class="req">*</span></label>
+                <input class="m-input" id="m-hostel" name="hostel_name" type="text" placeholder="예: 터툴고시원" required>
+              </div>
+              <div class="m-field">
+                <label for="m-region">지역 <span class="req">*</span></label>
+                <input class="m-input" id="m-region" name="region" type="text" placeholder="예: 서울 관악구" required>
+              </div>
+              <div class="m-field">
+                <label for="m-rooms">객실 수 <span class="req">*</span></label>
+                <select class="m-select" id="m-rooms" name="room_count" required>
+                  <option value="" disabled selected>선택해 주세요</option>
+                  <option value="10-20">10~20</option>
+                  <option value="20-30">20~30</option>
+                  <option value="30-50">30~50</option>
+                  <option value="50+">50실 이상</option>
+                </select>
+              </div>
+
+              <div class="m-field">
+                <label>현재 수납 관리 방법 <span class="req">*</span></label>
+                <div class="m-radio-group" id="m-pay-method-group">
+                  <label class="m-radio"><input type="radio" name="payment_method" value="수기 장부"><span>수기 장부</span></label>
+                  <label class="m-radio"><input type="radio" name="payment_method" value="엑셀"><span>엑셀</span></label>
+                  <label class="m-radio"><input type="radio" name="payment_method" value="다른 서비스"><span>다른 서비스</span></label>
+                  <label class="m-radio"><input type="radio" name="payment_method" value="기억으로"><span>기억으로</span></label>
+                </div>
+                <div class="m-radio-other" id="m-pay-other-wrap">
+                  <input class="m-input" id="m-pay-other" type="text" placeholder="어떤 서비스를 쓰고 계신가요?">
+                </div>
+              </div>
+
+              <div class="m-field">
+                <label>가장 기대되는 기능 하나만 <span class="req">*</span></label>
+                <div class="m-radio-group">
+                  <label class="m-radio"><input type="radio" name="expected_feature" value="입금 자동 확인·수납 처리"><span>입금 자동 확인·수납 처리</span></label>
+                  <label class="m-radio"><input type="radio" name="expected_feature" value="미납자 자동 독촉"><span>미납자 자동 독촉</span></label>
+                  <label class="m-radio"><input type="radio" name="expected_feature" value="미납 위험 입주민 표시"><span>미납 위험 입주민 표시</span></label>
+                  <label class="m-radio"><input type="radio" name="expected_feature" value="전자계약서"><span>전자계약서</span></label>
+                  <label class="m-radio"><input type="radio" name="expected_feature" value="현금영수증·행정 서류"><span>현금영수증·행정 서류</span></label>
+                  <label class="m-radio"><input type="radio" name="expected_feature" value="공지·민원 관리"><span>공지·민원 관리</span></label>
+                  <label class="m-radio"><input type="radio" name="expected_feature" value="외국인 입주민 자동 번역"><span>외국인 입주민 자동 번역</span></label>
+                </div>
+              </div>
+
+              <div class="m-field">
+                <label>입주민분들이 앱을 설치하실 것 같나요? <span class="opt">(선택)</span></label>
+                <div class="m-radio-group">
+                  <label class="m-radio"><input type="radio" name="resident_app" value="대부분 가능"><span>대부분 가능</span></label>
+                  <label class="m-radio"><input type="radio" name="resident_app" value="절반 정도"><span>절반 정도</span></label>
+                  <label class="m-radio"><input type="radio" name="resident_app" value="어려울 듯"><span>어려울 듯</span></label>
+                  <label class="m-radio"><input type="radio" name="resident_app" value="모르겠다"><span>모르겠다</span></label>
+                </div>
+              </div>
+
+              <div class="m-field">
+                <label for="m-pain">관리하시면서 가장 답답한 순간은? <span class="opt">(선택)</span></label>
+                <textarea class="m-textarea" id="m-pain" name="pain_point" placeholder="자유롭게 적어 주세요"></textarea>
+              </div>
+              <div class="m-field">
+                <label for="m-receipt">터TOOL에 이런 기능이 있으면 좋겠다 하는 게 있나요? <span class="opt">(선택)</span></label>
+                <textarea class="m-textarea" id="m-receipt" name="cash_receipt" placeholder="어떤 기능이든 편하게 적어 주세요"></textarea>
+              </div>
+
+              <button type="button" class="m-btn" id="m-step2-btn">완료하기</button>
+              <p class="m-form-error" id="m-step2-error" role="alert"></p>
+            </div>
+
+            <div class="m-form-done" id="m-form-done">
+              <div class="m-done-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="m-done-card" id="m-done-card" hidden>
+                <p class="m-done-card-lead"><strong id="m-done-card-no">—</strong>번째로 사전등록 해주셨어요</p>
+                <hr class="m-done-card-divider">
+                <p class="m-done-card-months" id="m-done-card-months">—개월 무료 이용</p>
+              </div>
+              <p class="m-done-message" id="m-done-message">
+                입력하신 이메일로 소방 안전점검<br>체크리스트를 보내드릴게요.
+              </p>
+              <p class="m-done-message" id="m-done-message-2">
+                출시 준비가 끝나면 입력하신 연락처로<br>가장 먼저 알려드릴게요.
+              </p>
+              <p class="m-done-total" id="m-done-total" hidden>
+                지금까지 <strong id="m-done-total-n">—</strong>분의 원장님이<br>터TOOL을 기다리고 계세요
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="m-section m-section-dark">
+      <section class="m-section m-section-dark" id="m-faq">
         <div class="m-container">
           <span class="m-eyebrow center mobile-reveal">FAQ</span>
           <h2 class="m-title center mobile-reveal delay-1">자주 묻는 질문</h2>
           <div class="m-faq-list">
-            <article class="m-faq-item mobile-reveal"><h3>첫 달 무료인데 카드 등록이 필요한가요?</h3><p>네. 첫 달 무료 이용 후 자동 결제가 진행되므로 카드 등록이 필요합니다. 언제든지 해지할 수 있습니다.</p></article>
-            <article class="m-faq-item mobile-reveal"><h3>앱을 안 쓰는 입주민도 관리할 수 있나요?</h3><p>가능합니다. 원장님이 직접 수동으로 등록해 수납, 공지, 계약서 흐름을 관리할 수 있습니다.</p></article>
-            <article class="m-faq-item mobile-reveal"><h3>전자계약서는 어떻게 전달되나요?</h3><p>입주민 앱으로 계약서가 전송되고, 입주민이 앱에서 직접 확인 후 서명할 수 있습니다.</p></article>
-            <article class="m-faq-item mobile-reveal"><h3>베이직과 프로의 차이는 무엇인가요?</h3><p>베이직은 기본 관리 중심, 프로는 자동 수납 처리와 자동 미납 독촉, 차액 계산 기능이 추가됩니다.</p></article>
-            <article class="m-faq-item mobile-reveal"><h3>언제든 해지할 수 있나요?</h3><p>네. 해지 신청 후 다음 결제일부터 청구되지 않습니다.</p></article>
-            <article class="m-faq-item mobile-reveal"><h3>입주민도 비용을 내나요?</h3><p>아니요. 입주민 앱 사용 비용은 무료이며, 원장님만 플랜 요금을 결제합니다.</p></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="m-final" id="m-install">
-        <div class="m-container mobile-reveal">
-          <h2>앱 설치 후<br>시작해보세요</h2>
-          <p>앱에서 원장 회원가입과 승인 절차를 완료한 뒤 플랜 결제를 진행할 수 있습니다.</p>
-          <div class="m-hero-actions">
-            <a href="http://pf.kakao.com/_RQxhZX" class="m-btn" target="_blank" rel="noopener noreferrer">앱 설치·승인 문의</a>
-            <a href="#m-pricing" class="m-btn secondary">요금제 다시 보기</a>
+            <article class="m-faq-item mobile-reveal">
+              <h3>언제 출시되나요?</h3>
+              <p>사전 신청 순으로 안내드리며, 준비가 되는 대로 출시 일정을 공유드릴게요.</p>
+            </article>
+            <article class="m-faq-item mobile-reveal">
+              <h3>요금은 얼마인가요?</h3>
+              <p>정식 출시 때 안내드릴 예정이에요.<br>사전 신청하신 원장님께는 가장 먼저,<br>가장 좋은 조건으로 안내드릴게요.</p>
+            </article>
+            <article class="m-faq-item mobile-reveal">
+              <h3>입주민이 앱 설치를 거부하면 어떡하나요?</h3>
+              <p>걱정 마세요. 앱 설치를 원치 않는 입주민에게는 공지·독촉을 문자로 발송할 수 있어요. 원장님은 앱 하나로 모든 입주민을 관리하실 수 있습니다.</p>
+            </article>
+            <article class="m-faq-item mobile-reveal">
+              <h3>모든 핸드폰에서 사용 가능한가요?</h3>
+              <p>현재는 안드로이드(갤럭시 등)를 우선 지원하고 있어요. 자동 수납 기능이 안드로이드에 최적화되어 있어, 최상의 경험을 먼저 안드로이드에서 제공해 드립니다. 아이폰 지원은 순차적으로 준비 중이에요.</p>
+            </article>
           </div>
         </div>
       </section>
     </main>
 
-<footer class="m-footer">
-  <div>터TOOL</div>
-  <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.38);line-height:1.9;">
-    대표자: 김시현 &nbsp;|&nbsp; 사업자등록번호: 555-08-03217<br>
-    통신판매업 신고번호: 2026-경기의왕-0199호<br>
-    주소: 경기도 의왕시 안양판교로 100, 105동 1804호<br>
-    전화: 010-2153-9142
-  </div>
-  <div class="m-footer-links">
-        <a href="https://guide.turtool.kr/terms.html" target="_blank" rel="noopener noreferrer">이용약관</a>
-        <a href="https://guide.turtool.kr/privacy.html" target="_blank" rel="noopener noreferrer">개인정보처리방침</a>
-        <a href="https://billing.turtool.kr/refund" target="_blank" rel="noopener noreferrer">환불정책</a>
+    <footer class="m-footer">
+      <div class="m-footer-brand">터TOOL</div>
+      <div class="m-footer-info">
+        대표자: 김시현<br>
+        사업자등록번호: 555-08-03217<br>
+        통신판매업 신고번호: 2026-경기의왕-0199호
+      </div>
+      <div class="m-footer-links">
+        <button type="button" id="m-footer-privacy-btn">개인정보처리방침</button>
         <a href="http://pf.kakao.com/_RQxhZX" target="_blank" rel="noopener noreferrer">문의</a>
       </div>
+      <div class="m-footer-copy">© 2026 터TOOL</div>
     </footer>
+
+    <div class="m-privacy-modal" id="m-privacy-modal" hidden aria-hidden="true">
+      <div class="m-privacy-modal-card" role="dialog" aria-modal="true" aria-labelledby="m-privacy-modal-title">
+        <h3 id="m-privacy-modal-title">개인정보 수집·이용 안내</h3>
+        <ul>
+          <li>수집 항목: 전화번호, 이메일, 고시원 정보</li>
+          <li>수집 목적: 서비스 출시 안내 및 사전 신청 혜택 제공</li>
+          <li>보관 기간: 서비스 출시 목적 달성 시까지</li>
+          <li>문의 및 삭제 요청: turtool@naver.com</li>
+        </ul>
+        <button type="button" class="m-privacy-modal-close" id="m-privacy-modal-close">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-sticky-cta" id="m-sticky-cta">
+    <a href="#m-signup" class="m-btn">사전 신청하기</a>
   </div>
 </div>
 <script>
 // ── DESKTOP LANDING: PC/태블릿 가로에서도 PC 연출 유지 ──
+// 현재는 PC에서도 모바일 랜딩만 노출하므로 desktop JS는 비활성.
 const TURTOOL_DESKTOP_BREAKPOINT = 1024;
-const turtoolIsDesktopLanding = window.innerWidth > TURTOOL_DESKTOP_BREAKPOINT;
+const turtoolForceMobileLanding = true;
+const turtoolIsDesktopLanding = !turtoolForceMobileLanding && window.innerWidth > TURTOOL_DESKTOP_BREAKPOINT;
 const turtoolIsTouchLanding = ((navigator.maxTouchPoints || 0) > 0) || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 if (turtoolIsTouchLanding) {
   document.documentElement.classList.add('touch-landing');
@@ -6148,28 +7169,657 @@ const cCopyStart      = 0.74;
 
 }
 
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ── MOBILE CONVERSION: 사전신청 폼 + Supabase ──
+(function () {
+  // TODO: 배포 전에 Supabase 프로젝트 값으로 교체하세요.
+  const SUPABASE_URL = 'https://flwouuehwszhkgvvphzj.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsd291dWVod3N6aGtndnZwaHpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxMzI4NTAsImV4cCI6MjA4NzcwODg1MH0.dY1wjA3suukZBWTn-HV7-xsuFYoN5S-bLovE-QXb_gk';
 
-// ── MOBILE LANDING: 가벼운 등장 애니메이션만 실행 ──
-(function(){
-  if (turtoolIsDesktopLanding) return;
-  history.scrollRestoration = "manual";
-  window.addEventListener('load',()=>window.scrollTo(0,0),{once:true});
-  const revealEls = document.querySelectorAll('#mobile-site .mobile-reveal');
-  if (!('IntersectionObserver' in window)) {
-    revealEls.forEach(el=>el.classList.add('visible'));
-    return;
+  history.scrollRestoration = 'manual';
+  window.addEventListener('load', function () { window.scrollTo(0, 0); }, { once: true });
+
+  // overdue mockup toggle (feature 02)
+  const ovToggle = document.getElementById('m-ov-toggle');
+  const ovPanel = document.getElementById('m-ov-panel');
+  if (ovToggle && ovPanel) {
+    const ovLabel = ovToggle.querySelector('.m-ov-toggle-label');
+    ovToggle.addEventListener('click', function () {
+      const open = ovToggle.getAttribute('aria-expanded') === 'true';
+      const next = !open;
+      ovToggle.setAttribute('aria-expanded', next ? 'true' : 'false');
+      ovToggle.classList.toggle('is-collapsed', !next);
+      ovPanel.hidden = !next;
+      if (ovLabel) ovLabel.textContent = next ? '연체 내역 접기' : '연체 내역 보기';
+    });
   }
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+
+  // sticky CTA: hide while scrolling / while #m-signup is visible
+  const sticky = document.getElementById('m-sticky-cta');
+  const signupSec = document.getElementById('m-signup');
+  let stickySignupInView = false;
+  let stickyScrollTimer = null;
+
+  function setStickyHidden(hidden) {
+    if (!sticky) return;
+    sticky.classList.toggle('hide', !!hidden);
+  }
+
+  function syncStickyFromSignup() {
+    if (stickySignupInView) {
+      if (stickyScrollTimer) {
+        clearTimeout(stickyScrollTimer);
+        stickyScrollTimer = null;
+      }
+      setStickyHidden(true);
+    } else {
+      setStickyHidden(false);
+    }
+  }
+
+  if (sticky) {
+    window.addEventListener('scroll', function () {
+      if (stickySignupInView) return;
+      setStickyHidden(true);
+      if (stickyScrollTimer) clearTimeout(stickyScrollTimer);
+      stickyScrollTimer = window.setTimeout(function () {
+        stickyScrollTimer = null;
+        if (!stickySignupInView) setStickyHidden(false);
+      }, 150);
+    }, { passive: true });
+  }
+
+  if (sticky && signupSec && 'IntersectionObserver' in window) {
+    const stickyObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        stickySignupInView = entry.isIntersecting;
+        syncStickyFromSignup();
+      });
+    }, { threshold: 0.1 });
+    stickyObs.observe(signupSec);
+  }
+
+  function freeMonthsForRank(n) {
+    if (!Number.isFinite(n) || n < 1) return null;
+    if (n <= 100) return 3;
+    if (n <= 200) return 2;
+    return 1;
+  }
+
+  function getProgressStage(count) {
+    const n = Math.max(0, Math.floor(Number(count) || 0));
+    if (n < 100) {
+      return { mode: 'bar', count: n, months: 3, goal: 100, pct: (n / 100) * 100, left: 100 - n, label: '3개월 무료 마감까지' };
+    }
+    if (n < 200) {
+      return { mode: 'bar', count: n, months: 2, goal: 200, pct: ((n - 100) / 100) * 100, left: 200 - n, label: '2개월 무료 마감까지' };
+    }
+    if (n < 300) {
+      return { mode: 'bar', count: n, months: 1, goal: 300, pct: ((n - 200) / 100) * 100, left: 300 - n, label: '1개월 무료 마감까지' };
+    }
+    return { mode: 'closing', count: n, months: 1, goal: 300, pct: 100, left: 0, label: '마감 임박' };
+  }
+
+  function hideAllProgress() {
+    document.querySelectorAll('[data-m-progress]').forEach(function (el) {
+      el.hidden = true;
+      el.classList.remove('is-open', 'is-closing', 'is-bar');
+    });
+    updateDoneTotal(null);
+    updateHeroBadge(null);
+  }
+
+  function updateDoneTotal(count) {
+    const totalEl = document.getElementById('m-done-total');
+    const nEl = document.getElementById('m-done-total-n');
+    if (!totalEl || !nEl) return;
+    if (count == null || !Number.isFinite(count) || count < 0) {
+      totalEl.hidden = true;
+      return;
+    }
+    nEl.textContent = String(count);
+    totalEl.hidden = false;
+  }
+
+  function updateHeroBadge(count) {
+    const badgeEl = document.getElementById('m-hero-badge');
+    const bodyEl = document.getElementById('m-hero-badge-body');
+    if (!badgeEl || !bodyEl) return;
+    if (count == null || !Number.isFinite(count) || count < 0) {
+      badgeEl.hidden = true;
+      bodyEl.innerHTML = '';
+      return;
+    }
+    const stage = getProgressStage(count);
+    const accent = stage.mode === 'closing'
+      ? '마감 임박'
+      : (stage.months + '개월 무료 마감 임박');
+    bodyEl.innerHTML = '<span class="m-hero-badge-num">' + count + '</span>명 신청 중 <span class="m-hero-badge-dot">·</span> ' + accent;
+    badgeEl.hidden = false;
+  }
+
+  function renderProgressWidgets(count, animate) {
+    if (!Number.isFinite(count) || count < 0) {
+      hideAllProgress();
+      return;
+    }
+    updateHeroBadge(count);
+    const stage = getProgressStage(count);
+    document.querySelectorAll('[data-m-progress]').forEach(function (root) {
+      root.hidden = false;
+      root.classList.remove('is-open', 'is-closing', 'is-bar');
+      if (stage.mode === 'closing') {
+        root.classList.add('is-closing');
+        return;
+      }
+      root.classList.add('is-bar');
+      const labelEl = root.querySelector('[data-m-progress-label]');
+      const curEl = root.querySelector('[data-m-progress-cur]');
+      const goalEl = root.querySelector('[data-m-progress-goal]');
+      const leftEl = root.querySelector('[data-m-progress-left]');
+      const fillEl = root.querySelector('[data-m-progress-fill]');
+      if (labelEl) labelEl.textContent = stage.label;
+      if (curEl) curEl.textContent = String(stage.count);
+      if (goalEl) goalEl.textContent = String(stage.goal);
+      if (leftEl) leftEl.textContent = String(Math.max(0, stage.left));
+      if (fillEl) {
+        const target = Math.max(0, Math.min(100, stage.pct));
+        if (animate) {
+          fillEl.style.transition = 'none';
+          fillEl.style.width = '0%';
+          // force reflow then animate
+          void fillEl.offsetWidth;
+          fillEl.style.transition = 'width .8s ease-out';
+          requestAnimationFrame(function () {
+            fillEl.style.width = target + '%';
+          });
+        } else {
+          fillEl.style.transition = 'width .8s ease-out';
+          fillEl.style.width = target + '%';
+        }
       }
     });
-  },{threshold:0.16, rootMargin:'0px 0px -8% 0px'});
-  revealEls.forEach(el=>observer.observe(el));
-})();
+  }
 
+  function formatPhone(raw) {
+    const d = String(raw || '').replace(/\D/g, '').slice(0, 11);
+    if (d.length < 4) return d;
+    if (d.length < 8) return d.slice(0, 3) + '-' + d.slice(3);
+    return d.slice(0, 3) + '-' + d.slice(3, 7) + '-' + d.slice(7);
+  }
+
+  function isValidPhone(v) {
+    const d = String(v || '').replace(/\D/g, '');
+    return /^01[016789]\d{7,8}$/.test(d);
+  }
+
+  function isValidEmail(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || '').trim());
+  }
+
+  function getReferrer() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const utm = params.get('utm_source') || params.get('ref') || params.get('referrer');
+      if (utm && String(utm).trim()) return String(utm).trim().slice(0, 200);
+      if (document.referrer && String(document.referrer).trim()) return String(document.referrer).trim().slice(0, 500);
+    } catch (e) { /* ignore */ }
+    return 'direct';
+  }
+
+  function showError(el, msg) {
+    if (!el) return;
+    el.textContent = msg || '';
+    el.classList.toggle('show', !!msg);
+  }
+
+  function radioValue(name) {
+    const el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : '';
+  }
+
+  const phoneInput = document.getElementById('m-phone');
+  if (phoneInput) {
+    phoneInput.addEventListener('input', function () {
+      const pos = phoneInput.selectionStart;
+      const before = phoneInput.value;
+      phoneInput.value = formatPhone(phoneInput.value);
+      // keep caret near end for simplicity on mobile
+      if (document.activeElement === phoneInput) {
+        const delta = phoneInput.value.length - before.length;
+        try { phoneInput.setSelectionRange(pos + delta, pos + delta); } catch (e) { /* ignore */ }
+      }
+    });
+  }
+
+  const payOtherWrap = document.getElementById('m-pay-other-wrap');
+  document.querySelectorAll('input[name="payment_method"]').forEach(function (r) {
+    r.addEventListener('change', function () {
+      const show = radioValue('payment_method') === '다른 서비스';
+      if (payOtherWrap) payOtherWrap.classList.toggle('show', show);
+    });
+  });
+
+  let supabaseClient = null;
+  let signupRowId = null;
+  let signupPhone = null;
+  let signupEmail = null;
+  let signupView = 'step1';
+  let step2Ready = false;
+  const configured = SUPABASE_URL && SUPABASE_URL !== 'YOUR_URL_HERE'
+    && SUPABASE_ANON_KEY && SUPABASE_ANON_KEY !== 'YOUR_ANON_KEY_HERE';
+
+  if (configured && window.supabase && typeof window.supabase.createClient === 'function') {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+
+  const step1El = document.getElementById('m-step1');
+  const step2El = document.getElementById('m-step2');
+  const doneEl = document.getElementById('m-form-done');
+  const step1Btn = document.getElementById('m-step1-btn');
+  const step2Btn = document.getElementById('m-step2-btn');
+  const step1Err = document.getElementById('m-step1-error');
+  const step2Err = document.getElementById('m-step2-error');
+
+  function parseCount(data) {
+    const n = typeof data === 'number' ? data : Number(data);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  function parseDisplayNo(value) {
+    if (value == null || value === '') return null;
+    const n = typeof value === 'number' ? value : Number(value);
+    return Number.isFinite(n) && n >= 1 ? Math.floor(n) : null;
+  }
+
+  function isUniqueViolation(err) {
+    if (!err) return false;
+    if (String(err.code) === '23505') return true;
+    const msg = String(err.message || err.details || '');
+    return /23505|duplicate|unique/i.test(msg);
+  }
+
+  function normalizeCheckResult(data) {
+    const row = Array.isArray(data) ? data[0] : data;
+    if (!row || typeof row !== 'object') {
+      return { status: 'new', id: null, display_no: null };
+    }
+    let status = row.status != null ? String(row.status).toLowerCase() : '';
+    if (!status) {
+      if (row.exists === true || row.exists === 'true' || row.exists === 1) {
+        const completed = row.completed === true || row.completed === 'true' || row.completed === 1
+          || row.step2_completed === true;
+        status = completed ? 'completed' : 'step1_only';
+      } else {
+        status = 'new';
+      }
+    }
+    return {
+      status: status,
+      id: row.id || row.signup_id || null,
+      display_no: parseDisplayNo(row.display_no),
+    };
+  }
+
+  async function checkPreSignup(phoneFormatted, email) {
+    const { data, error } = await supabaseClient.rpc('check_pre_signup', {
+      p_phone: phoneFormatted,
+      p_email: email,
+    });
+    if (error) throw error;
+    return normalizeCheckResult(data);
+  }
+
+  /** Only one of step1 / step2 / done is visible. */
+  function setSignupView(view) {
+    signupView = view;
+    step2Ready = false;
+    if (step1El) step1El.classList.toggle('active', view === 'step1');
+    if (step2El) step2El.classList.toggle('active', view === 'step2');
+    if (doneEl) doneEl.classList.toggle('active', view === 'done');
+
+    if (view === 'step2') {
+      if (step2El) step2El.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Avoid ghost-tap on "완료하기" right after switching from step1.
+      window.setTimeout(function () { step2Ready = true; }, 450);
+    } else if (view === 'done') {
+      if (sticky) sticky.classList.add('hide');
+      if (doneEl) doneEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  function mismatchMessage(status) {
+    if (status === 'mismatch_email') {
+      return '이 번호로 신청된 이메일과 일치하지 않아요.\n이메일을 확인해 주세요.';
+    }
+    if (status === 'mismatch_phone') {
+      return '이 이메일로 신청된 번호와 일치하지 않아요.\n전화번호를 확인해 주세요.';
+    }
+    if (status === 'mismatch_both') {
+      return '전화번호와 이메일이 서로 다른 신청 건이에요.\n입력하신 정보를 확인해 주세요.';
+    }
+    return '';
+  }
+
+  /**
+   * Handle check_pre_signup result.
+   * @returns {'done'|'resume'|'blocked'|'new'}
+   */
+  function applyCheckResult(check, phoneFormatted, email) {
+    const status = check && check.status ? check.status : 'new';
+
+    if (status === 'completed') {
+      signupRowId = check.id || signupRowId;
+      signupPhone = phoneFormatted;
+      signupEmail = email;
+      showDoneScreen(check.display_no);
+      refreshCount(true);
+      return 'done';
+    }
+
+    if (status === 'step1_only') {
+      if (!check.id) {
+        showError(step1Err, '신청 정보를 불러오지 못했어요. 잠시 후 다시 시도해 주세요.');
+        return 'blocked';
+      }
+      signupRowId = check.id;
+      signupPhone = phoneFormatted;
+      signupEmail = email;
+      setSignupView('step2');
+      return 'resume';
+    }
+
+    if (status === 'mismatch_email' || status === 'mismatch_phone' || status === 'mismatch_both') {
+      showError(step1Err, mismatchMessage(status));
+      return 'blocked';
+    }
+
+    return 'new';
+  }
+
+  function showDoneScreen(displayNo) {
+    const cardEl = document.getElementById('m-done-card');
+    const noEl = document.getElementById('m-done-card-no');
+    const monthsEl = document.getElementById('m-done-card-months');
+    const no = parseDisplayNo(displayNo);
+    const months = freeMonthsForRank(no);
+    const valid = months != null;
+
+    if (cardEl) {
+      if (valid) {
+        if (noEl) noEl.textContent = String(no);
+        if (monthsEl) monthsEl.textContent = months + '개월 무료 이용';
+        cardEl.hidden = false;
+      } else {
+        cardEl.hidden = true;
+      }
+    }
+
+    setSignupView('done');
+  }
+
+  async function refreshCount(animate) {
+    if (!supabaseClient) {
+      hideAllProgress();
+      return null;
+    }
+    try {
+      const { data, error } = await supabaseClient.rpc('get_pre_signup_count');
+      if (error) throw error;
+      const n = parseCount(data);
+      if (n == null || n < 0) {
+        hideAllProgress();
+        return null;
+      }
+      renderProgressWidgets(n, animate !== false);
+      updateDoneTotal(n);
+      return n;
+    } catch (e) {
+      hideAllProgress();
+      return null;
+    }
+  }
+
+  async function completeStep2(payload) {
+    // Prefer SECURITY DEFINER RPC (anon UPDATE is blocked by RLS).
+    const { data: rpcData, error: rpcError } = await supabaseClient.rpc('complete_pre_signup', {
+      p_id: signupRowId,
+      p_hostel_name: payload.hostel_name,
+      p_region: payload.region,
+      p_room_count: payload.room_count,
+      p_current_method: payload.current_method,
+      p_current_method_etc: payload.current_method_etc,
+      p_expected_feature: payload.expected_feature,
+      p_resident_app_expectation: payload.resident_app_expectation,
+      p_pain_point: payload.pain_point,
+      p_cash_receipt_method: payload.cash_receipt_method,
+    });
+
+    if (!rpcError) {
+      const row = Array.isArray(rpcData) ? rpcData[0] : rpcData;
+      if (row && (row.ok === true || row.ok === 'true')) {
+        return { ok: true, display_no: parseDisplayNo(row.display_no) };
+      }
+      return { ok: false, display_no: null };
+    }
+
+    // Fallback: direct update (works only if UPDATE policy exists).
+    const { error } = await supabaseClient
+      .from('pre_signups')
+      .update({
+        hostel_name: payload.hostel_name,
+        region: payload.region,
+        room_count: payload.room_count,
+        current_method: payload.current_method,
+        current_method_etc: payload.current_method_etc,
+        expected_feature: payload.expected_feature,
+        resident_app_expectation: payload.resident_app_expectation,
+        pain_point: payload.pain_point,
+        cash_receipt_method: payload.cash_receipt_method,
+        step2_completed: true,
+        step2_at: new Date().toISOString(),
+      })
+      .eq('id', signupRowId);
+    if (error) throw error;
+
+    // RLS often returns success with 0 rows — verify via check RPC.
+    if (!signupPhone || !signupEmail) return { ok: false, display_no: null };
+    const verify = await checkPreSignup(signupPhone, signupEmail);
+    if (verify && verify.status === 'completed') {
+      return { ok: true, display_no: verify.display_no };
+    }
+    return { ok: false, display_no: null };
+  }
+
+  refreshCount();
+
+  if (step1Btn) {
+    const privacyToggle = document.getElementById('m-privacy-toggle');
+    const privacyDetail = document.getElementById('m-privacy-detail');
+    if (privacyToggle && privacyDetail) {
+      privacyToggle.addEventListener('click', function () {
+        const open = privacyDetail.classList.toggle('is-open');
+        privacyToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        privacyToggle.textContent = open ? '내용 닫기' : '내용 보기';
+      });
+    }
+
+    const privacyModal = document.getElementById('m-privacy-modal');
+    const privacyModalBtn = document.getElementById('m-footer-privacy-btn');
+    const privacyModalClose = document.getElementById('m-privacy-modal-close');
+    function openPrivacyModal() {
+      if (!privacyModal) return;
+      privacyModal.hidden = false;
+      privacyModal.classList.add('is-open');
+      privacyModal.setAttribute('aria-hidden', 'false');
+    }
+    function closePrivacyModal() {
+      if (!privacyModal) return;
+      privacyModal.classList.remove('is-open');
+      privacyModal.hidden = true;
+      privacyModal.setAttribute('aria-hidden', 'true');
+    }
+    if (privacyModalBtn) privacyModalBtn.addEventListener('click', openPrivacyModal);
+    if (privacyModalClose) privacyModalClose.addEventListener('click', closePrivacyModal);
+    if (privacyModal) {
+      privacyModal.addEventListener('click', function (e) {
+        if (e.target === privacyModal) closePrivacyModal();
+      });
+    }
+
+    step1Btn.addEventListener('click', async function () {
+      showError(step1Err, '');
+      const phone = (document.getElementById('m-phone') || {}).value || '';
+      const email = ((document.getElementById('m-email') || {}).value || '').trim();
+      const privacyAgree = document.getElementById('m-privacy-agree');
+
+      if (!isValidPhone(phone)) {
+        showError(step1Err, '올바른 휴대폰 번호를 입력해 주세요.');
+        return;
+      }
+      if (!isValidEmail(email)) {
+        showError(step1Err, '올바른 이메일을 입력해 주세요.');
+        return;
+      }
+      if (!privacyAgree || !privacyAgree.checked) {
+        showError(step1Err, '개인정보 수집에 동의해 주세요');
+        return;
+      }
+      if (!supabaseClient) {
+        showError(step1Err, '신청 준비가 아직 완료되지 않았어요. 잠시 후 다시 시도해 주세요.');
+        return;
+      }
+
+      const phoneFormatted = formatPhone(phone);
+      step1Btn.disabled = true;
+      try {
+        let check;
+        try {
+          check = await checkPreSignup(phoneFormatted, email);
+        } catch (e) {
+          showError(step1Err, '일시적인 오류예요. 잠시 후 다시 시도해 주세요.');
+          step1Btn.disabled = false;
+          return;
+        }
+
+        const applied = applyCheckResult(check, phoneFormatted, email);
+        if (applied === 'blocked') {
+          step1Btn.disabled = false;
+          return;
+        }
+        if (applied === 'done' || applied === 'resume') return;
+        // applied === 'new' → insert
+
+        const signupId = crypto.randomUUID();
+        const payload = {
+          id: signupId,
+          phone: phoneFormatted,
+          email: email,
+          referrer: getReferrer(),
+          user_agent: (navigator.userAgent || '').slice(0, 500),
+          privacy_agreed: true,
+          privacy_agreed_at: new Date().toISOString(),
+        };
+        const { error } = await supabaseClient
+          .from('pre_signups')
+          .insert(payload);
+
+        if (error) {
+          if (isUniqueViolation(error)) {
+            let checkAgain;
+            try {
+              checkAgain = await checkPreSignup(phoneFormatted, email);
+            } catch (e2) {
+              showError(step1Err, '일시적인 오류예요. 잠시 후 다시 시도해 주세요.');
+              step1Btn.disabled = false;
+              return;
+            }
+            const appliedAgain = applyCheckResult(checkAgain, phoneFormatted, email);
+            if (appliedAgain === 'blocked') {
+              step1Btn.disabled = false;
+              return;
+            }
+            if (appliedAgain === 'done' || appliedAgain === 'resume') return;
+            showError(step1Err, '일시적인 오류예요. 잠시 후 다시 시도해 주세요.');
+            step1Btn.disabled = false;
+            return;
+          }
+          throw error;
+        }
+
+        signupRowId = signupId;
+        signupPhone = phoneFormatted;
+        signupEmail = email;
+        setSignupView('step2');
+        refreshCount();
+      } catch (e) {
+        showError(step1Err, '일시적인 오류예요. 잠시 후 다시 시도해 주세요.');
+        step1Btn.disabled = false;
+      }
+    });
+  }
+
+  if (step2Btn) {
+    step2Btn.addEventListener('click', async function () {
+      if (signupView !== 'step2' || !step2Ready) return;
+      showError(step2Err, '');
+      const hostel = ((document.getElementById('m-hostel') || {}).value || '').trim();
+      const region = ((document.getElementById('m-region') || {}).value || '').trim();
+      const rooms = (document.getElementById('m-rooms') || {}).value || '';
+      const payMethod = radioValue('payment_method');
+      const payOther = ((document.getElementById('m-pay-other') || {}).value || '').trim();
+      const expected = radioValue('expected_feature');
+      const residentApp = radioValue('resident_app');
+      const pain = ((document.getElementById('m-pain') || {}).value || '').trim();
+      const receipt = ((document.getElementById('m-receipt') || {}).value || '').trim();
+
+      if (!hostel) { showError(step2Err, '고시원명을 입력해 주세요.'); return; }
+      if (!region) { showError(step2Err, '지역을 입력해 주세요.'); return; }
+      if (!rooms) { showError(step2Err, '객실 수를 선택해 주세요.'); return; }
+      if (!payMethod) { showError(step2Err, '현재 수납 관리 방법을 선택해 주세요.'); return; }
+      if (payMethod === '다른 서비스' && !payOther) {
+        showError(step2Err, '사용 중인 서비스 이름을 입력해 주세요.');
+        return;
+      }
+      if (!expected) { showError(step2Err, '가장 기대되는 기능을 선택해 주세요.'); return; }
+      if (!signupRowId || !supabaseClient) {
+        showError(step2Err, '세션이 만료됐어요. 1단계부터 다시 신청해 주세요.');
+        return;
+      }
+
+      step2Btn.disabled = true;
+      try {
+        const payload = {
+          hostel_name: hostel,
+          region: region,
+          room_count: rooms,
+          current_method: payMethod,
+          current_method_etc: payMethod === '다른 서비스' ? payOther : null,
+          expected_feature: expected,
+          resident_app_expectation: residentApp || null,
+          pain_point: pain || null,
+          cash_receipt_method: receipt || null,
+        };
+        const result = await completeStep2(payload);
+        if (!result || !result.ok) {
+          showError(step2Err, '일시적인 오류예요. 잠시 후 다시 시도해 주세요.');
+          step2Btn.disabled = false;
+          return;
+        }
+
+        showDoneScreen(result.display_no);
+        refreshCount(true);
+      } catch (e) {
+        showError(step2Err, '일시적인 오류예요. 잠시 후 다시 시도해 주세요.');
+        step2Btn.disabled = false;
+      }
+    });
+  }
+})();
 </script>
+
+
 </body>
 </html>
